@@ -7,10 +7,10 @@ import Pic5 from "../../assets/heroslider/cyber.jpg"
 import Pic7 from "../../assets/heroslider/Cybersecurity3.png"
 // Main slider images — from the original Consulo site
 // Replace these with your own hosted images if needed
-const mainSlides = [Pic1,Pic5,Pic7
+const mainSlides = [Pic1, Pic5, Pic7
 ]
 
-const thumbSlides = [Pic1,Pic5,Pic7
+const thumbSlides = [Pic1, Pic5, Pic7
 ]
 
 const HERO_CSS = `
@@ -304,7 +304,7 @@ const Hero = () => {
     <section className="hero-wrap">
       {/* ======= LEFT ======= */}
       <div className="hero-left mt-7">
-      {/*  <div className="expert-tag">
+        {/*  <div className="expert-tag">
           <span>+</span>
           <div className="text-left">
             <span className="block text-2xl font-bold bg-gradient-to-r from-red-500 via-orange-500 to-red-400 bg-clip-text text-transparent">
@@ -319,13 +319,13 @@ const Hero = () => {
 
         <h1 className="hero-heading">
           Empower your business with our expertise in <br />
-          <span className='text-orange-400'>Cybersecurity <span className='text-black'>&</span> Cloud Computing<br/> </span>
+          <span className='text-orange-400'>Cybersecurity <span className='text-black'>&</span> Cloud Computing<br /> </span>
         </h1>
 
         <p className="hero-sub">
-            Your innovation partner for future-ready technology and consulting.
-            <br />
-            We are committed to delivering innovative, secure, and scalable solutions tailored to meet the evolving needs of your enterprise.
+          Your innovation partner for future-ready technology and consulting.
+          <br />
+          We are committed to delivering innovative, secure, and scalable solutions tailored to meet the evolving needs of your enterprise.
 
         </p>
 
@@ -342,15 +342,15 @@ const Hero = () => {
               </svg>
             </div>
             <div>
-             <span className="c-label">Need help?</span>
+              <span className="c-label">Need help?</span>
 
-                 <a href="tel:+918820066999" className="c-num block hover:underline">
-                   +91 88200 66999
-                 </a>
+              <a href="tel:+918820066999" className="c-num block hover:underline">
+                +91 88200 66999
+              </a>
 
-                 <a href="tel:+917439004545" className="c-num block hover:underline">
-                   +91 74390 04545
-                 </a>
+              <a href="tel:+917439004545" className="c-num block hover:underline">
+                +91 74390 04545
+              </a>
             </div>
           </div>
         </div>

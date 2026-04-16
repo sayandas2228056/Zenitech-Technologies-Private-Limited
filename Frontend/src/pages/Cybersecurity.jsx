@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Bright2 from '../components/Common/Bright2';
 import herobg from "../assets/serviceimg/Cybersecurity.jpeg";
+
+import Cyber1 from "../assets/serviceimg/Cybersecurity.jpeg";
+import Cyber2 from "../assets/serviceimg/Cybersecurity2.png";
+import Cyber3 from "../assets/serviceimg/Cybersecurity3.png";
 /* ─── tiny hook: animate elements in on scroll ─── */
 function useReveal() {
   const ref = useRef(null);
@@ -57,18 +61,21 @@ const Cybersecurity = () => {
     {
       title: 'Security assessment',
       icon: '🔍',
+      image: Cyber1,
       content: 'Our comprehensive security assessment identifies vulnerabilities, evaluates current security measures, and provides detailed recommendations for improvement. We use industry-leading tools and methodologies to ensure nothing is overlooked.',
       highlights: ['Vulnerability scanning', 'Risk scoring', 'Gap analysis', 'Compliance check']
     },
     {
       title: 'Implementation',
       icon: '⚙️',
+      image: Cyber2,
       content: 'Our expert team implements security solutions with precision and minimal business disruption. We follow best practices and ensure all systems are properly configured and tested before going live.',
       highlights: ['Zero-downtime deploy', 'Config hardening', 'Integration testing', 'Staff training']
     },
     {
       title: 'Ongoing support',
       icon: '🛡️',
+      image: Cyber3,
       content: '24/7 monitoring and support ensure your systems remain secure. Our team proactively identifies and addresses potential threats before they can impact your business operations.',
       highlights: ['24/7 SOC coverage', 'Incident response', 'Monthly reporting', 'Patch management']
     }
@@ -323,6 +330,11 @@ const Cybersecurity = () => {
           {/* Tab content */}
           <div className="cs-tab-content-panel">
             <div className="cs-tab-panel-inner" key={activeTab}>
+              <img
+                src={tabs[activeTab].image}
+                alt={tabs[activeTab].title}
+                className="cs-tab-image"
+              />
               <div className="cs-tab-panel-eyebrow">
                 <span className="cs-tab-panel-icon">{tabs[activeTab].icon}</span>
                 <span>{tabs[activeTab].title}</span>
@@ -943,9 +955,15 @@ const Cybersecurity = () => {
           background: var(--cs-white);
           border: 1px solid var(--cs-gray-200);
           border-radius: var(--cs-radius-lg);
-          padding: 28px;
+          padding: 0;
           box-shadow: var(--cs-shadow-card);
-          min-height: 200px;
+          overflow: hidden;
+        }
+        .cs-tab-image {
+          width: 100%;
+          height: 220px;
+          object-fit: cover;
+          display: block;
         }
         .cs-tab-panel-inner {
           animation: cs-fade-in 0.3s ease;
@@ -959,17 +977,18 @@ const Cybersecurity = () => {
           font-size: 13px; font-weight: 700;
           color: var(--cs-blue-mid);
           letter-spacing: 0.04em;
-          margin-bottom: 14px;
+          margin: 20px 24px 10px;
         }
         .cs-tab-panel-icon { font-size: 20px; }
         .cs-tab-panel-body {
           font-size: 14px;
           color: var(--cs-text-body);
           line-height: 1.75;
-          margin-bottom: 20px;
+          margin: 0 24px 16px;
         }
         .cs-tab-highlights {
           display: flex; flex-wrap: wrap; gap: 8px;
+          margin: 0 24px 22px;
         }
         .cs-highlight-chip {
           display: inline-flex; align-items: center; gap: 6px;

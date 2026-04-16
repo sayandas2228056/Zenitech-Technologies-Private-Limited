@@ -40,7 +40,7 @@ const HeroBotm = () => {
     >
       {/* Black overlay */}
       <div className="absolute inset-0 bg-black/30 z-10" />
-      
+
       <div className="relative z-20 flex flex-col items-end justify-end h-full px-4 py-8 min-h-[40vh]">
         <div className="text-white text-right text-base md:text-lg lg:text-xl font-normal leading-snug drop-shadow-lg mb-6 font-mono min-h-[8em]">
           {displayedLines.map((line, idx) => (

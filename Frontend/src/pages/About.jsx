@@ -1,610 +1,1121 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
-  FileCode,
-  Laptop2,
-  PhoneCall,
-  Network,
-  ArrowRight,
-  ChevronRight,
-  Users,
-  Award,
-  Target,
-  BarChart3,
-  Shield,
-  Clock,
-  Mail
-} from "lucide-react";
-import Pic1 from "../assets/Pic1.jpg";
-import Pic2 from "../assets/Pic2.jpg";
-import Logo from "../assets/Logo.png";
+  PhoneCall, Network, ArrowRight, ChevronRight,
+  Users, Award, Target, BarChart3, Shield, Clock,
+  Mail, ChevronDown, ChevronUp
+} from 'lucide-react';
+import heroimg from "../assets/Abthero.jpg";
+import Pic1 from '../assets/Pic1.jpg';
+import Pic2 from '../assets/Pic2.jpg';
+import Logo from '../assets/Logo.png';
 import Founder from '../assets/Founder.jpg';
 import { FaLinkedin, FaFacebookF, FaWhatsapp } from 'react-icons/fa';
-import ServSection from '../components/Common/ServSection.jsx';
 import NavBar from '../components/Common/NavBar.jsx';
-import Footer from '../components/Common/Footer.jsx';
-import Bright1 from "../components/Common/Bright1.jsx"
-const About = () => {
-  // Add scroll animation effect
+import Bright1 from '../components/Common/Bright1.jsx';
+
+/* ══════════════════════════════════════════════════════════════
+   DATA
+══════════════════════════════════════════════════════════════ */
+
+const stats = [
+  { icon: Users, count: '100+', label: 'Clients Served' },
+  { icon: Award, count: '5+', label: 'Years Experience' },
+  { icon: Target, count: '98%', label: 'Client Retention' },
+  { icon: BarChart3, count: '100+', label: 'Projects Completed' },
+];
+
+const values = [
+  { title: 'Innovation Excellence', description: 'We constantly explore emerging technologies to deliver cutting-edge solutions that keep our clients ahead in the digital landscape.' },
+  { title: 'Client-Centric Approach', description: 'We build lasting partnerships through transparent communication, personalized attention, and a deep understanding of business objectives.' },
+  { title: 'Technical Expertise', description: 'Our team of certified professionals brings specialized knowledge across diverse technology domains to solve complex challenges.' },
+  { title: 'Integrity & Trust', description: 'We uphold the highest ethical standards in all our engagements, ensuring reliability and confidentiality in every relationship.' },
+];
+
+const services = [
+  { icon: Shield, title: 'Cyber Security', description: 'Comprehensive security solutions to protect your digital assets and infrastructure.' },
+  { icon: Clock, title: 'Cloud Computing', description: 'Strategic cloud adoption and migration services for enhanced scalability and efficiency.' },
+];
+
+const founderData = {
+  name: 'Mr. Haider Ali',
+  title: 'Founder & CEO',
+  summary: 'Technology visionary with 20+ years of experience in Enterprise IT Solutions. Expertise in IT, Cloud, Cybersecurity, Software, and Telecom Services.',
+  email: 'haider@zenitech.in',
+  phone: '+91 88200 66999',
+  location: 'Bangalore / Bengaluru, India',
+  highlights: ['24/7 security monitoring', 'Advanced threat protection', 'Incident response services', 'Tailored security consulting'],
+  socials: [
+    { name: 'LinkedIn', icon: <FaLinkedin size={16} />, url: 'https://linkedin.com' },
+    { name: 'Facebook', icon: <FaFacebookF size={16} />, url: 'https://facebook.com' },
+    { name: 'WhatsApp', icon: <FaWhatsapp size={16} />, url: 'https://wa.me/8820066999' },
+  ],
+};
+
+const faqData = [
+  { question: 'What does ZENITECH TECHNOLOGIES PRIVATE LIMITED specialize in?', answer: 'ZENITECH TECHNOLOGIES PRIVATE LIMITED specializes in comprehensive IT services & consulting services including Cybersecurity & Cloud solutions.' },
+  { question: 'Where is ZENITECH TECHNOLOGIES PRIVATE LIMITED located?', answer: 'ZENITECH TECHNOLOGIES PRIVATE LIMITED is headquartered in Bengaluru (Bangalore), India, the Silicon Valley of India.' },
+  { question: 'What industries does ZENITECH TECHNOLOGIES PRIVATE LIMITED serve?', answer: 'We serve organizations across various sectors including IT/ITES, Software, Startup, BFSI, Manufacturing, Healthcare, Education, Retail, and many more.' },
+  { question: 'How long has ZENITECH TECHNOLOGIES PRIVATE LIMITED been in business?', answer: 'ZENITECH TECHNOLOGIES PRIVATE LIMITED has been delivering technology solutions since 2021, with over 5+ years of combined industry experience.' },
+];
+
+/* ══════════════════════════════════════════════════════════════
+   HOOKS & SMALL COMPONENTS
+══════════════════════════════════════════════════════════════ */
+
+function useReveal(threshold = 0.12) {
+  const ref = useRef(null);
   useEffect(() => {
-    const animateOnScroll = () => {
-      const elements = document.querySelectorAll('.animate-on-scroll');
-      elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight;
-        if (elementPosition < screenPosition - 100) {
-          element.classList.add('fade-in-up');
-        }
-      });
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add('ab-revealed'); obs.disconnect(); } },
+      { threshold }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return ref;
+}
+
+const RevealCard = ({ children, className = '', delay = 0 }) => {
+  const ref = useReveal();
+  return (
+    <div ref={ref} className={`ab-reveal ${className}`} style={{ transitionDelay: `${delay}ms` }}>
+      {children}
+    </div>
+  );
+};
+
+const SectionHeader = ({ tag, title, subtitle, light = false }) => (
+  <div className="ab-section-header">
+    <span className={`ab-eyebrow-pill${light ? ' ab-eyebrow-pill-light' : ''}`}>
+      <span className={`ab-eyebrow-dot${light ? ' ab-eyebrow-dot-light' : ''}`} />
+      {tag}
+    </span>
+    <h2 className={`ab-section-title${light ? ' ab-section-title-light' : ''}`}>{title}</h2>
+    <div className={`ab-title-bar${light ? ' ab-title-bar-light' : ''}`} />
+    {subtitle && <p className={`ab-section-sub${light ? ' ab-section-sub-light' : ''}`}>{subtitle}</p>}
+  </div>
+);
+
+/* ══════════════════════════════════════════════════════════════
+   SEO — structured data injection
+══════════════════════════════════════════════════════════════ */
+
+function useAboutSEO() {
+  useEffect(() => {
+    document.title = 'About ZENITECH TECHNOLOGIES PRIVATE LIMITED | Leading IT Services in Bengaluru, India';
+
+    const setMeta = (key, val) => {
+      const isProp = key.startsWith('og:');
+      let el = document.querySelector(`meta[${isProp ? 'property' : 'name'}="${key}"]`);
+      if (!el) { el = document.createElement('meta'); el.setAttribute(isProp ? 'property' : 'name', key); document.head.appendChild(el); }
+      el.setAttribute('content', val);
     };
-    window.addEventListener('scroll', animateOnScroll);
-    setTimeout(animateOnScroll, 300);
-    return () => window.removeEventListener('scroll', animateOnScroll);
+
+    setMeta('description', 'Learn about ZENITECH TECHNOLOGIES PRIVATE LIMITED, a premier IT services and consulting company in Bengaluru.');
+    setMeta('keywords', 'IT services Bengaluru, cloud computing, cybersecurity, IT consulting, ZENITECH TECHNOLOGIES');
+    setMeta('og:title', 'About ZENITECH TECHNOLOGIES PRIVATE LIMITED');
+    setMeta('og:description', 'Premier IT services and consulting company specializing in cloud computing and cybersecurity.');
+    setMeta('og:type', 'website');
+    setMeta('og:url', 'https://zenitech.in/about');
+    setMeta('og:image', 'https://zenitech.in/logo.png');
+  }, []);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MAIN PAGE
+══════════════════════════════════════════════════════════════ */
+
+const About = () => {
+  const [activeFaq, setActiveFaq] = useState(null);
+  const heroRef = useRef(null);
+  useAboutSEO();
+
+  useEffect(() => {
+    const el = heroRef.current;
+    if (el) setTimeout(() => el.classList.add('ab-hero-in'), 60);
   }, []);
 
-  // Company statistics
-  const stats = [
-    { icon: <Users size={32} />, count: "100+", label: "Clients Served" },
-    { icon: <Award size={32} />, count: "5+", label: "Years Experience" },
-    { icon: <Target size={32} />, count: "98%", label: "Client Retention" },
-    { icon: <BarChart3 size={32} />, count: "100+", label: "Projects Completed" }
-  ];
-
-  // Company values
-  const values = [
-    {
-      title: "Innovation Excellence",
-      description: "We constantly explore emerging technologies to deliver cutting-edge solutions that keep our clients ahead in the digital landscape."
-    },
-    {
-      title: "Client-Centric Approach",
-      description: "We build lasting partnerships through transparent communication, personalized attention, and a deep understanding of business objectives."
-    },
-    {
-      title: "Technical Expertise",
-      description: "Our team of certified professionals brings specialized knowledge across diverse technology domains to solve complex challenges."
-    },
-    {
-      title: "Integrity & Trust",
-      description: "We uphold the highest ethical standards in all our engagements, ensuring reliability and confidentiality in every relationship."
-    }
-  ];
-
-  // Core services
-  const services = [
-    
-    {
-      icon: <Shield className="text-blue-600" size={40} />,
-      title: "Cyber Security",
-      description: "Comprehensive security solutions to protect your digital assets and infrastructure."
-    },
-    {
-      icon: <Clock className="text-blue-600" size={40} />,
-      title: "Cloud Computing",
-      description: "Strategic cloud adoption and migration services for enhanced scalability and efficiency."
-    },
-  ];
-
-  // Founder details
-  const founder = {
-    name: 'Mr. Haider Ali',
-    title: 'Founder & CEO',
-    summary: 'Technology visionary with 20+ years of experience in Enterprise IT Solutions. Expertise in IT, Cloud, Cybersecurity, Software, and Telecom Services.',
-    email: 'haider@zenitech.in',
-    phone: '+91 88200 66999',
-    location: 'Bangalore / Bengaluru, India',
-    image: Founder,
-    socials: [
-      { name: 'LinkedIn', icon: <FaLinkedin size={18} />, url: 'https://linkedin.com' },
-      { name: 'Facebook', icon: <FaFacebookF size={18} />, url: 'https://facebook.com' },
-      { name: 'WhatsApp', icon: <FaWhatsapp size={18} />, url: 'https://wa.me/8820066999' },
-    ]
-  };
-
-  // FAQ data for structured data
-  const faqData = [
-    {
-      question: "What does ZENITECH TECHNOLOGIES PRIVATE LIMITED specialize in?",
-      answer: "ZENITECH TECHNOLOGIES PRIVATE LIMITED specializes in comprehensive IT services & consulting services including Cybersecurity & Cloud solutions."
-    },
-    {
-      question: "Where is ZENITECH TECHNOLOGIES PRIVATE LIMITED located?",
-      answer: "ZENITECH TECHNOLOGIES PRIVATE LIMITED is headquartered in Bengaluru (Bangalore), India, the Silicon Valley of India."
-    },
-    {
-      question: "What industries does ZENITECH TECHNOLOGIES PRIVATE LIMITED serve?",
-      answer: "We serve organizations across various sectors including IT/ITES, Software, Startup, BFSI, Manufacturing, Healthcare, Education, Retail, and many more."
-    },
-    {
-      question: "How long has ZENITECH TECHNOLOGIES PRIVATE LIMITED been in business?",
-      answer: "ZENITECH TECHNOLOGIES PRIVATE LIMITED has been delivering technology solutions since 2021, with over 5+ years of combined industry experience."
-    }
-  ];
-
-  useEffect(() => {
-    document.title = "About ZENITECH TECHNOLOGIES PRIVATE LIMITED | Leading IT Services in Bengaluru, India";
-    
-    // Update or create meta tags
-    const updateMetaTag = (name, content) => {
-      let meta = document.querySelector(`meta[name="${name}"]`) || 
-                 document.querySelector(`meta[property="${name}"]`);
-      if (!meta) {
-        meta = document.createElement('meta');
-        meta.setAttribute(name.startsWith('og:') ? 'property' : 'name', name);
-        document.head.appendChild(meta);
-      }
-      meta.setAttribute('content', content);
-    };
-
-    // Basic meta tags
-    updateMetaTag('description', "Learn about ZENITECH TECHNOLOGIES PRIVATE LIMITED, a premier IT services and consulting company in Bengaluru. Discover our expertise in cloud computing and cybersecurity since 2021.");
-    updateMetaTag('keywords', "IT services Bengaluru, cloud computing, cybersecurity, IT consulting, system integrator, ZENITECH TECHNOLOGIES PRIVATE LIMITED");
-    updateMetaTag('author', "ZENITECH TECHNOLOGIES PRIVATE LIMITED");
-    updateMetaTag('robots', "index, follow");
-    
-    // Open Graph meta tags
-    updateMetaTag('og:title', "About ZENITECH TECHNOLOGIES PRIVATE LIMITED | Leading IT Services in Bengaluru");
-    updateMetaTag('og:description', "Premier IT services and consulting company specializing in cloud computing and cybersecurity solutions.");
-    updateMetaTag('og:type', "website");
-    updateMetaTag('og:url', "https://zenitech.in/about");
-    updateMetaTag('og:image', "https://zenitech.in/logo.png");
-    updateMetaTag('og:site_name', "ZENITECH TECHNOLOGIES PRIVATE LIMITED");
-    
-    // Canonical link
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', 'https://zenitech.in/about');
-    
-    // Organization Schema
-    const organizationSchema = {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "ZENITECH TECHNOLOGIES PRIVATE LIMITED",
-      "url": "https://zenitech.in",
-      "logo": "https://zenitech.in/logo.png",
-      "description": "Premier IT services and consulting company specializing in cloud computing and cybersecurity.",
-      "foundingDate": "2021",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Bengaluru",
-        "addressRegion": "Karnataka",
-        "addressCountry": "India"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+91-8820066999",
-        "contactType": "Customer Support",
-        "email": "haider@zenitech.in"
-      },
-      "founder": {
-        "@type": "Person",
-        "name": "Mr. Haider Ali",
-        "jobTitle": "Founder & CEO",
-        "email": "haider@zenitech.in"
-      },
-      "sameAs": [
-        "https://linkedin.com",
-        "https://facebook.com"
-      ],
-      "serviceArea": {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
-          "@type": "GeoCoordinates",
-          "latitude": 12.9716,
-          "longitude": 77.5946
-        },
-        "geoRadius": "50000"
-      }
-    };
-    
-    // FAQ Schema
-    const faqSchema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": faqData.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
-    };
-    
-    // Breadcrumb Schema
-    const breadcrumbSchema = {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://zenitech.in"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "About",
-          "item": "https://zenitech.in/about"
-        }
-      ]
-    };
-    
-    // Add structured data scripts
-    const addStructuredData = (schema, id) => {
-      let script = document.getElementById(id);
-      if (!script) {
-        script = document.createElement('script');
-        script.type = 'application/ld+json';
-        script.id = id;
-        document.head.appendChild(script);
-      }
-      script.textContent = JSON.stringify(schema);
-    };
-    
-    addStructuredData(organizationSchema, 'organization-schema');
-    addStructuredData(faqSchema, 'faq-schema');
-    addStructuredData(breadcrumbSchema, 'breadcrumb-schema');
-    
-    return () => {
-      // Cleanup function if needed
-    };
-  }, [faqData]);
-
   return (
-    <div className="bg-white">
+    <div className="ab-root">
       <NavBar />
-      {/* Hero Section with Parallax Effect */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-blue-950  to-blue-500 text-white">
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 bg-[url('/pattern-bg.png')] bg-repeat opacity-10 z-0"></div>
 
-        {/* Main Content Container */}
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-32 md:py-40">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="animate-on-scroll">
-             <p className="text-blue-200 font-semibold text-lg mb-3 tracking-wider">
-  About <span className="text-orange-500">ZENITECH TECHNOLOGIES</span>{' '}
-  <span className="text-orange-500">PRIVATE LIMITED</span>
-</p>
+      {/* ══ HERO ═══════════════════════════════════════════════ */}
+      <section className="ab-hero" ref={heroRef}>
+        {/* Background image + gradient overlay */}
+        <div className="ab-hero-bg">
+          <img src={heroimg} alt="" aria-hidden="true" className="ab-hero-bg-img" />
+          <div className="ab-hero-overlay opacity-50" />
+        </div>
 
+        <div className="ab-hero-blob ab-blob-1" />
+        <div className="ab-hero-blob ab-blob-2" />
 
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                Grow Your<span className="text-blue-300"> Business with us.</span>
-              </h1>
-              <p className="text-xl opacity-90 leading-relaxed mb-8">
-                Delivering innovative, reliable, and scalable technology solutions to businesses.
-              </p>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                <a
-                  href="/services"
-                  className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl flex items-center justify-center"
-                >
-                  Our Services <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
-                <a
-                  href="/contact"
-                  className="bg-transparent border-2 border-blue-600 hover:bg-blue-50/10 px-8 py-4 rounded-lg font-semibold transition-all flex items-center justify-center"
-                >
-                  Contact Us
-                </a>
-              </div>
+        <div className="ab-hero-layout">
+          {/* Left — text */}
+          <div className="ab-hero-text">
+            <div className="ab-badge ab-badge-animate">
+              <span className="ab-badge-dot ab-pulse" />
+              About <span className="ab-orange">ZENITECH TECHNOLOGIES PRIVATE LIMITED</span>
             </div>
 
-            {/* Logo Section */}
-            <div className="animate-on-scroll flex justify-center items-center">
-              <div className="relative">
-                <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-2xl transform rotate-3"></div>
-                <div className="relative bg-white p-8 rounded-2xl shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-300">
-                  <img 
-                    src={Logo} 
-                    alt="ZENITECH TECHNOLOGIES PRIVATE LIMITED Logo - Leading IT Services Company in Bengaluru" 
-                    className="w-64 h-auto object-contain"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
+            <h1 className="ab-hero-heading ab-text-animate" style={{ animationDelay: '0.1s' }}>
+              Grow your business{' '}
+              <em className="ab-hero-em">with us</em>
+            </h1>
+
+            <p className="ab-hero-sub ab-text-animate" style={{ animationDelay: '0.2s' }}>
+              Delivering innovative, reliable, and scalable technology solutions to businesses of every size.
+            </p>
+
+            <div className="ab-hero-btns ab-text-animate" style={{ animationDelay: '0.3s' }}>
+              <a href="/services" className="ab-btn-primary">Our Services <ArrowRight size={16} /></a>
+              <a href="/contact" className="ab-btn-ghost">Contact Us</a>
+            </div>
+          </div>
+
+          {/* Right — rotating logo card */}
+          <div className="ab-hero-logo-col ab-text-animate" style={{ animationDelay: '0.25s' }}>
+            <div className="ab-logo-tilt-back" />
+            <div className="ab-logo-card">
+              <img src={Logo} alt="Zenitech Logo" className="ab-logo-img" />
             </div>
           </div>
         </div>
 
-        {/* Decorative Wave */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
-          <svg
-            className="relative block w-[calc(100%+1.3px)] h-[100px]"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1440 320"
-          >
-            <path
-              fill="#ffffff"
-              fillOpacity="1"
-              d="M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,128C672,107,768,85,864,96C960,107,1056,149,1152,154.7C1248,160,1344,128,1392,112L1440,96V320H0Z"
-            ></path>
+        {/* Wave divider */}
+        <div className="ab-wave-wrap">
+          <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#ffffff" d="M0,40 C240,90 480,0 720,50 C960,100 1200,20 1440,50 L1440,90 L0,90 Z" />
           </svg>
         </div>
-      </div>
+      </section>
 
-      {/* Who We Are Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-24" id="about">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div className="animate-on-scroll">
-            <div className="bg-blue-50 p-1 rounded-full inline-flex items-center mb-4">
-              <span className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium">WHO WE ARE</span>
-              <span className="text-blue-800 px-4 py-1 text-sm font-medium">Excellence Since 2021</span>
+      {/* ══ WHO WE ARE ═════════════════════════════════════════ */}
+      <section className="ab-section ab-section-white" id="about">
+        <div className="ab-two-col">
+          <RevealCard className="ab-half">
+            <span className="ab-badge-pill">
+              <span className="ab-badge-pill-inner">WHO WE ARE</span>
+              <span className="ab-badge-pill-sub">Excellence Since 2021</span>
+            </span>
+            <div className="ab-text-stack">
+              <p><span className="ab-orange ab-fw">ZENITECH TECHNOLOGIES PRIVATE LIMITED</span> is a premier IT Services &amp; Consulting company headquartered in Bengaluru, the Silicon Valley of India. As a trusted system integrator, we specialise in comprehensive technology solutions that drive business growth.</p>
+              <p>With a team of highly skilled professionals, we offer expert services in IT, Cloud, and Cyber Security. Our strategic partnerships with leading OEMs and technology providers enable us to deliver cutting-edge solutions tailored to each client.</p>
+              <p>We serve organisations across IT/ITES, BFSI, Manufacturing, Healthcare, ISPs, Education, and more, helping them navigate the digital landscape with confidence.</p>
             </div>
-            <div className="space-y-4 text-gray-600">
-              <p className="text-lg">
-                <span className="font-semibold text-orange-500">ZENITECH TECHNOLOGIES PRIVATE LIMITED</span> is a premier IT Services & Consulting company headquartered in Bengaluru, the Silicon Valley of India. As a trusted system integrator, we specialize in providing comprehensive technology solutions that drive business growth and operational excellence.
-              </p>
-              <p className="text-lg">
-                With a team of highly skilled professionals, we offer expert services in IT, Cloud, and Cyber Security. Our strategic partnerships with leading OEMs and technology providers enable us to deliver cutting-edge solutions tailored to meet the unique needs of our diverse clientele.
-              </p>
-              <p className="text-lg">
-                We proudly serve organizations across various sectors, including IT/ITES, BFSI, Manufacturing, Healthcare, ISPs, Education, and more, helping them navigate the complexities of the digital landscape with confidence.
-              </p>
+            <a href="/services" className="ab-link-arrow">
+              Explore Our Services <ChevronRight size={16} className="ab-link-chevron" />
+            </a>
+          </RevealCard>
+
+          <RevealCard className="ab-half" delay={80}>
+            <div className="ab-img-frame">
+              <div className="ab-img-blob-tl" />
+              <div className="ab-img-blob-br" />
+              <img src={Pic1} alt="Zenitech Team" className="ab-section-img" />
+              <div className="ab-img-chip ab-img-chip-tl">Since 2021</div>
             </div>
-            <div className="mt-8">
-              <a href="/services" className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800 transition-colors group">
-                Explore Our Services <ChevronRight className="ml-1 group-hover:ml-2 transition-all" />
-              </a>
-            </div>
-          </div>
-          <div className="animate-on-scroll">
-            <div className="relative">
-              <div className="absolute -top-6 -left-6 w-32 h-32 bg-blue-100 rounded-full opacity-50"></div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-200 rounded-full opacity-50"></div>
-              <img 
-                src={Pic1}
-                alt="ZENITECH TECHNOLOGIES PRIVATE LIMITED Team - Professional IT Services Team in Bengaluru" 
-                className="rounded-lg shadow-xl w-full h-auto object-cover relative z-10"
-                loading="lazy"
-              />
-              <div className="absolute top-4 left-4 bg-blue-600 text-white py-2 px-4 rounded-lg shadow-lg z-20">
-                <span className="font-semibold">Since 2021</span>
-              </div>
-            </div>
-          </div>
+          </RevealCard>
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="bg-gradient-to-b from-white to-blue-50 py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16 animate-on-scroll">
-            <p className="text-blue-600 font-semibold text-lg mb-2">OUR PURPOSE</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Mission & Vision</h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
-          </div>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="bg-white p-10 rounded-xl shadow-xl border-t-4 border-blue-600 hover:transform hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
-              <div className="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                <Target size={28} />
-              </div>
-              <h3 className="text-2xl font-bold text-blue-600 mb-4">Our Mission</h3>
-              <p className="text-gray-600 leading-relaxed">
-                At <span className="text-orange-500 font-semibold">ZENITECH TECHNOLOGIES PRIVATE LIMITED</span>, our mission is to empower businesses of all sizes by delivering innovative, reliable, and scalable technology solutions. We aim to create lasting value for our clients by seamlessly integrating advanced IT, Cloud, and Cyber Security to drive operational efficiency, security, and growth.
-              </p>
-            </div>
-            <div className="bg-white p-10 rounded-xl shadow-xl border-t-4 border-blue-600 hover:transform hover:-translate-y-2 transition-all duration-300 animate-on-scroll" style={{animationDelay: "0.2s"}}>
-              <div className="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                <Award size={28} />
-              </div>
-              <h3 className="text-2xl font-bold text-blue-600 mb-4">Our Vision</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Our vision is to become a leading force in the global technology landscape, transforming the way industries leverage digital solutions. We aspire to create a connected, secure, and intelligent future by constantly innovating and delivering cutting-edge technologies that enable businesses to unlock their full potential and stay ahead in the digital age.
-              </p>
-            </div>
-          </div>
+      {/* ══ MISSION & VISION ═══════════════════════════════════ */}
+      <section className="ab-section ab-section-faded">
+        <SectionHeader tag="OUR PURPOSE" title="Mission & Vision" />
+        <div className="ab-mission-grid">
+          {[
+            {
+              Icon: Target, head: 'Our Mission',
+              body: 'At ZENITECH TECHNOLOGIES PRIVATE LIMITED, our mission is to empower businesses of all sizes by delivering innovative, reliable, and scalable technology solutions. We aim to create lasting value by seamlessly integrating advanced IT, Cloud, and Cyber Security to drive operational efficiency, security, and growth.',
+            },
+            {
+              Icon: Award, head: 'Our Vision',
+              body: 'Our vision is to become a leading force in the global technology landscape, transforming the way industries leverage digital solutions. We aspire to create a connected, secure, and intelligent future by constantly innovating and delivering cutting-edge technologies.',
+            },
+          ].map((card, i) => (
+            <RevealCard key={i} className="ab-mission-card" delay={i * 100}>
+              <div className="ab-mission-icon-wrap"><card.Icon size={26} color="#fff" /></div>
+              <h3 className="ab-mission-title">{card.head}</h3>
+              <p className="ab-mission-body">{card.body}</p>
+            </RevealCard>
+          ))}
         </div>
       </section>
-      
-      {/* What We Do */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-24" id="services">
-        <div className="text-center mb-16 animate-on-scroll">
-          <p className="text-blue-600 font-semibold text-lg mb-2">OUR EXPERTISE</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">What We Do</h2>
-          <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto mt-6 text-lg">
-            <span className="text-orange-500 font-semibold">ZENITECH TECHNOLOGIES PRIVATE LIMITED</span> offers a comprehensive portfolio of services and solutions to address your most complex technology challenges.
-          </p>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="animate-on-scroll">
-            <div className="relative">
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-blue-100 rounded-full opacity-50"></div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-200 rounded-full opacity-50"></div>
-              <img 
-                src={Pic2}
-                alt="ZENITECH TECHNOLOGIES PRIVATE LIMITED Services - IT Services and Technology Solutions" 
-                className="rounded-lg shadow-xl w-full h-auto object-cover relative z-10"
-                loading="lazy"
-              />
-              <div className="absolute bottom-4 right-4 bg-blue-600 text-white py-2 px-4 rounded-lg shadow-lg z-20">
-                <span className="font-semibold">Expert Solutions</span>
-              </div>
+
+      {/* ══ WHAT WE DO ═════════════════════════════════════════ */}
+      <section className="ab-section ab-section-white" id="services">
+        <SectionHeader
+          tag="OUR EXPERTISE"
+          title="What we do"
+          subtitle="ZENITECH TECHNOLOGIES PRIVATE LIMITED offers a comprehensive portfolio of services to address your most complex technology challenges."
+        />
+        <div className="ab-two-col ab-two-col-reverse">
+          <RevealCard className="ab-half" delay={80}>
+            <div className="ab-img-frame">
+              <div className="ab-img-blob-tr" />
+              <div className="ab-img-blob-bl" />
+              <img src={Pic2} alt="Zenitech Services" className="ab-section-img" />
+              <div className="ab-img-chip ab-img-chip-br">Expert Solutions</div>
             </div>
-          </div>
-          
-          <div className="animate-on-scroll">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Our Premium Services</h2>
-            <p className="text-gray-600 mb-8 text-lg">
-            As a leading IT Services & Consulting company, we bring together best-in-class technologies to create seamless, integrated solutions that address our clients' most complex challenges.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {services.map((service, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all group hover:bg-blue-50">
-                  <div className="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
-                    {service.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">{service.title}</h3>
-                  <p className="text-gray-600">{service.description}</p>
+          </RevealCard>
+
+          <RevealCard className="ab-half">
+            <h2 className="ab-sub-heading">Our premium services</h2>
+            <p className="ab-sub-body">As a leading IT Services &amp; Consulting company, we bring together best-in-class technologies to create seamless, integrated solutions for our clients' most complex challenges.</p>
+            <div className="ab-services-mini-grid">
+              {services.map((svc, i) => (
+                <div key={i} className="ab-mini-card">
+                  <div className="ab-mini-icon-wrap"><svc.icon size={26} color="#7C3AED" /></div>
+                  <h4 className="ab-mini-title">{svc.title}</h4>
+                  <p className="ab-mini-desc">{svc.description}</p>
                 </div>
               ))}
             </div>
-          </div>
+          </RevealCard>
         </div>
       </section>
 
-      <Bright1/>
+      {/* ══ BRIGHT1 BANNER ═════════════════════════════════════ */}
+      <Bright1 />
 
-      {/* Founder Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-24">
-        <div className="text-center mb-16 animate-on-scroll">
-          <p className="text-blue-600 font-semibold text-lg mb-2">LEADERSHIP</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Meet Our Founder</h2>
-          <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
-        </div>
-        
-        <div className="bg-gradient-to-br from-blue-50 to-slate-100 rounded-xl shadow-xl overflow-hidden flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-16 p-8 md:p-12 mb-12 animate-on-scroll">
-          {/* Founder Photo */}
-          <div className="flex-shrink-0 flex flex-col items-center">
-            <div className="relative">
-              <div className="absolute inset-0 border-4 border-blue-600 rounded-full -rotate-6"></div>
-              <div className="w-48 h-48 bg-blue-100 rounded-full mb-6 overflow-hidden shadow-lg flex items-center justify-center relative z-10">
-                <img src={founder.image} alt={`${founder.name} - ${founder.title} of ZENITECH TECHNOLOGIES PRIVATE LIMITED`} className="w-44 h-44 object-cover rounded-full border-2 border-white" loading="lazy" />
-              </div>
-            </div>
-            <div className="flex gap-3 mt-4">
-              {founder.socials.map((social, idx) => (
-                <a
-                  key={idx}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-colors"
-                  aria-label={`${founder.name} on ${social.name}`}
-                >
-                  {social.icon}
+      {/* ══ FOUNDER ════════════════════════════════════════════ */}
+      <section className="ab-section ab-section-faded" id="founder">
+        <SectionHeader tag="LEADERSHIP" title="Meet our founder" />
+
+        <RevealCard className="ab-founder-card">
+          {/* Photo col */}
+          <div className="ab-founder-photo-col">
+            <div className="ab-founder-ring" />
+            <img src={Founder} alt={`${founderData.name} – ${founderData.title}`} className="ab-founder-img" />
+            <div className="ab-founder-socials">
+              {founderData.socials.map((s, i) => (
+                <a key={i} href={s.url} target="_blank" rel="noopener noreferrer"
+                  className="ab-social-btn" aria-label={`${founderData.name} on ${s.name}`}>
+                  {s.icon}
                 </a>
               ))}
             </div>
           </div>
-          {/* Founder Info */}
-          <div>
-            <h3 className="text-3xl font-bold text-slate-900 mb-1">{founder.name}</h3>
-            <p className="text-blue-600 font-medium text-xl mb-4">{founder.title}</p>
-            <div className="w-16 h-1 bg-blue-600 mb-6"></div>
-            <p className="text-slate-600 text-lg mb-6">{founder.summary}</p>
-            <div className="space-y-3 mb-8">
-              <div className="flex items-center gap-3 text-slate-700">
-                <div className="bg-blue-100 p-2 rounded-full">
-                  <Mail className="text-blue-600 shrink-0" size={18} />
+
+          {/* Info col */}
+          <div className="ab-founder-info">
+            <h3 className="ab-founder-name">{founderData.name}</h3>
+            <p className="ab-founder-role">{founderData.title}</p>
+            <div className="ab-founder-bar" />
+            <p className="ab-founder-summary">{founderData.summary}</p>
+
+            <div className="ab-founder-contacts">
+              {[
+                { icon: Mail, href: `mailto:${founderData.email}`, text: founderData.email },
+                { icon: PhoneCall, href: `tel:${founderData.phone.replace(/\D/g, '')}`, text: founderData.phone },
+                { icon: Network, href: null, text: founderData.location },
+              ].map(({ icon: Icon, href, text }, i) => (
+                <div key={i} className="ab-founder-contact-row">
+                  <div className="ab-founder-contact-icon"><Icon size={16} color="#7C3AED" /></div>
+                  {href
+                    ? <a href={href} className="ab-founder-contact-text ab-link">{text}</a>
+                    : <span className="ab-founder-contact-text">{text}</span>}
                 </div>
-                <a href={`mailto:${founder.email}`} className="hover:text-blue-600 transition-colors">{founder.email}</a>
-              </div>
-              <div className="flex items-center gap-3 text-slate-700">
-                <div className="bg-blue-100 p-2 rounded-full">
-                  <PhoneCall className="text-blue-600 shrink-0" size={18} />
-                </div>
-                <a href={`tel:${founder.phone.replace(/\D/g, '')}`} className="hover:text-blue-600 transition-colors">{founder.phone}</a>
-              </div>
-              <div className="flex items-center gap-3 text-slate-700">
-                <div className="bg-blue-100 p-2 rounded-full">
-                  <Network className="text-blue-600 shrink-0" size={18} />
-                </div>
-                <span>{founder.location}</span>
-              </div>
+              ))}
             </div>
-            <a href="/about/founder-profile">
-              <button className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center gap-2 shadow-md">
-                Full Profile <ArrowRight size={18} />
-              </button>
+
+            <a href="/about/founder-profile" className="ab-btn-primary ab-btn-inline">
+              Full Profile <ArrowRight size={16} />
             </a>
           </div>
+        </RevealCard>
+      </section>
+
+      {/* ══ FAQ ════════════════════════════════════════════════ */}
+      <section className="ab-section ab-section-white">
+        <SectionHeader tag="FAQ" title="Frequently asked questions" />
+        <div className="ab-faq-box">
+          {faqData.map((faq, i) => (
+            <div key={i} className={`ab-faq-item${i < faqData.length - 1 ? ' ab-faq-divider' : ''}`}>
+              <button
+                className={`ab-faq-btn${activeFaq === i ? ' ab-faq-btn-open' : ''}`}
+                onClick={() => setActiveFaq(activeFaq === i ? null : i)}
+              >
+                <span className={`ab-faq-q${activeFaq === i ? ' ab-faq-q-open' : ''}`}>{faq.question}</span>
+                {activeFaq === i
+                  ? <ChevronUp size={18} color="#7C3AED" style={{ flexShrink: 0 }} />
+                  : <ChevronDown size={18} color="#9CA3AF" style={{ flexShrink: 0 }} />}
+              </button>
+              {activeFaq === i && <div className="ab-faq-answer">{faq.answer}</div>}
+            </div>
+          ))}
         </div>
       </section>
 
-      
-
-      {/* FAQ Section */}
-      <section className="bg-gray-50 py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16 animate-on-scroll">
-            <p className="text-blue-600 font-semibold text-lg mb-2">FAQ</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
-          </div>
-          
-          <div className="space-y-6">
-            {faqData.map((faq, index) => (
-              <div key={index} className="bg-white p-8 rounded-lg shadow-md animate-on-scroll" style={{animationDelay: `${index * 0.1}s`}}>
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">{faq.question}</h3>
-                <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
+      {/* ══ STATISTICS ═════════════════════════════════════════ */}
+      <section className="ab-stats-section">
+        <div className="ab-stats-blob" />
+        <SectionHeader tag="OUR ACHIEVEMENTS" title="Our impact in numbers" subtitle="We take pride in our achievements and the trust our clients place in us." light />
+        <div className="ab-stats-grid">
+          {stats.map((s, i) => (
+            <RevealCard key={i} className="ab-stat-card" delay={i * 80}>
+              <div className="ab-stat-icon-wrap"><s.icon size={28} color="#C4B5FD" /></div>
+              <span className="ab-stat-num">{s.count}</span>
+              <span className="ab-stat-label">{s.label}</span>
+            </RevealCard>
+          ))}
         </div>
       </section>
 
-      
-      {/* Statistics with Counters */}
-      <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16 animate-on-scroll">
-            <p className="text-blue-200 font-semibold text-lg mb-2">OUR ACHIEVEMENTS</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Impact in Numbers</h2>
-            <div className="w-24 h-1 bg-white mx-auto"></div>
-            <p className="text-blue-100 max-w-2xl mx-auto mt-6 text-lg">
-              We take pride in our achievements and the trust our clients place in us.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="bg-white/10 backdrop-blur-md p-8 rounded-lg border border-white/20 text-center animate-on-scroll" style={{animationDelay: `${index * 0.1}s`}}>
-                <div className="flex justify-center text-blue-300 mb-6">
-                  {stat.icon}
-                </div>
-                <h3 className="text-4xl font-bold mb-2">{stat.count}</h3>
-                <p className="text-blue-200">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+      {/* ══ CORE VALUES ════════════════════════════════════════ */}
+      <section className="ab-section ab-section-faded">
+        <SectionHeader
+          tag="OUR PRINCIPLES"
+          title="Our core values"
+          subtitle="The principles that guide our approach and define who we are as an organisation."
+        />
+        <div className="ab-values-grid">
+          {values.map((v, i) => (
+            <RevealCard key={i} className="ab-value-card" delay={i * 80}>
+              <div className="ab-value-accent" />
+              <h3 className="ab-value-title">{v.title}</h3>
+              <p className="ab-value-desc">{v.description}</p>
+            </RevealCard>
+          ))}
         </div>
       </section>
 
-      {/* Our Values */}
-      <section className="py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16 animate-on-scroll">
-            <p className="text-blue-600 font-semibold text-lg mb-2">OUR PRINCIPLES</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Core Values</h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto mt-6 text-lg">
-              The principles that guide our approach and define who we are as an organization.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {values.map((value, index) => (
-              <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all group hover:bg-blue-50 border-l-4 border-blue-600 animate-on-scroll" style={{animationDelay: `${index * 0.1}s`}}>
-                <h3 className="text-2xl font-bold text-blue-600 mb-4">{value.title}</h3>
-                <p className="text-gray-600 text-lg">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
-            
-      {/* CSS for animations */}
+      {/* ══ SCOPED STYLES ══════════════════════════════════════ */}
       <style>{`
-        .animate-on-scroll {
-          opacity: 0;
-          transform: translateY(20px);
-          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        /* ── Tokens ──────────────────────────────────────────── */
+        .ab-root {
+          --ab-purple-900: #2E0664;
+          --ab-purple-800: #4B0082;
+          --ab-purple-700: #5B21B6;
+          --ab-purple-600: #7C3AED;
+          --ab-purple-500: #8B5CF6;
+          --ab-purple-400: #A78BFA;
+          --ab-purple-300: #C4B5FD;
+          --ab-purple-100: #EDE9FE;
+          --ab-purple-50:  #F5F3FF;
+          --ab-orange:     #F97316;
+          --ab-orange-lt:  #FB923C;
+          --ab-white:      #ffffff;
+          --ab-gray-50:    #FAFAFA;
+          --ab-gray-100:   #F3F4F6;
+          --ab-gray-200:   #E5E7EB;
+          --ab-gray-500:   #6B7280;
+          --ab-gray-700:   #374151;
+          --ab-gray-900:   #111827;
+          --ab-text-main:  #1A0533;
+          --ab-text-body:  #3D2060;
+          --ab-text-muted: #7C6A9A;
+          --ab-faded:      #FAF8FF;
+          --ab-radius-sm:  8px;
+          --ab-radius-md:  12px;
+          --ab-radius-lg:  16px;
+          --ab-radius-xl:  20px;
+          --ab-shadow-card: 0 2px 12px rgba(124,58,237,0.07), 0 1px 3px rgba(0,0,0,0.05);
+          --ab-shadow-hov:  0 10px 36px rgba(124,58,237,0.14), 0 2px 8px rgba(0,0,0,0.06);
+          font-family: 'Satoshi', 'Inter', system-ui, sans-serif;
+          background: var(--ab-white);
+          color: var(--ab-text-main);
+          overflow-x: hidden;
         }
-        
-        .fade-in-up {
-          opacity: 1;
-          transform: translateY(0);
+
+        /* ── Scroll reveal ───────────────────────────────────── */
+        .ab-reveal {
+          opacity: 0;
+          transform: translateY(22px);
+          transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .ab-reveal.ab-revealed { opacity: 1; transform: translateY(0); }
+
+        /* ── Utility ─────────────────────────────────────────── */
+        .ab-orange { color: var(--ab-orange); }
+        .ab-fw     { font-weight: 700; }
+        .ab-section { padding: clamp(4rem, 8vw, 6rem) clamp(1.25rem, 5vw, 3rem); }
+        .ab-section-white { background: var(--ab-white); }
+        .ab-section-faded { background: var(--ab-faded); }
+
+        /* ══ HERO ══════════════════════════════════════════════ */
+        .ab-hero {
+          position: relative;
+          padding: clamp(5rem, 10vw, 8rem) clamp(1.25rem, 5vw, 3rem) clamp(4rem, 8vw, 6rem);
+          overflow: hidden;
+          color: #fff;
+        }
+        /* ── Hero background image ──────────────────────────── */
+        .ab-hero-bg {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+        }
+        .ab-hero-bg-img {
+          width: 100%; height: 100%;
+          object-fit: cover;
+          object-position: center 20%;
+          display: block;
+        }
+        .ab-hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            135deg,
+            rgba(46,6,100,0.88) 0%,
+            rgba(91,33,182,0.82) 50%,
+            rgba(124,58,237,0.86) 100%
+          );
+        }
+        .ab-hero-blob {
+          position: absolute;
+          border-radius: 50%;
+          pointer-events: none;
+          filter: blur(60px);
+        }
+        .ab-blob-1 {
+          width: 480px; height: 480px;
+          top: -140px; right: -120px;
+          background: radial-gradient(circle, rgba(167,139,250,0.18) 0%, transparent 70%);
+        }
+        .ab-blob-2 {
+          width: 300px; height: 300px;
+          bottom: -80px; left: -60px;
+          background: radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%);
+        }
+        .ab-hero-layout {
+          position: relative;
+          z-index: 1;
+          display: grid;
+          grid-template-columns: 1fr 360px;
+          gap: 56px;
+          align-items: center;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding-top: 48px;
+        }
+
+        /* ── Hero badge ──────────────────────────────────────── */
+        .ab-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: rgba(167,139,250,0.18);
+          border: 0.5px solid rgba(167,139,250,0.38);
+          border-radius: 100px;
+          padding: 6px 14px;
+          margin-bottom: 22px;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.06em;
+          color: #E9D5FF;
+        }
+        .ab-badge-dot {
+          width: 7px; height: 7px;
+          border-radius: 50%;
+          background: var(--ab-purple-300);
+          flex-shrink: 0;
+        }
+        .ab-badge-animate { animation: ab-fade-up 0.6s ease forwards; opacity: 0; }
+        .ab-text-animate  { animation: ab-fade-up 0.6s ease forwards; opacity: 0; }
+        @keyframes ab-fade-up {
+          from { opacity: 0; transform: translateY(18px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .ab-pulse { animation: ab-pulse 2s ease infinite; }
+        @keyframes ab-pulse {
+          0%,100% { opacity: 1; } 50% { opacity: 0.35; }
+        }
+
+        /* ── Hero heading ────────────────────────────────────── */
+        .ab-hero-heading {
+          font-size: clamp(2.2rem, 5vw, 3.6rem);
+          font-weight: 800;
+          color: #fff;
+          line-height: 1.12;
+          margin-bottom: 18px;
+          letter-spacing: -0.01em;
+        }
+        .ab-hero-em {
+          font-style: normal;
+          color: var(--ab-purple-300);
+          position: relative;
+        }
+        .ab-hero-em::after {
+          content: '';
+          position: absolute;
+          bottom: -3px; left: 0; right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, var(--ab-purple-300), transparent);
+          border-radius: 2px;
+        }
+        .ab-hero-sub {
+          font-size: 1.05rem;
+          color: #E9D5FF;
+          line-height: 1.75;
+          max-width: 480px;
+          margin-bottom: 32px;
+        }
+        .ab-hero-btns {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+
+        /* ── Logo card ───────────────────────────────────────── */
+        .ab-hero-logo-col {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+        }
+        .ab-logo-tilt-back {
+          position: absolute;
+          inset: 0;
+          background: rgba(255,255,255,0.07);
+          border-radius: var(--ab-radius-xl);
+          transform: rotate(4deg);
+          backdrop-filter: blur(4px);
+        }
+        .ab-logo-card {
+          position: relative;
+          background: #fff;
+          border-radius: var(--ab-radius-xl);
+          padding: 2.5rem;
+          box-shadow: 0 24px 60px rgba(46,6,100,0.35);
+          transform: rotate(-3deg);
+          transition: transform 0.35s ease;
+        }
+        .ab-logo-card:hover { transform: rotate(0); }
+        .ab-logo-img { width: 200px; height: auto; display: block; object-fit: contain; }
+
+        /* ── Wave ────────────────────────────────────────────── */
+        .ab-wave-wrap {
+          position: absolute;
+          bottom: 0; left: 0; width: 100%;
+          line-height: 0;
+        }
+        .ab-wave-wrap svg { display: block; width: 100%; height: 80px; }
+
+        /* ── Buttons ─────────────────────────────────────────── */
+        .ab-btn-primary {
+          display: inline-flex; align-items: center; gap: 8px;
+          background: var(--ab-white);
+          color: var(--ab-purple-700);
+          padding: 12px 24px;
+          border-radius: var(--ab-radius-md);
+          font-size: 0.9rem; font-weight: 700;
+          text-decoration: none;
+          transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+          box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+          cursor: pointer;
+        }
+        .ab-btn-primary:hover {
+          background: var(--ab-purple-50);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+        .ab-btn-ghost {
+          display: inline-flex; align-items: center; gap: 8px;
+          background: transparent;
+          color: #E9D5FF;
+          padding: 12px 24px;
+          border-radius: var(--ab-radius-md);
+          font-size: 0.9rem; font-weight: 600;
+          border: 2px solid rgba(196,181,253,0.4);
+          text-decoration: none;
+          transition: background 0.2s, border-color 0.2s;
+          cursor: pointer;
+        }
+        .ab-btn-ghost:hover {
+          background: rgba(255,255,255,0.1);
+          border-color: rgba(196,181,253,0.8);
+        }
+        .ab-btn-inline { margin-top: 28px; color: var(--ab-purple-700); background: var(--ab-white); }
+
+        /* ── Sections & layout ───────────────────────────────── */
+        .ab-section-header {
+          text-align: center;
+          margin-bottom: 3.5rem;
+        }
+        .ab-eyebrow-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: var(--ab-purple-100);
+          border: 1px solid #DDD6FE;
+          color: var(--ab-purple-600);
+          font-size: 0.71rem; font-weight: 700;
+          letter-spacing: 0.12em; text-transform: uppercase;
+          padding: 0.3rem 0.9rem;
+          border-radius: 20px;
+          margin-bottom: 0.9rem;
+        }
+        .ab-eyebrow-pill-light {
+          background: rgba(255,255,255,0.15);
+          border-color: rgba(255,255,255,0.25);
+          color: rgba(255,255,255,0.9);
+        }
+        .ab-eyebrow-dot {
+          display: inline-block;
+          width: 6px; height: 6px;
+          border-radius: 50%;
+          background: var(--ab-orange);
+        }
+        .ab-eyebrow-dot-light { background: var(--ab-purple-300); }
+        .ab-section-title {
+          font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+          font-weight: 800;
+          color: var(--ab-text-main);
+          margin-bottom: 0.75rem;
+          line-height: 1.2;
+        }
+        .ab-section-title-light { color: #fff; }
+        .ab-title-bar {
+          width: 52px; height: 3px;
+          background: linear-gradient(90deg, var(--ab-purple-600), var(--ab-purple-400));
+          border-radius: 2px;
+          margin: 0 auto 1rem;
+        }
+        .ab-title-bar-light {
+          background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(196,181,253,0.5));
+        }
+        .ab-section-sub {
+          font-size: 0.97rem;
+          color: var(--ab-text-muted);
+          max-width: 520px;
+          margin: 0 auto;
+          line-height: 1.75;
+        }
+        .ab-section-sub-light { color: rgba(233,213,255,0.75); }
+
+        /* ── Two column layout ───────────────────────────────── */
+        .ab-two-col {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+          align-items: center;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        .ab-two-col-reverse { }
+        .ab-half { min-width: 0; }
+
+        /* ── Image frame ─────────────────────────────────────── */
+        .ab-img-frame { position: relative; }
+        .ab-img-blob-tl, .ab-img-blob-tr, .ab-img-blob-bl, .ab-img-blob-br {
+          position: absolute;
+          width: 120px; height: 120px;
+          border-radius: 50%;
+          opacity: 0.45;
+        }
+        .ab-img-blob-tl { top: -20px;    left: -20px;   background: var(--ab-purple-100); }
+        .ab-img-blob-br { bottom: -20px; right: -20px;  background: #DDD6FE; }
+        .ab-img-blob-tr { top: -20px;    right: -20px;  background: var(--ab-purple-100); }
+        .ab-img-blob-bl { bottom: -20px; left: -20px;   background: #DDD6FE; }
+        .ab-section-img {
+          position: relative;
+          z-index: 1;
+          width: 100%;
+          border-radius: var(--ab-radius-lg);
+          box-shadow: 0 16px 48px rgba(124,58,237,0.14), 0 2px 8px rgba(0,0,0,0.06);
+          display: block;
+        }
+        .ab-img-chip {
+          position: absolute;
+          z-index: 2;
+          background: var(--ab-purple-600);
+          color: #fff;
+          font-size: 12px; font-weight: 600;
+          padding: 8px 16px;
+          border-radius: var(--ab-radius-sm);
+          box-shadow: 0 4px 12px rgba(124,58,237,0.35);
+        }
+        .ab-img-chip-tl { top: 16px; left: 16px; }
+        .ab-img-chip-br { bottom: 16px; right: 16px; }
+
+        /* ── Who we are text ─────────────────────────────────── */
+        .ab-badge-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 0;
+          background: var(--ab-purple-50);
+          border: 1px solid #DDD6FE;
+          border-radius: 100px;
+          padding: 2px 4px 2px 4px;
+          margin-bottom: 20px;
+        }
+        .ab-badge-pill-inner {
+          background: var(--ab-purple-600);
+          color: #fff;
+          font-size: 11px; font-weight: 700;
+          padding: 4px 14px;
+          border-radius: 100px;
+          letter-spacing: 0.08em;
+        }
+        .ab-badge-pill-sub {
+          color: var(--ab-purple-700);
+          font-size: 11px; font-weight: 600;
+          padding: 0 12px;
+        }
+        .ab-text-stack {
+          display: flex; flex-direction: column; gap: 14px;
+          margin-bottom: 24px;
+        }
+        .ab-text-stack p {
+          font-size: 0.97rem;
+          color: var(--ab-gray-700);
+          line-height: 1.75;
+        }
+        .ab-link-arrow {
+          display: inline-flex; align-items: center; gap: 4px;
+          color: var(--ab-purple-600);
+          font-size: 0.9rem; font-weight: 600;
+          text-decoration: none;
+          transition: color 0.2s, gap 0.2s;
+        }
+        .ab-link-arrow:hover { color: var(--ab-purple-500); gap: 8px; }
+        .ab-link { color: var(--ab-purple-600); text-decoration: none; } 
+        .ab-link:hover { color: var(--ab-purple-500); }
+        .ab-link-chevron { transition: margin-left 0.2s; }
+
+        /* ── Mission & Vision ────────────────────────────────── */
+        .ab-mission-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
+          max-width: 1000px;
+          margin: 0 auto;
+        }
+        .ab-mission-card {
+          background: var(--ab-white);
+          border: 1.5px solid #DDD6FE;
+          border-top: 4px solid var(--ab-purple-600);
+          border-radius: var(--ab-radius-lg);
+          padding: 36px 28px;
+          box-shadow: var(--ab-shadow-card);
+          transition: transform 0.25s, box-shadow 0.25s;
+          cursor: default;
+        }
+        .ab-mission-card:hover {
+          transform: translateY(-5px);
+          box-shadow: var(--ab-shadow-hov);
+        }
+        .ab-mission-icon-wrap {
+          width: 56px; height: 56px;
+          background: var(--ab-purple-600);
+          border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          margin-bottom: 18px;
+          box-shadow: 0 4px 14px rgba(124,58,237,0.35);
+        }
+        .ab-mission-title {
+          font-size: 1.25rem; font-weight: 700;
+          color: var(--ab-purple-600);
+          margin-bottom: 12px;
+        }
+        .ab-mission-body {
+          font-size: 0.92rem;
+          color: var(--ab-gray-500);
+          line-height: 1.75;
+        }
+
+        /* ── What we do ──────────────────────────────────────── */
+        .ab-sub-heading {
+          font-size: 1.7rem; font-weight: 800;
+          color: var(--ab-text-main);
+          margin-bottom: 12px;
+        }
+        .ab-sub-body {
+          font-size: 0.97rem;
+          color: var(--ab-gray-500);
+          line-height: 1.75;
+          margin-bottom: 24px;
+        }
+        .ab-services-mini-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+        .ab-mini-card {
+          background: var(--ab-white);
+          border: 1.5px solid var(--ab-gray-200);
+          border-radius: var(--ab-radius-lg);
+          padding: 20px;
+          box-shadow: var(--ab-shadow-card);
+          transition: border-color 0.25s, box-shadow 0.25s, background 0.2s, transform 0.2s;
+          cursor: default;
+        }
+        .ab-mini-card:hover {
+          border-color: var(--ab-purple-600);
+          background: var(--ab-purple-50);
+          box-shadow: var(--ab-shadow-hov);
+          transform: translateY(-3px);
+        }
+        .ab-mini-icon-wrap {
+          width: 52px; height: 52px;
+          border-radius: 50%;
+          background: var(--ab-purple-100);
+          display: flex; align-items: center; justify-content: center;
+          margin-bottom: 12px;
+          transition: background 0.2s;
+        }
+        .ab-mini-card:hover .ab-mini-icon-wrap { background: var(--ab-purple-200, #DDD6FE); }
+        .ab-mini-title {
+          font-size: 1rem; font-weight: 700;
+          color: var(--ab-text-main);
+          margin-bottom: 6px;
+        }
+        .ab-mini-desc {
+          font-size: 0.84rem;
+          color: var(--ab-gray-500);
+          line-height: 1.65;
+        }
+
+        /* ── Founder ─────────────────────────────────────────── */
+        .ab-founder-card {
+          display: flex;
+          align-items: flex-start;
+          gap: 4rem;
+          background: linear-gradient(135deg, var(--ab-purple-50), #F0EBFF);
+          border: 1.5px solid #DDD6FE;
+          border-radius: var(--ab-radius-xl);
+          padding: clamp(2rem, 4vw, 3.5rem);
+          box-shadow: var(--ab-shadow-card);
+          max-width: 1000px;
+          margin: 0 auto;
+        }
+        .ab-founder-photo-col {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          flex-shrink: 0;
+        }
+        .ab-founder-ring {
+          position: absolute;
+          width: 170px; height: 170px;
+          border: 4px solid var(--ab-purple-600);
+          border-radius: 50%;
+          transform: rotate(-6deg);
+        }
+        .ab-founder-img {
+          width: 160px; height: 160px;
+          border-radius: 50%;
+          object-fit: cover;
+          position: relative;
+          z-index: 1;
+          border: 3px solid #fff;
+          box-shadow: 0 8px 28px rgba(124,58,237,0.25);
+          margin-bottom: 20px;
+        }
+        .ab-founder-socials {
+          display: flex; gap: 10px;
+          margin-top: 12px;
+        }
+        .ab-social-btn {
+          width: 38px; height: 38px;
+          border-radius: 50%;
+          background: #fff;
+          border: 1px solid #DDD6FE;
+          display: flex; align-items: center; justify-content: center;
+          color: var(--ab-purple-600);
+          text-decoration: none;
+          transition: background 0.2s, color 0.2s, border-color 0.2s;
+          box-shadow: 0 2px 8px rgba(124,58,237,0.1);
+        }
+        .ab-social-btn:hover {
+          background: var(--ab-purple-600);
+          color: #fff;
+          border-color: var(--ab-purple-600);
+        }
+        .ab-founder-info { flex: 1; min-width: 0; }
+        .ab-founder-name {
+          font-size: 1.75rem; font-weight: 800;
+          color: var(--ab-text-main);
+          margin-bottom: 4px;
+        }
+        .ab-founder-role {
+          font-size: 1rem; font-weight: 600;
+          color: var(--ab-purple-600);
+          margin-bottom: 16px;
+        }
+        .ab-founder-bar {
+          width: 48px; height: 3px;
+          background: linear-gradient(90deg, var(--ab-purple-600), var(--ab-purple-400));
+          border-radius: 2px;
+          margin-bottom: 18px;
+        }
+        .ab-founder-summary {
+          font-size: 0.97rem;
+          color: var(--ab-gray-700);
+          line-height: 1.75;
+          margin-bottom: 20px;
+        }
+        .ab-founder-contacts {
+          display: flex; flex-direction: column; gap: 12px;
+          margin-bottom: 4px;
+        }
+        .ab-founder-contact-row {
+          display: flex; align-items: center; gap: 10px;
+        }
+        .ab-founder-contact-icon {
+          width: 34px; height: 34px;
+          background: var(--ab-purple-100);
+          border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          flex-shrink: 0;
+        }
+        .ab-founder-contact-text {
+          font-size: 0.9rem;
+          color: var(--ab-gray-700);
+        }
+
+        /* ── FAQ ─────────────────────────────────────────────── */
+        .ab-faq-box {
+          max-width: 760px;
+          margin: 0 auto;
+          background: var(--ab-white);
+          border: 1.5px solid #DDD6FE;
+          border-radius: var(--ab-radius-lg);
+          overflow: hidden;
+          box-shadow: var(--ab-shadow-card);
+        }
+        .ab-faq-divider { border-bottom: 1px solid var(--ab-purple-100); }
+        .ab-faq-btn {
+          width: 100%;
+          display: flex; justify-content: space-between; align-items: center;
+          padding: 20px 24px;
+          background: transparent;
+          border: none; cursor: pointer;
+          gap: 14px; text-align: left;
+          transition: background 0.2s;
+        }
+        .ab-faq-btn.ab-faq-btn-open { background: var(--ab-purple-50); }
+        .ab-faq-q {
+          font-size: 0.95rem; font-weight: 600; line-height: 1.5;
+          color: var(--ab-text-main);
+          transition: color 0.2s;
+        }
+        .ab-faq-q.ab-faq-q-open { color: var(--ab-purple-600); }
+        .ab-faq-answer {
+          padding: 0 24px 18px;
+          font-size: 0.9rem;
+          color: var(--ab-gray-500);
+          line-height: 1.75;
+        }
+
+        /* ── Statistics ──────────────────────────────────────── */
+        .ab-stats-section {
+          position: relative;
+          background: linear-gradient(135deg, #2E0664 0%, #5B21B6 55%, #7C3AED 100%);
+          padding: clamp(4rem, 8vw, 6rem) clamp(1.25rem, 5vw, 3rem);
+          overflow: hidden;
+        }
+        .ab-stats-blob {
+          position: absolute;
+          width: 500px; height: 500px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(167,139,250,0.13) 0%, transparent 70%);
+          top: -150px; right: -100px;
+          pointer-events: none;
+          filter: blur(50px);
+        }
+        .ab-stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          gap: 20px;
+          max-width: 900px;
+          margin: 0 auto;
+          position: relative;
+        }
+        .ab-stat-card {
+          background: rgba(255,255,255,0.09);
+          border: 1px solid rgba(196,181,253,0.22);
+          border-radius: var(--ab-radius-lg);
+          padding: 2rem 1.5rem;
+          text-align: center;
+          backdrop-filter: blur(10px);
+          transition: background 0.25s, transform 0.22s;
+          cursor: default;
+        }
+        .ab-stat-card:hover {
+          background: rgba(255,255,255,0.13);
+          transform: translateY(-4px);
+        }
+        .ab-stat-icon-wrap {
+          display: flex; justify-content: center;
+          margin-bottom: 14px;
+        }
+        .ab-stat-num {
+          display: block;
+          font-size: 2.4rem; font-weight: 800;
+          color: #fff;
+          margin-bottom: 6px;
+          letter-spacing: -0.02em;
+        }
+        .ab-stat-label {
+          display: block;
+          font-size: 0.82rem;
+          color: var(--ab-purple-300);
+          letter-spacing: 0.04em;
+        }
+
+        /* ── Core Values ─────────────────────────────────────── */
+        .ab-values-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+          max-width: 1000px;
+          margin: 0 auto;
+        }
+        .ab-value-card {
+          background: var(--ab-white);
+          border: 1.5px solid var(--ab-gray-200);
+          border-left: 4px solid var(--ab-purple-600);
+          border-radius: var(--ab-radius-lg);
+          padding: 28px 24px;
+          box-shadow: var(--ab-shadow-card);
+          transition: border-color 0.25s, box-shadow 0.25s, background 0.2s, transform 0.22s;
+          position: relative;
+          overflow: hidden;
+          cursor: default;
+        }
+        .ab-value-card::after {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; bottom: 0;
+          width: 4px;
+          background: linear-gradient(180deg, var(--ab-purple-600), var(--ab-purple-400));
+        }
+        .ab-value-card:hover {
+          background: var(--ab-purple-50);
+          border-color: var(--ab-purple-400);
+          box-shadow: var(--ab-shadow-hov);
+          transform: translateY(-4px);
+        }
+        .ab-value-accent { display: none; }
+        .ab-value-title {
+          font-size: 1.1rem; font-weight: 700;
+          color: var(--ab-purple-600);
+          margin-bottom: 10px;
+        }
+        .ab-value-desc {
+          font-size: 0.9rem;
+          color: var(--ab-gray-500);
+          line-height: 1.75;
+        }
+
+        /* ══ RESPONSIVE ════════════════════════════════════════ */
+        @media (max-width: 960px) {
+          .ab-hero-layout   { grid-template-columns: 1fr; gap: 32px; }
+          .ab-hero-logo-col { display: none; }
+          .ab-two-col       { grid-template-columns: 1fr; gap: 2.5rem; }
+          .ab-two-col-reverse > :first-child { order: 2; }
+          .ab-two-col-reverse > :last-child  { order: 1; }
+          .ab-mission-grid  { grid-template-columns: 1fr; }
+          .ab-values-grid   { grid-template-columns: 1fr; }
+          .ab-founder-card  { flex-direction: column; align-items: center; gap: 2rem; }
+        }
+        @media (max-width: 600px) {
+          .ab-services-mini-grid { grid-template-columns: 1fr; }
+          .ab-hero-btns { flex-direction: column; }
         }
       `}</style>
     </div>

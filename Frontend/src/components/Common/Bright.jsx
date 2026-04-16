@@ -34,9 +34,8 @@ const Bright = () => {
       />
 
       <div
-        className={`relative z-10 flex flex-col items-center justify-center max-w-3xl w-full mx-4 md:mx-auto py-20 px-6 md:px-12 rounded-[2.5rem] shadow-2xl transition-all duration-1000 text-center ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-        }`}
+        className={`relative z-10 flex flex-col items-center justify-center max-w-3xl w-full mx-4 md:mx-auto py-20 px-6 md:px-12 rounded-[2.5rem] shadow-2xl transition-all duration-1000 text-center ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+          }`}
         onMouseMove={handleMouseMove}
         style={{
           background: 'linear-gradient(135deg, rgba(80,30,8,0.97) 0%, rgba(45,12,3,0.99) 100%)',
@@ -70,9 +69,8 @@ const Bright = () => {
         </div>
 
         <h1
-          className={`text-4xl md:text-6xl font-bold leading-[1.08] text-white mb-7 transition-all duration-1000 delay-200 ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-          }`}
+          className={`text-4xl md:text-6xl font-bold leading-[1.08] text-white mb-7 transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+            }`}
           style={{
             fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif',
             textShadow: '0 2px 40px rgba(160,60,0,0.6)',
@@ -93,9 +91,8 @@ const Bright = () => {
         </h1>
 
         <p
-          className={`text-xl md:text-2xl mb-12 max-w-2xl mx-auto leading-relaxed transition-all duration-1000 delay-400 ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-          }`}
+          className={`text-xl md:text-2xl mb-12 max-w-2xl mx-auto leading-relaxed transition-all duration-1000 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+            }`}
           style={{ color: 'rgba(240,200,160,0.85)' }}
         >
           Ready to transform your vision into reality? Our team of experts is here to deliver

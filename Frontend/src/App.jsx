@@ -9,7 +9,8 @@ import Cybersecurity from './pages/Cybersecurity'
 import CloudComputing from './pages/Cloudcomputing'
 import Navbar from './components/Common/NavBar'
 import Footer from './components/Common/Footer'
-
+import Contact from './pages/Contact'
+import Appointment from './pages/Appointment'
 const App = () => {
   return (
     <div className="min-h-screen flex flex-col">
@@ -26,6 +27,8 @@ const App = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/services/cybersecurity" element={<Cybersecurity />} />
           <Route path="/services/cloud-computing" element={<CloudComputing />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/appointment" element={<Appointment />} />
         </Routes>
       </div>
 

@@ -1,68 +1,112 @@
-import React, { useEffect } from 'react'
-import PreNav from '../components/Common/PreNav'
-import NavBar from '../components/Common/NavBar'
-import Hero from '../components/Homepage/Hero'
-import AbtSec from '../components/Homepage/AbtSec'
-import HeroBotm from '../components/Homepage/HeroBotm'
-import Bright from '../components/Common/Bright'
-import ServSection from '../components/Common/ServSection'
-import FAQ from '../components/Common/FAQ'
-import Footer from '../components/Common/Footer'
+import React, { useEffect, lazy, Suspense } from 'react';
+import Hero from '../components/Homepage/Hero';
 
+/* ── Below-fold components loaded lazily (code-split) ─────── */
+const HeroBotm   = lazy(() => import('../components/Homepage/HeroBotm'));
+const AbtSec     = lazy(() => import('../components/Homepage/AbtSec'));
+const ServSection = lazy(() => import('../components/Common/ServSection'));
+const Bright     = lazy(() => import('../components/Common/Bright'));
+const FAQ        = lazy(() => import('../components/Common/FAQ'));
+
+/* ── Minimal skeleton shown while lazy chunks load ────────── */
+const Skeleton = () => (
+  <div style={{ minHeight: '200px', background: '#f3f4f6', borderRadius: '8px', margin: '8px 0' }} />
+);
+
+/* ════════════════════════════════════════════════════════════
+   HOME PAGE
+════════════════════════════════════════════════════════════ */
 const Home = () => {
-  // Add scroll animation effect
+
+  /* Single IntersectionObserver for all reveal elements —
+     far more efficient than a scroll event listener           */
   useEffect(() => {
-    const animateOnScroll = () => {
-      const elements = document.querySelectorAll('.animate-on-scroll');
-      elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight;
-        if (elementPosition < screenPosition - 100) {
-          element.classList.add('fade-in-up');
-        }
-      });
-    };
-    window.addEventListener('scroll', animateOnScroll);
-    setTimeout(animateOnScroll, 300);
-    return () => window.removeEventListener('scroll', animateOnScroll);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('hm-visible');
+            observer.unobserve(entry.target); // fire once only
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    /* Small delay so lazy-loaded sections can mount first */
+    const timer = setTimeout(() => {
+      document.querySelectorAll('.hm-reveal').forEach((el) => observer.observe(el));
+    }, 120);
+
+    return () => { clearTimeout(timer); observer.disconnect(); };
   }, []);
 
   return (
     <div>
-      <div className="animate-on-scroll">
-        <Hero />
-      </div>
-      <div className="animate-on-scroll">
-        <HeroBotm />
-      </div>
-      <div className="animate-on-scroll">
-        <AbtSec/>
-      </div>
-      <div className="animate-on-scroll">
-        <ServSection />
-      </div>
-      <div className="animate-on-scroll">
-        <Bright />
-      </div>
-      <div className="animate-on-scroll">
-        <FAQ/>
-      </div>
-      
-      {/* CSS for animations */}
+      {/* Hero is eager — it's above the fold */}
+      <Hero />
+
+      {/* Each below-fold section gets its own reveal wrapper  */}
+      <Suspense fallback={<Skeleton />}>
+        <div className="hm-reveal hm-delay-1"><HeroBotm /></div>
+      </Suspense>
+
+      <Suspense fallback={<Skeleton />}>
+        <div className="hm-reveal hm-delay-2"><AbtSec /></div>
+      </Suspense>
+
+      <Suspense fallback={<Skeleton />}>
+        <div className="hm-reveal hm-delay-1"><ServSection /></div>
+      </Suspense>
+
+      <Suspense fallback={<Skeleton />}>
+        <div className="hm-reveal hm-delay-2"><Bright /></div>
+      </Suspense>
+
+      <Suspense fallback={<Skeleton />}>
+        <div className="hm-reveal hm-delay-1"><FAQ /></div>
+      </Suspense>
+
+      {/* Scoped animation styles */}
       <style>{`
-        .animate-on-scroll {
+        /* GPU-composited reveal — opacity + transform only */
+        .hm-reveal {
           opacity: 0;
-          transform: translateY(20px);
+          transform: translateY(22px);
           transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+          will-change: opacity, transform;
         }
-        
-        .fade-in-up {
+        .hm-reveal.hm-visible {
           opacity: 1;
           transform: translateY(0);
+          will-change: auto;
+        }
+
+        /* Staggered entrance delays */
+        .hm-delay-1 { transition-delay: 0.05s; }
+        .hm-delay-2 { transition-delay: 0.12s; }
+
+        /* Respect reduced-motion preference */
+        @media (prefers-reduced-motion: reduce) {
+          .hm-reveal {
+            opacity: 1;
+            transform: none;
+            transition: none;
+          }
+        }
+
+        /* Portrait phones — tighten vertical rhythm */
+        @media (max-width: 480px) and (orientation: portrait) {
+          .hm-reveal { transform: translateY(14px); }
+        }
+
+        /* Landscape phones — less height, keep animation subtle */
+        @media (max-width: 896px) and (orientation: landscape) {
+          .hm-reveal { transform: translateY(10px); transition-duration: 0.45s; }
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
