@@ -87,7 +87,7 @@ const Appointment = () => {
                         {/* Heading */}
                         <h1 className="apg-hero-h1">
                             Book a Free<br />
-                            <span className="apg-h1-accent">Cybersecurity</span><br />
+                            
                             Consultation
                         </h1>
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../../assets/Logo.png";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -8,8 +8,12 @@ const NavBar = () => {
   const [aboutDropdown, setAboutDropdown] = useState(false);
   const [servicesDropdown, setServicesDropdown] = useState(false);
   const [hoveredDropdown, setHoveredDropdown] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const dropdownRef = React.useRef(null);
   const servicesDropdownRef = React.useRef(null);
+  const mobileMenuRef = React.useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,6 +59,21 @@ const NavBar = () => {
     setHoveredDropdown(null);
   };
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+    document.body.style.overflow = mobileMenuOpen ? 'auto' : 'hidden';
+  };
+
+  const toggleMobileAbout = () => {
+    setMobileAboutOpen(!mobileAboutOpen);
+    setMobileServicesOpen(false);
+  };
+
+  const toggleMobileServices = () => {
+    setMobileServicesOpen(!mobileServicesOpen);
+    setMobileAboutOpen(false);
+  };
+
   return (
     <header className="fixed left-0 top-0 w-full z-40 transition-all duration-300">
       <div
@@ -71,12 +90,12 @@ const NavBar = () => {
         {/* Logo */}
         <a href="/">
           <div className="flex items-center gap-3">
-            <img src={Logo} alt="Zenitech Logo" className="w-12 h-12 rounded-full" />
+            <img src={Logo} alt="Zenitech Logo" className="w-12 h-12 rounded-full" loading="eager" width="48" height="48" decoding="async" />
             <div className="flex flex-col leading-tight">
-              <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-red-500 via-orange-500 to-red-400 bg-clip-text text-transparent tracking-wide">
+              <span className="text-sm md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-red-500 via-orange-500 to-red-400 bg-clip-text text-transparent tracking-wide whitespace-nowrap">
                 ZENITECH TECHNOLOGIES
               </span>
-              <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-red-500 via-orange-500 to-red-400 bg-clip-text text-transparent tracking-wide">
+              <span className="text-sm md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-red-500 via-orange-500 to-red-400 bg-clip-text text-transparent tracking-wide whitespace-nowrap">
                 PRIVATE LIMITED
               </span>
             </div>
@@ -154,8 +173,17 @@ const NavBar = () => {
           </a>
         </nav>
 
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white border border-gray-200 shadow-sm"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+
         {/* Let's Talk Button */}
-        <a href="/appointment">
+        <a href="/appointment" className="hidden md:block">
           <button className="flex items-center gap-2 bg-white border border-gray-200 text-gray-900 font-semibold text-sm px-5 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all duration-300 group">
             <span>Let's Talk</span>
             <span className="w-7 h-7 flex items-center justify-center bg-gray-900 rounded-full text-white transition-all duration-300 group-hover:bg-red-500">
@@ -178,6 +206,170 @@ const NavBar = () => {
 
       </div>
 
+      {/* Mobile Drawer */}
+      <div
+        ref={mobileMenuRef}
+        className={`fixed inset-0 z-50 md:hidden transition-all duration-300 ${
+          mobileMenuOpen
+            ? 'opacity-100 visible'
+            : 'opacity-0 invisible pointer-events-none'
+        }`}
+      >
+        <div
+          className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${
+            mobileMenuOpen ? 'opacity-100' : 'opacity-0'
+          }`}
+          onClick={toggleMobileMenu}
+        />
+        <div
+          className={`absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl transition-transform duration-300 ${
+            mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
+          <div className="flex flex-col h-full">
+            {/* Drawer Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-100">
+              <div className="flex items-center gap-3">
+                <img src={Logo} alt="Zenitech Logo" className="w-10 h-10 rounded-full" loading="eager" width="40" height="40" decoding="async" />
+                <div className="flex flex-col leading-tight">
+                  <span className="font-bold text-sm bg-gradient-to-r from-red-500 via-orange-500 to-red-400 bg-clip-text text-transparent">
+                    Zenitech Technologies
+                  </span>
+                  <span className="font-bold text-sm bg-gradient-to-r from-red-500 via-orange-500 to-red-400 bg-clip-text text-transparent">
+                    Private Limited
+                  </span>
+                </div>
+              </div>
+              <button
+                onClick={toggleMobileMenu}
+                className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                aria-label="Close menu"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Drawer Content */}
+            <div className="flex-1 overflow-y-auto p-6">
+              <nav className="flex flex-col gap-2">
+                <a
+                  href="/"
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-all duration-200 font-medium"
+                  onClick={toggleMobileMenu}
+                >
+                  Home
+                </a>
+
+                {/* About Dropdown */}
+                <div>
+                  <button
+                    onClick={toggleMobileAbout}
+                    className="flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-all duration-200 font-medium"
+                  >
+                    <span>About</span>
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform duration-200 ${mobileAboutOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                  {mobileAboutOpen && (
+                    <div className="ml-4 mt-2 space-y-1">
+                      <a
+                        href="/about"
+                        className="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 rounded-lg transition-all duration-200"
+                        onClick={toggleMobileMenu}
+                      >
+                        About Us
+                      </a>
+                      <a
+                        href="/about/founder"
+                        className="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 rounded-lg transition-all duration-200"
+                        onClick={toggleMobileMenu}
+                      >
+                        About Founder
+                      </a>
+                    </div>
+                  )}
+                </div>
+
+                {/* Services Dropdown */}
+                <div>
+                  <button
+                    onClick={toggleMobileServices}
+                    className="flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-all duration-200 font-medium"
+                  >
+                    <span>Services</span>
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                  {mobileServicesOpen && (
+                    <div className="ml-4 mt-2 space-y-1">
+                      <a
+                        href="/services"
+                        className="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 rounded-lg transition-all duration-200"
+                        onClick={toggleMobileMenu}
+                      >
+                        All Services
+                      </a>
+                      <a
+                        href="/services/cybersecurity"
+                        className="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 rounded-lg transition-all duration-200"
+                        onClick={toggleMobileMenu}
+                      >
+                        Cybersecurity
+                      </a>
+                      <a
+                        href="/services/cloud-computing"
+                        className="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 rounded-lg transition-all duration-200"
+                        onClick={toggleMobileMenu}
+                      >
+                        Cloud Computing
+                      </a>
+                    </div>
+                  )}
+                </div>
+
+                <a
+                  href="/contact"
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-all duration-200 font-medium"
+                  onClick={toggleMobileMenu}
+                >
+                  Contact
+                </a>
+              </nav>
+            </div>
+
+            {/* Drawer Footer */}
+            <div className="p-6 border-t border-gray-100">
+              <a
+                href="/appointment"
+                className="flex items-center justify-center gap-2 w-full bg-gray-900 text-white font-semibold text-sm px-5 py-3 rounded-full hover:bg-red-500 transition-all duration-300"
+                onClick={toggleMobileMenu}
+              >
+                <span>Let's Talk</span>
+                <span className="w-6 h-6 flex items-center justify-center bg-white rounded-full text-gray-900">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-3 h-3"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <style>{`
         .nav-link {
           position: relative;
@@ -197,6 +389,127 @@ const NavBar = () => {
         .nav-link:hover .nav-underline {
           left: 0;
           right: 0;
+        }
+
+        /* Responsive optimizations */
+        @media (max-width: 768px) {
+          header {
+            padding: 0 clamp(12px, 3vw, 16px);
+          }
+        }
+
+        @media (max-width: 480px) {
+          header {
+            padding: 0 12px;
+          }
+          
+          .text-xl {
+            font-size: 1rem;
+          }
+          
+          .text-2xl {
+            font-size: 1.25rem;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .w-12 {
+            width: 2.5rem;
+            height: 2.5rem;
+          }
+          
+          .text-xl {
+            font-size: 0.875rem;
+          }
+          
+          .text-2xl {
+            font-size: 1.125rem;
+          }
+        }
+
+        /* Landscape orientation */
+        @media (max-height: 500px) and (orientation: landscape) {
+          header {
+            padding: 0 clamp(8px, 2vw, 16px);
+          }
+          
+          .py-2\.5 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+          }
+          
+          .py-4 {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+          }
+        }
+
+        /* High DPI displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+          header {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+          .nav-link,
+          .nav-underline,
+          .transition-all,
+          .transition-transform,
+          .transition-opacity {
+            transition: none !important;
+            animation: none !important;
+          }
+        }
+
+        /* Mobile navbar fixes */
+        @media (max-width: 768px) {
+          header {
+            padding: 0;
+          }
+          
+          header > div {
+            padding: 8px 12px;
+            max-width: 100%;
+          }
+          
+          header > div > a {
+            display: flex !important;
+            align-items: center;
+          }
+          
+          header > div > a > div {
+            display: flex !important;
+            align-items: center;
+          }
+        }
+
+        @media (max-width: 480px) {
+          header > div {
+            padding: 8px 10px;
+          }
+          
+          header > div > a > div > img {
+            width: 40px;
+            height: 40px;
+          }
+        }
+
+        @media (max-width: 360px) {
+          header > div {
+            padding: 6px 8px;
+          }
+          
+          header > div > a > div {
+            gap: 8px;
+          }
+          
+          header > div > a > div > img {
+            width: 36px;
+            height: 36px;
+          }
         }
       `}</style>
     </header>

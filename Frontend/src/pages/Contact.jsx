@@ -51,12 +51,7 @@ const offices = [
         name: 'Bengaluru Office',
         address: 'Dex Co Work, 2nd Floor, 1383/433, 5th Block, HBR Layout, Bengaluru – 560043, India',
         mapUrl: 'https://www.google.com/maps/dir/?api=1&destination=Dex+Co+Work,+2nd+Floor,+1383/433,+5th+Block,+HBR+Layout,+Bangalore+560043,+India',
-    },
-    {
-        name: 'Kolkata Office',
-        address: 'Sunny Seasons, 15/1C, Kamalgazi, P.O. Narendrapur, Kolkata – 700103, India',
-        mapUrl: 'https://www.google.com/maps/dir/?api=1&destination=Sunny+Seasons,+15/1C,+Kamalgazi,+Narendrapur,+Kolkata+700103,+India',
-    },
+    }
 ];
 
 const socialLinks = [

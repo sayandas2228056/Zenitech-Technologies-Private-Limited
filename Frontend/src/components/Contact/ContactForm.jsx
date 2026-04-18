@@ -1,17 +1,41 @@
 import React, { useState } from 'react';
-import { Send, Check } from 'lucide-react';
+import { Send, Check, AlertTriangle } from 'lucide-react';
 
 const ContactForm = () => {
     const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
     const [submitted, setSubmitted] = useState(false);
     const [sending, setSending] = useState(false);
+    const [error, setError] = useState(null);
 
     const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setSending(true);
-        setTimeout(() => { setSending(false); setSubmitted(true); }, 1400);
+        setError(null);
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_BACKEND_URL}/api/contact`,
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(form),
+                }
+            );
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => null);
+                throw new Error(errorData?.message || 'Failed to send message.');
+            }
+
+            setSubmitted(true);
+            setForm({ name: '', email: '', phone: '', subject: '', message: '' });
+            setTimeout(() => setSubmitted(false), 6000);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setSending(false);
+        }
     };
 
     if (submitted) {
@@ -34,6 +58,12 @@ const ContactForm = () => {
 
     return (
         <form className="ct-form" onSubmit={handleSubmit}>
+            {error && (
+                <div className="ct-error">
+                    <AlertTriangle size={16} />
+                    <span>{error}</span>
+                </div>
+            )}
             <div className="ct-form-grid">
                 {fields.map((f) => (
                     <div key={f.name} className={`ct-field${f.half ? '' : ' ct-field-full'}`}>

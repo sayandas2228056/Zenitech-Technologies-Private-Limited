@@ -1,0 +1,56 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Build output
+dist/
+build/
+
+# dotenv environment variables
+.env
+.env.*.local
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+
+# Optional npm cache directory
+.npm/
+
+# Debugger history
+node-inspector/
+
+# TypeScript
+*.tsbuildinfo
+
+# PM2 logs and dumps
+pids/
+*.log
+*.pm2
+
+# Local database files
+*.sqlite
+*.db
+
+# Swagger generated files (if applicable)
+swagger-output.json

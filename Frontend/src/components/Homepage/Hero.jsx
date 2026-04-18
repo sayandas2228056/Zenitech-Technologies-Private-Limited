@@ -27,7 +27,7 @@ const HERO_CSS = `
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: 80px 64px 60px;
+  padding: clamp(40px, 5vw, 80px) clamp(20px, 4vw, 64px) clamp(30px, 4vw, 60px);
   gap: 0;
 }
 
@@ -36,7 +36,7 @@ const HERO_CSS = `
   content: '';
   position: absolute;
   inset: 0;
-  right: 44%;
+  right: clamp(30%, 40vw, 44%);
   background: #e8e8e1;
   clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
   z-index: 0;
@@ -46,9 +46,9 @@ const HERO_CSS = `
 .hero-left {
   position: relative;
   z-index: 2;
-  flex: 0 0 50%;
-  max-width: 50%;
-  padding-right: 28px;
+  flex: 0 0 clamp(45%, 48vw, 50%);
+  max-width: clamp(45%, 48vw, 50%);
+  padding-right: clamp(14px, 2vw, 28px);
   display: flex;
   flex-direction: column;
 }
@@ -60,21 +60,21 @@ const HERO_CSS = `
   background: rgba(255,255,255,0.9);
   border: 1.5px solid #d2d2ca;
   border-radius: 40px;
-  padding: 9px 20px;
-  font-size: 12.5px;
+  padding: clamp(6px, 1vw, 9px) clamp(12px, 2vw, 20px);
+  font-size: clamp(11px, 1.2vw, 12.5px);
   font-weight: 600;
   color: #1a1a1a;
   width: fit-content;
-  margin-bottom: 30px;
+  margin-bottom: clamp(15px, 3vw, 30px);
   letter-spacing: 0.025em;
 }
 
 .hero-heading {
-  font-size: clamp(42px, 4.8vw, 70px);
+  font-size: clamp(28px, 5vw, 70px);
   font-weight: 900;
-  line-height: 1.06;
+  line-height: clamp(1.1, 1.15, 1.06);
   color: #0d0d10;
-  margin: 0 0 22px;
+  margin: 0 0 clamp(12px, 2vw, 22px);
   letter-spacing: -0.035em;
 }
 
@@ -85,26 +85,27 @@ const HERO_CSS = `
 .uw::after {
   content: '';
   position: absolute;
-  left: 0; right: 0; bottom: 3px;
-  height: 3.5px;
+  left: 0; right: 0; bottom: clamp(2px, 0.3vw, 3px);
+  height: clamp(2.5px, 0.4vw, 3.5px);
   background: #0d0d10;
   border-radius: 2px;
   display: block;
 }
 
 .hero-sub {
-  font-size: 14.5px;
+  font-size: clamp(12px, 1.5vw, 14.5px);
   color: #5e5e5e;
   line-height: 1.7;
-  max-width: 400px;
-  margin: 0 0 38px;
+  max-width: clamp(280px, 35vw, 400px);
+  margin: 0 0 clamp(20px, 3vw, 38px);
   font-weight: 400;
 }
 
 .hero-actions {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: clamp(12px, 2vw, 24px);
+  flex-wrap: wrap;
 }
 
 .btn-gs {
@@ -114,9 +115,9 @@ const HERO_CSS = `
   background: #0d0d10;
   color: #fff;
   font-family: 'Manrope', sans-serif;
-  font-size: 13.5px;
+  font-size: clamp(12px, 1.3vw, 13.5px);
   font-weight: 700;
-  padding: 15px 22px 15px 28px;
+  padding: clamp(12px, 1.5vw, 15px) clamp(16px, 2vw, 22px) clamp(12px, 1.5vw, 15px) clamp(20px, 2.5vw, 28px);
   border-radius: 50px;
   border: none;
   cursor: pointer;
@@ -127,48 +128,66 @@ const HERO_CSS = `
 .btn-gs:hover { background: #2b2b2b; transform: translateY(-2px); }
 
 .btn-arrow {
-  width: 34px; height: 34px;
+  width: clamp(28px, 3.5vw, 34px); 
+  height: clamp(28px, 3.5vw, 34px);
   background: #fff;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   color: #0d0d10;
-  font-size: 16px;
+  font-size: clamp(14px, 1.5vw, 16px);
   flex-shrink: 0;
   line-height: 1;
 }
 
 .contact-blk {
-  display: flex; align-items: center; gap: 13px;
+  display: flex; align-items: center; gap: clamp(8px, 1.5vw, 13px);
 }
 .phone-ring {
-  width: 48px; height: 48px;
+  width: clamp(36px, 4.5vw, 48px); 
+  height: clamp(36px, 4.5vw, 48px);
   border: 1.5px solid #c6c6be;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.phone-ring svg { width: 19px; height: 19px; stroke: #333; }
-.c-label { font-size: 11px; color: #999; font-weight: 500; display: block; margin-bottom: 2px; }
-.c-num  { font-size: 14px; font-weight: 800; color: #0d0d10; letter-spacing: 0.01em; display: block; }
+.phone-ring svg { 
+  width: clamp(15px, 2vw, 19px); 
+  height: clamp(15px, 2vw, 19px); 
+  stroke: #333; 
+}
+.c-label { 
+  font-size: clamp(10px, 1.2vw, 11px); 
+  color: #999; 
+  font-weight: 500; 
+  display: block; 
+  margin-bottom: 2px; 
+}
+.c-num  { 
+  font-size: clamp(12px, 1.4vw, 14px); 
+  font-weight: 800; 
+  color: #0d0d10; 
+  letter-spacing: 0.01em; 
+  display: block; 
+}
 
 /* ---- RIGHT ---- */
 .hero-right {
   position: relative;
   z-index: 2;
-  flex: 0 0 50%;
-  max-width: 50%;
-  padding-left: 18px;
+  flex: 0 0 clamp(45%, 48vw, 50%);
+  max-width: clamp(45%, 48vw, 50%);
+  padding-left: clamp(10px, 1.5vw, 18px);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: clamp(8px, 1.5vw, 14px);
 }
 
 /* Main image box */
 .main-img-box {
   position: relative;
   width: 100%;
-  height: 440px;
-  border-radius: 22px;
+  height: clamp(250px, 35vw, 440px);
+  border-radius: clamp(14px, 2vw, 22px);
   overflow: visible; /* badge hangs outside */
   background: #ccc;
 }
@@ -176,7 +195,7 @@ const HERO_CSS = `
 .main-img-box .img-clip {
   position: absolute;
   inset: 0;
-  border-radius: 22px;
+  border-radius: clamp(14px, 2vw, 22px);
   overflow: hidden;
 }
 
@@ -187,16 +206,22 @@ const HERO_CSS = `
   object-fit: cover;
   object-position: center top;
   opacity: 0;
-  transition: opacity 0.65s ease;
+  will-change: opacity;
+  transition: opacity 0.65s ease, filter 0.3s ease;
+  filter: blur(10px);
 }
-.s-img.on { opacity: 1; }
+.s-img.loaded {
+  filter: blur(0);
+}
+.s-img.on { opacity: 1; filter: blur(0); }
 
 /* Spinning badge */
 .badge-wrap {
   position: absolute;
-  top: 22px;
-  left: -56px;
-  width: 116px; height: 116px;
+  top: clamp(12px, 2vw, 22px);
+  left: clamp(-35px, -6vw, -56px);
+  width: clamp(80px, 10vw, 116px); 
+  height: clamp(80px, 10vw, 116px);
   z-index: 30;
 }
 
@@ -212,6 +237,7 @@ const HERO_CSS = `
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   animation: spinIt 14s linear infinite;
+  will-change: transform;
 }
 @keyframes spinIt { to { transform: rotate(360deg); } }
 
@@ -219,18 +245,22 @@ const HERO_CSS = `
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
 }
-.badge-star svg { width: 30px; height: 30px; }
+.badge-star svg { 
+  width: clamp(22px, 3vw, 30px); 
+  height: clamp(22px, 3vw, 30px); 
+}
 
 /* Thumbs row */
 .thumbs-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: clamp(6px, 1vw, 10px);
   width: 100%;
 }
 
 .nav-btn {
-  width: 40px; height: 40px;
+  width: clamp(32px, 4vw, 40px); 
+  height: clamp(32px, 4vw, 40px);
   border-radius: 50%;
   border: 1.5px solid #c6c6be;
   background: white;
@@ -238,20 +268,20 @@ const HERO_CSS = `
   cursor: pointer;
   flex-shrink: 0;
   color: #333;
-  font-size: 14px;
+  font-size: clamp(12px, 1.5vw, 14px);
   transition: background 0.18s;
 }
 .nav-btn:hover { background: #eeeeea; }
 
 .thumbs-track {
-  display: flex; gap: 10px;
+  display: flex; gap: clamp(6px, 1vw, 10px);
   flex: 1; overflow: hidden;
 }
 
 .thumb {
   flex: 1;
-  height: 88px;
-  border-radius: 13px;
+  height: clamp(60px, 10vw, 88px);
+  border-radius: clamp(10px, 1.5vw, 13px);
   overflow: hidden;
   cursor: pointer;
   border: 2.5px solid transparent;
@@ -276,6 +306,217 @@ const HERO_CSS = `
 .hero-left .hero-sub    { animation: fadeUp 0.5s 0.29s ease both; }
 .hero-left .hero-actions{ animation: fadeUp 0.5s 0.41s ease both; }
 .hero-right              { animation: fadeUp 0.6s 0.2s  ease both; }
+
+/* Media Queries for specific breakpoints */
+@media (max-width: 1024px) {
+  .hero-wrap {
+    padding: clamp(30px, 4vw, 50px) clamp(16px, 3vw, 40px) clamp(24px, 3vw, 40px);
+  }
+  
+  .hero-wrap::before {
+    right: 38%;
+  }
+  
+  .hero-left {
+    flex: 0 0 52%;
+    max-width: 52%;
+    padding-right: 20px;
+  }
+  
+  .hero-right {
+    flex: 0 0 48%;
+    max-width: 48%;
+    padding-left: 12px;
+  }
+  
+  .main-img-box {
+    height: clamp(200px, 30vw, 350px);
+  }
+  
+  .badge-wrap {
+    left: -40px;
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-wrap {
+    flex-direction: column;
+    padding: clamp(80px, 15vh, 100px) clamp(16px, 3vw, 32px) clamp(32px, 5vw, 50px);
+    min-height: calc(100vh - 80px);
+  }
+  
+  .hero-wrap::before {
+    display: none;
+  }
+  
+  .hero-left {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding-right: 0;
+    margin-bottom: clamp(24px, 4vw, 40px);
+  }
+  
+  .hero-right {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding-left: 0;
+  }
+  
+  .hero-sub {
+    max-width: 100%;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .main-img-box {
+    height: clamp(220px, 40vw, 320px);
+  }
+  
+  .badge-wrap {
+    top: 16px;
+    left: 16px;
+    width: 80px;
+    height: 80px;
+  }
+  
+  .thumbs-row {
+    gap: 8px;
+  }
+  
+  .thumb {
+    height: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-wrap {
+    padding: clamp(80px, 15vh, 100px) 16px 32px;
+    min-height: calc(100vh - 80px);
+  }
+  
+  .hero-heading {
+    font-size: clamp(24px, 6vw, 36px);
+  }
+  
+  .hero-sub {
+    font-size: 13px;
+  }
+  
+  .btn-gs {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .main-img-box {
+    height: clamp(180px, 45vw, 250px);
+  }
+  
+  .badge-wrap {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .thumb {
+    height: 60px;
+  }
+  
+  .nav-btn {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-wrap {
+    padding: clamp(80px, 15vh, 100px) 12px 32px;
+    min-height: calc(100vh - 80px);
+  }
+  
+  .hero-heading {
+    font-size: 22px;
+  }
+  
+  .hero-sub {
+    font-size: 12px;
+  }
+  
+  .main-img-box {
+    height: 160px;
+  }
+  
+  .badge-wrap {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Landscape orientation optimizations */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-wrap {
+    padding: clamp(16px, 2vw, 32px) clamp(16px, 3vw, 48px) clamp(16px, 2vw, 32px);
+    min-height: 100vh;
+  }
+  
+  .hero-left {
+    margin-bottom: 16px;
+  }
+  
+  .hero-sub {
+    margin-bottom: 16px;
+  }
+  
+  .main-img-box {
+    height: clamp(150px, 25vh, 280px);
+  }
+  
+  .badge-wrap {
+    top: 12px;
+  }
+  
+  .thumb {
+    height: clamp(50px, 8vh, 70px);
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero-wrap {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Print styles */
+@media print {
+  .hero-wrap {
+    display: none;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .s-img,
+  .thumb img,
+  .badge-spin,
+  .hero-left .expert-tag,
+  .hero-left .hero-heading,
+  .hero-left .hero-sub,
+  .hero-left .hero-actions,
+  .hero-right {
+    animation: none;
+    transition: none;
+  }
+  
+  .badge-spin {
+    transform: none;
+  }
+}
 `
 
 const Hero = () => {
@@ -293,11 +534,47 @@ const Hero = () => {
   }, [])
 
   useEffect(() => {
-    const el = document.createElement('style')
-    el.id = '__hero_css__'
-    el.textContent = HERO_CSS
-    if (!document.getElementById('__hero_css__')) document.head.appendChild(el)
-    return () => document.getElementById('__hero_css__')?.remove()
+    let styleEl = document.getElementById('__hero_css__')
+    if (!styleEl) {
+      styleEl = document.createElement('style')
+      styleEl.id = '__hero_css__'
+      document.head.appendChild(styleEl)
+    }
+    styleEl.textContent = HERO_CSS
+    
+    // Preload critical images
+    const preloadLink = document.createElement('link')
+    preloadLink.rel = 'preload'
+    preloadLink.as = 'image'
+    preloadLink.href = mainSlides[0]
+    preloadLink.id = '__hero_preload__'
+    if (!document.getElementById('__hero_preload__')) {
+      document.head.appendChild(preloadLink)
+    }
+    
+    // Preload logo
+    const logoPreloadLink = document.createElement('link')
+    logoPreloadLink.rel = 'preload'
+    logoPreloadLink.as = 'image'
+    logoPreloadLink.href = Logo
+    logoPreloadLink.id = '__hero_logo_preload__'
+    if (!document.getElementById('__hero_logo_preload__')) {
+      document.head.appendChild(logoPreloadLink)
+    }
+    
+    return () => {
+      if (styleEl && styleEl.parentNode) {
+        styleEl.parentNode.removeChild(styleEl)
+      }
+      const preloadEl = document.getElementById('__hero_preload__')
+      if (preloadEl && preloadEl.parentNode) {
+        preloadEl.parentNode.removeChild(preloadEl)
+      }
+      const logoPreloadEl = document.getElementById('__hero_logo_preload__')
+      if (logoPreloadEl && logoPreloadEl.parentNode) {
+        logoPreloadEl.parentNode.removeChild(logoPreloadEl)
+      }
+    }
   }, [])
 
   return (
@@ -367,12 +644,12 @@ const Hero = () => {
               <defs>
                 <path id="bp" d="M 58,58 m -39,0 a 39,39 0 1,1 78,0 a 39,39 0 1,1 -78,0" />
               </defs>
-              <text fontSize="8.2" fontWeight="700" letterSpacing="3.8" fill="#111" fontFamily="Manrope,sans-serif">
-                <textPath href="#bp">•ZENITECH TECHNOLOGIES PRIVATE LIMITED</textPath>
+              <text fontSize="8.2" fontWeight="700" letterSpacing="3.8" fill="#111111" fontFamily="Manrope,sans-serif">
+                <textPath href="#bp" className='text-orange-600'>•ZENITECH TECHNOLOGIES PRIVATE LIMITED</textPath>
               </text>
             </svg>
             <div className="badge-star">
-              <img src={Logo} alt="Zenitech Logo" className="w-10 h-10 rounded-full" />
+              <img src={Logo} alt="Zenitech Logo" className="w-10 h-10 rounded-full" loading="eager" width="40" height="40" decoding="async" fetchPriority="high" />
             </div>
           </div>
 
@@ -384,6 +661,12 @@ const Hero = () => {
                 src={src}
                 alt={`Slide ${i + 1}`}
                 className={`s-img ${i === active ? 'on' : ''}`}
+                loading={i === 0 ? 'eager' : 'lazy'}
+                width="100%"
+                height="100%"
+                decoding="async"
+                fetchPriority={i === 0 ? 'high' : 'auto'}
+                onLoad={(e) => e.target.classList.add('loaded')}
                 onError={(e) => { if (i === 0) e.target.src = BgPic }}
               />
             ))}
@@ -400,7 +683,14 @@ const Hero = () => {
                 className={`thumb ${i === active ? 'on' : ''}`}
                 onClick={() => { clearInterval(timerRef.current); goTo(i) }}
               >
-                <img src={src} alt={`Thumb ${i + 1}`} />
+                <img 
+                  src={src} 
+                  alt={`Thumb ${i + 1}`} 
+                  loading="lazy"
+                  width="100%"
+                  height="100%"
+                  decoding="async"
+                />
               </div>
             ))}
           </div>

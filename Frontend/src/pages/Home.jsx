@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from 'react';
+import React, { useEffect, lazy, Suspense, useState } from 'react';
 import Hero from '../components/Homepage/Hero';
 
 /* ── Below-fold components loaded lazily (code-split) ─────── */
@@ -17,6 +17,12 @@ const Skeleton = () => (
    HOME PAGE
 ════════════════════════════════════════════════════════════ */
 const Home = () => {
+  const [mounted, setMounted] = useState(false);
+
+  /* Trigger initial animation on mount */
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   /* Single IntersectionObserver for all reveal elements —
      far more efficient than a scroll event listener           */
@@ -42,9 +48,11 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div className={mounted ? 'hm-mounted' : ''}>
       {/* Hero is eager — it's above the fold */}
-      <Hero />
+      <div className="hm-initial-fade-in">
+        <Hero />
+      </div>
 
       {/* Each below-fold section gets its own reveal wrapper  */}
       <Suspense fallback={<Skeleton />}>
@@ -69,6 +77,20 @@ const Home = () => {
 
       {/* Scoped animation styles */}
       <style>{`
+        /* Initial fade-in animation for page load */
+        .hm-initial-fade-in {
+          opacity: 0;
+          transform: translateY(30px);
+          animation: hmFadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes hmFadeIn {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
         /* GPU-composited reveal — opacity + transform only */
         .hm-reveal {
           opacity: 0;
@@ -88,6 +110,11 @@ const Home = () => {
 
         /* Respect reduced-motion preference */
         @media (prefers-reduced-motion: reduce) {
+          .hm-initial-fade-in {
+            opacity: 1;
+            transform: none;
+            animation: none;
+          }
           .hm-reveal {
             opacity: 1;
             transform: none;
@@ -97,11 +124,19 @@ const Home = () => {
 
         /* Portrait phones — tighten vertical rhythm */
         @media (max-width: 480px) and (orientation: portrait) {
+          .hm-initial-fade-in {
+            transform: translateY(20px);
+            animation-duration: 0.6s;
+          }
           .hm-reveal { transform: translateY(14px); }
         }
 
         /* Landscape phones — less height, keep animation subtle */
         @media (max-width: 896px) and (orientation: landscape) {
+          .hm-initial-fade-in {
+            transform: translateY(15px);
+            animation-duration: 0.5s;
+          }
           .hm-reveal { transform: translateY(10px); transition-duration: 0.45s; }
         }
       `}</style>
