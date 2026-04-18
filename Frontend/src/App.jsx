@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import Home from './pages/Home'
@@ -11,7 +11,38 @@ import Navbar from './components/Common/NavBar'
 import Footer from './components/Common/Footer'
 import Contact from './pages/Contact'
 import Appointment from './pages/Appointment'
+import Loading from './components/Common/Loading'
+
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    // Hide loading screen after 2.5 seconds (or when page is ready)
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 2500)
+
+    // Also hide when window loads
+    const handleLoad = () => {
+      setTimeout(() => setIsLoading(false), 500)
+    }
+
+    if (document.readyState === 'complete') {
+      handleLoad()
+    } else {
+      window.addEventListener('load', handleLoad)
+    }
+
+    return () => {
+      clearTimeout(timer)
+      window.removeEventListener('load', handleLoad)
+    }
+  }, [])
+
+  if (isLoading) {
+    return <Loading />
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
 
