@@ -12,6 +12,7 @@ import Founder from '../assets/Founder.jpg';
 import { FaLinkedin, FaFacebookF, FaWhatsapp } from 'react-icons/fa';
 import NavBar from '../components/Common/NavBar.jsx';
 import Bright1 from '../components/Common/Bright1.jsx';
+import OptimizedImage from '../components/Common/OptimizedImage.jsx';
 
 /* ══════════════════════════════════════════════════════════════
    DATA
@@ -145,7 +146,7 @@ const About = () => {
       <section className="ab-hero" ref={heroRef}>
         {/* Background image + gradient overlay */}
         <div className="ab-hero-bg">
-          <img src={heroimg} alt="" aria-hidden="true" className="ab-hero-bg-img" />
+          <OptimizedImage src={heroimg} alt="" aria-hidden="true" className="ab-hero-bg-img" loading="eager" />
           <div className="ab-hero-overlay opacity-50" />
         </div>
 
@@ -179,7 +180,7 @@ const About = () => {
           <div className="ab-hero-logo-col ab-text-animate" style={{ animationDelay: '0.25s' }}>
             <div className="ab-logo-tilt-back" />
             <div className="ab-logo-card">
-              <img src={Logo} alt="Zenitech Logo" className="ab-logo-img" />
+              <OptimizedImage src={Logo} alt="Zenitech Logo" className="ab-logo-img" loading="eager" />
             </div>
           </div>
         </div>
@@ -214,7 +215,7 @@ const About = () => {
             <div className="ab-img-frame">
               <div className="ab-img-blob-tl" />
               <div className="ab-img-blob-br" />
-              <img src={Pic1} alt="Zenitech Team" className="ab-section-img" />
+              <OptimizedImage src={Pic1} alt="Zenitech Team" className="ab-section-img" loading="lazy" />
               <div className="ab-img-chip ab-img-chip-tl">Since 2021</div>
             </div>
           </RevealCard>
@@ -256,7 +257,7 @@ const About = () => {
             <div className="ab-img-frame">
               <div className="ab-img-blob-tr" />
               <div className="ab-img-blob-bl" />
-              <img src={Pic2} alt="Zenitech Services" className="ab-section-img" />
+              <OptimizedImage src={Pic2} alt="Zenitech Services" className="ab-section-img" loading="lazy" />
               <div className="ab-img-chip ab-img-chip-br">Expert Solutions</div>
             </div>
           </RevealCard>
@@ -288,7 +289,7 @@ const About = () => {
           {/* Photo col */}
           <div className="ab-founder-photo-col">
             <div className="ab-founder-ring" />
-            <img src={Founder} alt={`${founderData.name} – ${founderData.title}`} className="ab-founder-img" />
+            <OptimizedImage src={Founder} alt={`${founderData.name} – ${founderData.title}`} className="ab-founder-img" loading="lazy" />
             <div className="ab-founder-socials">
               {founderData.socials.map((s, i) => (
                 <a key={i} href={s.url} target="_blank" rel="noopener noreferrer"

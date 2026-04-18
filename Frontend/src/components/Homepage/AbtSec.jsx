@@ -3,6 +3,7 @@ import pic8 from "../../assets/pic3.jpg";
 import AbtPic from "../../assets/CyberSec.jpg";
 import { useEffect } from 'react';
 import BgPic from "../../assets/pic1.jpg";
+import OptimizedImage from '../Common/OptimizedImage';
 
 const AbtSection = () => {
   useEffect(() => {
@@ -40,20 +41,22 @@ const AbtSection = () => {
         <div className="relative z-10 w-full flex flex-col md:flex-row items-center gap-8 md:gap-12">
           {/* Left Side - Images */}
           <div className="relative w-full md:w-1/2">
-            <img
+            <OptimizedImage
               src={AbtPic}
               alt="About Us Main"
               className="rounded-xl w-full h-auto shadow-lg"
+              loading="lazy"
             />
             <div className="absolute top-4 md:top-6 left-4 md:left-6 bg-orange-500 text-white text-center px-4 md:px-5 py-2 md:py-3 rounded-md shadow-xl">
               <h2 className="text-xl md:text-2xl font-bold">Expertise in:</h2>
               <p className="text-xs md:text-sm tracking-wide">Cybersecurity & Cloud Computing</p>
             </div>
             <div className="absolute -bottom-4 md:-bottom-5 -right-4 md:-right-5">
-              <img
+              <OptimizedImage
                 src={pic8}
                 alt="Team"
                 className="w-32 md:w-40 rounded-xl shadow-md border-4 border-white"
+                loading="lazy"
               />
             </div>
           </div>

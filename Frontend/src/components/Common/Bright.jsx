@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaRegHandshake } from 'react-icons/fa';
 import CntPic from "../../assets/pic3.jpg"; // your copper/ember image
+import OptimizedImage from './OptimizedImage';
 
 const Bright = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,13 +17,13 @@ const Bright = () => {
   return (
     <section
       className="relative min-h-[80vh] bg-cover bg-center flex items-center justify-center py-24 overflow-hidden"
-      style={{ backgroundImage: `url(${CntPic})` }}
     >
-      <img
+      <OptimizedImage
         src={CntPic}
         alt="Contact background"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
         style={{ zIndex: 0, filter: 'blur(6px) brightness(0.35)', opacity: 0.6 }}
+        loading="lazy"
       />
       {/* Copper-toned dot grid */}
       <div

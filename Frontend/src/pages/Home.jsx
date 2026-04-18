@@ -8,9 +8,16 @@ const ServSection = lazy(() => import('../components/Common/ServSection'));
 const Bright     = lazy(() => import('../components/Common/Bright'));
 const FAQ        = lazy(() => import('../components/Common/FAQ'));
 
-/* ── Minimal skeleton shown while lazy chunks load ────────── */
+/* ── Skeleton shown while lazy chunks load ────────── */
 const Skeleton = () => (
-  <div style={{ minHeight: '200px', background: '#f3f4f6', borderRadius: '8px', margin: '8px 0' }} />
+  <div style={{ 
+    minHeight: '400px', 
+    background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
+    backgroundSize: '200% 100%',
+    borderRadius: '12px', 
+    margin: '16px 0',
+    animation: 'shimmer 1.5s infinite'
+  }} />
 );
 
 /* ════════════════════════════════════════════════════════════
@@ -36,13 +43,21 @@ const Home = () => {
           }
         });
       },
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.01, rootMargin: '0px 0px -20px 0px' }
     );
 
     /* Small delay so lazy-loaded sections can mount first */
     const timer = setTimeout(() => {
-      document.querySelectorAll('.hm-reveal').forEach((el) => observer.observe(el));
-    }, 120);
+      const elements = document.querySelectorAll('.hm-reveal');
+      elements.forEach((el) => observer.observe(el));
+
+      // Fallback: show all elements after 2 seconds if observer didn't trigger
+      const fallbackTimer = setTimeout(() => {
+        elements.forEach((el) => el.classList.add('hm-visible'));
+      }, 2000);
+
+      return () => clearTimeout(fallbackTimer);
+    }, 50);
 
     return () => { clearTimeout(timer); observer.disconnect(); };
   }, []);
@@ -77,6 +92,11 @@ const Home = () => {
 
       {/* Scoped animation styles */}
       <style>{`
+        @keyframes shimmer {
+          0% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+
         /* Initial fade-in animation for page load */
         .hm-initial-fade-in {
           opacity: 0;
@@ -138,6 +158,15 @@ const Home = () => {
             animation-duration: 0.5s;
           }
           .hm-reveal { transform: translateY(10px); transition-duration: 0.45s; }
+        }
+
+        /* Mobile: Force visibility on small screens to prevent blank content */
+        @media (max-width: 768px) {
+          .hm-reveal {
+            opacity: 1;
+            transform: translateY(0);
+            transition: none;
+          }
         }
       `}</style>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BgPic from "../../assets/pic6.jpg";
+import OptimizedImage from "../Common/OptimizedImage";
 
 const taglineLines = [
   "Our success is measured by your success.",
