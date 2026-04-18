@@ -5,8 +5,8 @@ import {
   Mail, ChevronDown, ChevronUp
 } from 'lucide-react';
 import heroimg from "../assets/Abthero.jpg";
-import Pic1 from '../assets/Pic1.jpg';
-import Pic2 from '../assets/Pic2.jpg';
+import Pic1 from '../assets/pic1.jpg';
+import Pic2 from '../assets/pic2.jpg';
 import Logo from '../assets/Logo.png';
 import Founder from '../assets/Founder.jpg';
 import { FaLinkedin, FaFacebookF, FaWhatsapp } from 'react-icons/fa';
