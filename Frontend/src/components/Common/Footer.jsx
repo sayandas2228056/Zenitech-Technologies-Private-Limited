@@ -69,18 +69,13 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
+                <a href="/about/founder" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
                   Founder Profile
                 </a>
               </li>
               <li>
                 <a href="/services" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
                   Services
-                </a>
-              </li>
-              <li>
-                <a href="/partners" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
-                  Partners
                 </a>
               </li>
               <li>

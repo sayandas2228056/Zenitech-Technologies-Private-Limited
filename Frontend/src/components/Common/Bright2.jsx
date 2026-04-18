@@ -147,39 +147,9 @@ const Bright2 = () => {
                         </button>
                     </a>
                 </div>
-
-                {/* Bottom trust row */}
-                <div
-                    className={`flex items-center gap-6 mt-10 transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-                        }`}
-                >
-                    {[
-                        { num: '100+', label: 'Clients secured' },
-                        { num: '99.9%', label: 'Uptime SLA' },
-                        { num: '24/7', label: 'Support' },
-                    ].map((s, i) => (
-                        <div key={i} className="text-center" style={{ borderRight: i < 2 ? '1px solid rgba(55,138,221,0.2)' : 'none', paddingRight: i < 2 ? '24px' : 0 }}>
-                            <div style={{ fontSize: '20px', fontWeight: 700, color: '#85B7EB', letterSpacing: '-0.02em' }}>
-                                {s.num}
-                            </div>
-                            <div style={{ fontSize: '11px', color: 'rgba(181,212,244,0.6)', marginTop: '2px', letterSpacing: '0.04em' }}>
-                                {s.label}
-                            </div>
-                        </div>
-                    ))}
-                </div>
             </div>
 
-            {/* Floating dots */}
-            <div className="absolute top-1/4 right-10 w-2 h-2 rounded-full animate-ping"
-                style={{ background: 'rgba(55,138,221,0.6)', zIndex: 1 }} />
-            <div className="absolute top-1/3 right-1/4 w-1 h-1 rounded-full animate-ping"
-                style={{ background: 'rgba(133,183,235,0.5)', animationDelay: '1s', zIndex: 1 }} />
-            <div className="absolute bottom-1/3 left-10 w-1.5 h-1.5 rounded-full animate-ping"
-                style={{ background: 'rgba(181,212,244,0.55)', animationDelay: '2s', zIndex: 1 }} />
-            <div className="absolute bottom-1/4 left-1/3 w-1 h-1 rounded-full animate-ping"
-                style={{ background: 'rgba(55,138,221,0.45)', animationDelay: '1.5s', zIndex: 1 }} />
-
+          
             <style>{`
         @keyframes b2-pulse {
           0%, 100% { opacity: 1; }

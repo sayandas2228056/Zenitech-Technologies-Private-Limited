@@ -31,8 +31,9 @@ const infoCards = [
     },
     {
         icon: MapPin,
-        title: 'Our Offices',
-        lines: ['Bengaluru & Kolkata, India'],
+        title: 'Our Office',
+        lines: ['Bengaluru, India'],
+        action: () => { window.open('https://www.google.com/maps/place/ZENITECH+TECHNOLOGIES+PRIVATE+LIMITED/@13.033567,77.628973,16z/data=!4m6!3m5!1s0x2efa6a1b2571d453:0x6aa2f619aaa4d5aa!8m2!3d13.0335666!4d77.6289726!16s%2Fg%2F11tjs5xq43?hl=en&entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D'); },
         color: '#E8F1FB',
         iconColor: '#185FA5',
     },
@@ -44,29 +45,37 @@ const infoCards = [
         color: '#EAF4FF',
         iconColor: '#185FA5',
     },
+    {
+        icon: FaLinkedin,
+        title: 'LinkedIn',
+        lines: ['Follow us'],
+        action: () => { window.open('https://www.linkedin.com/company/zenitech-technologies/posts/?feedView=all', '_blank'); },
+        color: '#EAF4FF',
+        iconColor: '#0077B5',
+    },
 ];
 
 const offices = [
     {
         name: 'Bengaluru Office',
         address: 'Dex Co Work, 2nd Floor, 1383/433, 5th Block, HBR Layout, Bengaluru – 560043, India',
-        mapUrl: 'https://www.google.com/maps/dir/?api=1&destination=Dex+Co+Work,+2nd+Floor,+1383/433,+5th+Block,+HBR+Layout,+Bangalore+560043,+India',
+        mapUrl: 'https://www.google.com/maps?ll=13.033567,77.628973&z=16&t=m&hl=en&gl=IN&mapclient=embed&cid=7683974504345032106',
     }
 ];
 
 const socialLinks = [
-    { name: 'LinkedIn', icon: <FaLinkedin size={18} />, url: 'https://linkedin.com' },
+    { name: 'LinkedIn', icon: <FaLinkedin size={18} />, url: 'https://www.linkedin.com/company/zenitech-technologies/posts/?feedView=all' },
     { name: 'WhatsApp', icon: <FaWhatsapp size={18} />, url: 'https://wa.me/918820066999' },
     { name: 'Email', icon: <Mail size={18} />, url: 'mailto:info@zenitech.in' },
     { name: 'Call', icon: <Phone size={18} />, url: 'tel:+918820066999' },
 ];
 
 const faqs = [
-    { icon: Clock, question: 'What are your business hours?', answer: 'Monday to Friday, 9:00 AM to 6:00 PM IST. 24/7 emergency technical support is also available.' },
+    { icon: Clock, question: 'What are your business hours?', answer: 'Monday to Friday 24/7 emergency technical support is also available.' },
     { icon: Zap, question: 'How quickly can I expect a response?', answer: 'We respond within 24 hours during business days. For urgent matters, our support line is available round the clock.' },
     { icon: Globe, question: 'Do you offer remote services?', answer: 'Yes, we serve clients globally with remote support, virtual consultations, and cloud-delivered solutions.' },
     { icon: Calendar, question: 'How can I schedule a consultation?', answer: 'Use our contact form, email, or phone call to schedule a consultation at a time that works best for you.' },
-    { icon: Wrench, question: 'What services do you offer?', answer: 'We provide comprehensive IT solutions including cloud computing, cybersecurity, software development, and IT infrastructure management.' },
+    { icon: Wrench, question: 'What services do you offer?', answer: 'We provide comprehensive solutions including cybersecurity & cloud computing' },
     { icon: RefreshCw, question: 'Do you provide 24/7 support?', answer: 'Yes, our technical support team is available 24/7 to assist you with any critical issues or incidents.' },
 ];
 
@@ -126,12 +135,13 @@ const Contact = () => {
                 <div className="ct-hero-inner">
                     <div className="ct-badge ct-badge-animate">
                         <span className="ct-badge-dot ct-pulse" />
-                        <span>GET IN TOUCH</span>
+                        <span className='font-bold'>GET IN TOUCH</span>
+                        <span className="ct-badge-dot ct-pulse" />
                     </div>
                     <h1 className="ct-hero-heading ct-text-animate" style={{ animationDelay: '0.1s' }}>
                         Contact <em className="ct-hero-em">us</em>
                     </h1>
-                    <p className="ct-hero-sub ct-text-animate" style={{ animationDelay: '0.2s' }}>
+                    <p className="ct-hero-sub ct-text-animate text-white" style={{ animationDelay: '0.2s' }}>
                         We'd love to hear from you. Our team is always ready to assist — reach out through any channel below.
                     </p>
                     {/* Breadcrumb */}
@@ -298,7 +308,7 @@ const Contact = () => {
                             </div>
                             <h2 className="ct-section-title ct-faq-title">Frequently asked questions</h2>
                             <p className="ct-col-sub">Quick answers to common questions about our services and processes.</p>
-                            <a href="/contact" className="ct-btn-primary ct-btn-sm ct-faq-cta">
+                            <a href="/appointment" className="ct-btn-primary ct-btn-sm ct-faq-cta">
                                 Still have questions? <ArrowRight size={14} />
                             </a>
                         </RevealCard>

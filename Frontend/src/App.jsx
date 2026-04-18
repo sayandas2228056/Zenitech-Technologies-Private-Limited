@@ -1,46 +1,34 @@
-import React, { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
-import Home from './pages/Home'
-import About from './pages/About'
-import AboutFounder from './pages/AboutFounder'
-import Services from './pages/Services'
-import Cybersecurity from './pages/Cybersecurity'
-import CloudComputing from './pages/Cloudcomputing'
-import Navbar from './components/Common/NavBar'
-import Footer from './components/Common/Footer'
-import Contact from './pages/Contact'
-import Appointment from './pages/Appointment'
-import Loading from './components/Common/Loading'
+import Home from './pages/Home';
+import About from './pages/About';
+import AboutFounder from './pages/AboutFounder';
+import Services from './pages/Services';
+import Cybersecurity from './pages/Cybersecurity';
+import CloudComputing from './pages/Cloudcomputing';
+import Contact from './pages/Contact';
+import Appointment from './pages/Appointment';
+
+import Navbar from './components/Common/NavBar';
+import Footer from './components/Common/Footer';
+import Loading from './components/Common/Loading';
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Hide loading screen after 2.5 seconds (or when page is ready)
+    // Clean loading control (no duplicate triggers)
     const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 2500)
+      setIsLoading(false);
+    }, 2000); // adjust timing if needed
 
-    // Also hide when window loads
-    const handleLoad = () => {
-      setTimeout(() => setIsLoading(false), 500)
-    }
+    return () => clearTimeout(timer);
+  }, []);
 
-    if (document.readyState === 'complete') {
-      handleLoad()
-    } else {
-      window.addEventListener('load', handleLoad)
-    }
-
-    return () => {
-      clearTimeout(timer)
-      window.removeEventListener('load', handleLoad)
-    }
-  }, [])
-
+  // 🔥 Show loader
   if (isLoading) {
-    return <Loading />
+    return <Loading />;
   }
 
   return (
@@ -60,6 +48,9 @@ const App = () => {
           <Route path="/services/cloud-computing" element={<CloudComputing />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/appointment" element={<Appointment />} />
+
+          {/* 🔥 Catch-all route (redirect unknown paths) */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
 
@@ -67,7 +58,7 @@ const App = () => {
       <Footer />
 
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

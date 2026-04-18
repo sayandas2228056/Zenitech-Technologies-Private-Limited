@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { ShieldAlert, Activity, Globe, Lock, BarChart3, Settings, ChevronLeft, ChevronRight } from 'lucide-react';
 import Bright2 from '../components/Common/Bright2';
 import herobg from "../assets/serviceimg/Cybersecurity.jpeg";
 
@@ -50,7 +51,20 @@ const RevealCard = ({ children, className = '', style = {}, delay = 0 }) => {
 
 const Cybersecurity = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [featureIndex, setFeatureIndex] = useState(0);
+  const [itemsPerSlide, setItemsPerSlide] = useState(window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3);
   const heroRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerSlide(window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const prevFeature = () => setFeatureIndex((prev) => (prev === 0 ? 0 : prev - 1));
+  const nextFeature = () => setFeatureIndex((prev) => (prev >= features.length - itemsPerSlide ? 0 : prev + 1));
 
   useEffect(() => {
     const el = heroRef.current;
@@ -135,26 +149,54 @@ const Cybersecurity = () => {
   ];
 
   const processSteps = [
-    { step: '01', title: 'Assessment', description: 'Comprehensive security audit to identify vulnerabilities and risk areas across your current infrastructure.', icon: '🔎' },
-    { step: '02', title: 'Strategy', description: 'Develop a customised security strategy tailored to your business needs and compliance requirements.', icon: '📋' },
-    { step: '03', title: 'Implementation', description: 'Deploy advanced security solutions with minimal disruption to your day-to-day business operations.', icon: '🚀' },
-    { step: '04', title: 'Monitoring', description: 'Continuous 24/7 monitoring and proactive threat management to ensure ongoing, comprehensive protection.', icon: '📡' }
+    { step: '01', title: 'Assessment', description: 'Comprehensive security audit to identify vulnerabilities and risk areas across your current infrastructure.', icon: '' },
+    { step: '02', title: 'Strategy', description: 'Develop a customised security strategy tailored to your business needs and compliance requirements.', icon: '' },
+    { step: '03', title: 'Implementation', description: 'Deploy advanced security solutions with minimal disruption to your day-to-day business operations.', icon: '' },
+    { step: '04', title: 'Monitoring', description: 'Continuous 24/7 monitoring and proactive threat management to ensure ongoing, comprehensive protection.', icon: '' }
   ];
 
-  const features = [
-    { icon: '👁', title: 'Advanced Threat Detection', description: 'AI-powered systems detect and respond to threats in real-time before damage occurs.' },
-    { icon: '⚡', title: 'Rapid Response', description: 'Immediate incident response and threat neutralisation with sub-minute alerting.' },
-    { icon: '🌐', title: 'Global Protection', description: 'Worldwide security coverage for geographically distributed organisations.' },
-    { icon: '🗄', title: 'Data Integrity', description: 'Comprehensive data protection, encryption, and backup solutions you can rely on.' },
-    { icon: '📊', title: 'Smart Analytics', description: 'Intelligent security analytics and executive-ready reporting dashboards.' },
-    { icon: '⚙', title: 'Custom Solutions', description: 'Tailored security architectures designed around your specific business needs.' }
-  ];
-
+ const features = [
+  {
+    icon: ShieldAlert,
+    title: 'Advanced Threat Detection',
+    description:
+      'Leverages intelligent detection mechanisms to identify and respond to potential threats in real time, minimizing risk exposure.',
+  },
+  {
+    icon: Activity,
+    title: 'Incident Response & Mitigation',
+    description:
+      'Structured incident response processes enable rapid containment, investigation, and remediation of security events.',
+  },
+  {
+    icon: Globe,
+    title: 'Distributed Security Coverage',
+    description:
+      'Ensures consistent protection across geographically distributed environments, including cloud and hybrid infrastructures.',
+  },
+  {
+    icon: Lock,
+    title: 'Data Protection & Integrity',
+    description:
+      'Implements strong encryption, secure backup strategies, and data integrity controls to safeguard critical information.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Security Analytics & Insights',
+    description:
+      'Provides actionable insights through advanced analytics and centralized reporting for improved visibility and decision-making.',
+  },
+  {
+    icon: Settings,
+    title: 'Tailored Security Architecture',
+    description:
+      'Designs customized security frameworks aligned with specific business requirements and evolving threat landscapes.',
+  },
+];
   const stats = [
     { icon: '↑', num: '99.9%', label: 'Uptime guarantee' },
-    { icon: '👥', num: '100+', label: 'Clients protected' },
     { icon: '⏱', num: '24/7', label: 'Security monitoring' },
-    { icon: '★', num: '5+', label: 'Years experience' }
+    { icon: '★', num: 'Experts', label: 'in Cybersecurity' }
   ];
 
   return (
@@ -192,8 +234,8 @@ const Cybersecurity = () => {
 
             {/* Buttons */}
             <div className="cs-hero-btns cs-hero-text-animate" style={{ animationDelay: '0.3s' }}>
-              <a href="/contact" className="cs-btn-primary">Get started ↗</a>
-              <button className="cs-btn-ghost">▶ &nbsp;Request a demo</button>
+              <a href="/contact" className="cs-btn-primary">Contact Us</a>
+              <a href="/appointment" className="cs-btn-ghost">▶ &nbsp;Schedule a meeting</a>
             </div>
 
             {/* Protected pill */}
@@ -241,15 +283,21 @@ const Cybersecurity = () => {
           TRUST BAR
       ══════════════════════════════════ */}
       <div className="cs-trust-bar">
-        {['ISO 27001 Compliant', 'GDPR Ready', 'SOC 2 Certified', 'PCI-DSS Aligned', 'HIPAA Compliant'].map((t, i) => (
-          <span key={i} className="cs-trust-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#185FA5" strokeWidth="2.5">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-            {t}
-          </span>
-        ))}
-      </div>
+     {[
+         'Zero Trust Security Model',
+          'End-to-End Encryption',
+           '24/7 Threat Monitoring',
+           'Secure Access Control (IAM)',
+           'Vulnerability Assessment Ready'
+  ].map((t, i) => (
+    <span key={i} className="cs-trust-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2.5">
+        <polyline points="20 6 9 17 4 12" />
+      </svg>
+      {t}
+    </span>
+  ))}
+  </div>
 
       {/* ══════════════════════════════════
           SERVICES  (light gray bg)
@@ -363,13 +411,32 @@ const Cybersecurity = () => {
           title="Advanced security features"
           subtitle="Every layer of your digital environment protected by intelligent, adaptive security tools."
         />
-        <div className="cs-features-grid-full">
-          {features.map((feat, i) => (
-            <RevealCard key={i} className="cs-feat-card" delay={i * 80}>
-              <div className="cs-feat-icon">{feat.icon}</div>
-              <h3 className="cs-card-title cs-card-title-sm">{feat.title}</h3>
-              <p className="cs-card-desc cs-card-desc-xs">{feat.description}</p>
-            </RevealCard>
+        <div className="cs-carousel-wrapper">
+          <button className="cs-carousel-btn cs-carousel-btn-prev" onClick={prevFeature}>
+            <ChevronLeft size={24} />
+          </button>
+          <div className="cs-features-grid-full cs-carousel-grid">
+            {features.slice(featureIndex, featureIndex + itemsPerSlide).map((feat, i) => (
+              <RevealCard key={i} className="cs-feat-card" delay={i * 80}>
+                <div className="cs-feat-icon">
+                  <feat.icon size={32} color="#185FA5" />
+                </div>
+                <h3 className="cs-card-title cs-card-title-sm">{feat.title}</h3>
+                <p className="cs-card-desc cs-card-desc-xs">{feat.description}</p>
+              </RevealCard>
+            ))}
+          </div>
+          <button className="cs-carousel-btn cs-carousel-btn-next" onClick={nextFeature}>
+            <ChevronRight size={24} />
+          </button>
+        </div>
+        <div className="cs-carousel-dots">
+          {Array.from({ length: Math.ceil(features.length / itemsPerSlide) }).map((_, i) => (
+            <button
+              key={i}
+              className={`cs-carousel-dot${i === Math.floor(featureIndex / itemsPerSlide) ? ' cs-carousel-dot-active' : ''}`}
+              onClick={() => setFeatureIndex(i * itemsPerSlide)}
+            />
           ))}
         </div>
       </section>
@@ -395,23 +462,17 @@ const Cybersecurity = () => {
               {[
                 {
                   icon: '📞', label: 'CALL US 24/7',
-                  lines: ['+91 88200 66999', '+91 74390 04545']
+                  lines: ['+91 88200 66999', '+91 74390 04545'],
+                  links: ['tel:+918820066999', 'tel:+917439004545']
                 },
-                { icon: '✉', label: 'EMAIL US', lines: ['info@zenitech.in'] },
-                {
-                  icon: '📍', label: 'OUR LOCATIONS',
-                  sub: [
-                    { city: 'Bengaluru office', addr: 'Dex Co Work, 2nd Floor, 1383/433, 5th Block, HBR Layout, Bengaluru – 560043, India' },
-                    { city: 'Kolkata office', addr: 'Sunny Seasons, 15/1C, Kamalgazi, P.O. Narendrapur, Kolkata, West Bengal – 700103, India' }
-                  ]
-                }
+                { icon: '✉', label: 'EMAIL US', lines: ['info@zenitech.in'], links: ['mailto:info@zenitech.in'] },
               ].map((item, i) => (
                 <div key={i} className="cs-contact-item">
                   <div className="cs-contact-icon-box">{item.icon}</div>
                   <div>
                     <p className="cs-contact-item-label">{item.label}</p>
                     {item.lines && item.lines.map((l, j) => (
-                      <span key={j} className="cs-contact-item-value">{l}</span>
+                      <a key={j} href={item.links[j]} className="cs-contact-item-value">{l}</a>
                     ))}
                     {item.sub && item.sub.map((s, j) => (
                       <div key={j} style={{ marginTop: j > 0 ? '10px' : 0 }}>
@@ -1006,6 +1067,61 @@ const Cybersecurity = () => {
           flex-shrink: 0;
         }
 
+        /* ── carousel ── */
+        .cs-carousel-wrapper {
+          position: relative;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+        .cs-carousel-btn {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          background: var(--cs-white);
+          border: 1.5px solid var(--cs-gray-200);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.2s;
+          flex-shrink: 0;
+          color: #185FA5;
+        }
+        .cs-carousel-btn:hover {
+          background: #185FA5;
+          color: #fff;
+          border-color: #185FA5;
+          transform: scale(1.05);
+        }
+        .cs-carousel-grid {
+          flex: 1;
+          overflow: hidden;
+        }
+        .cs-carousel-dots {
+          display: flex;
+          justify-content: center;
+          gap: 0.5rem;
+          margin-top: 1.5rem;
+        }
+        .cs-carousel-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: var(--cs-gray-200);
+          border: none;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+        .cs-carousel-dot:hover {
+          background: #4a9eff;
+        }
+        .cs-carousel-dot.cs-carousel-dot-active {
+          background: #185FA5;
+          width: 24px;
+          border-radius: 4px;
+        }
+
         /* ── features full ── */
         .cs-features-grid-full {
           display: grid;
@@ -1114,6 +1230,13 @@ const Cybersecurity = () => {
           font-size: 13.5px;
           color: var(--cs-blue-pal2);
           line-height: 1.6;
+          text-decoration: none;
+          transition: color 0.2s;
+          cursor: pointer;
+        }
+        .cs-contact-item-value:hover {
+          color: #185FA5;
+          text-decoration: underline;
         }
         .cs-contact-city {
           display: block;

@@ -160,11 +160,7 @@ const Bright = () => {
         </div>
       </div>
 
-      {/* 🔥 Floating Dots */}
-      <div className="absolute top-1/4 right-10 w-2 h-2 rounded-full animate-ping bg-orange-400/60" />
-      <div className="absolute top-1/3 right-1/4 w-1 h-1 rounded-full animate-ping delay-1000 bg-orange-300/40" />
-      <div className="absolute bottom-1/3 left-10 w-1.5 h-1.5 rounded-full animate-ping delay-2000 bg-orange-500/50" />
-    </section>
+     </section>
   );
 };
 

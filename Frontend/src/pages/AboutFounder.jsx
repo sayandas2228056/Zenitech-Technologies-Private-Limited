@@ -22,7 +22,7 @@ const AboutFounder = () => {
         <h1 className="text-4xl mt-10 md:text-5xl font-bold mb-4">Leadership</h1>
         <div className="w-24 h-1 bg-white mb-6"></div>
         <p className="text-lg text-blue-100 mb-8">
-          Meet the visionary behind Zenitech Solutions and discover the expertise 
+          Meet the visionary behind <span className="text-orange-500 font-bold">ZENITECH TECHNOLOGIES PRIVATE LIMITED</span> and discover the expertise 
           that drives our success in the technology sector.
         </p>
       </div>
@@ -68,7 +68,7 @@ const AboutFounder = () => {
                 <p className="text-blue-900 font-medium mb-4">Founder & CEO</p>
                 <div className="w-12 h-1 bg-blue-900 mb-4"></div>
                 <p className="text-slate-600 text-sm mb-6">
-                  Technology visionary with 20+ years of experience in Enterprise IT Solutions
+                  Technology visionary with 20+ years of experience in Enterprise Cybersecurity & Cloud Solutions
                 </p>
                 
                 {/* Contact Information */}
@@ -87,7 +87,7 @@ const AboutFounder = () => {
                   </div>
                   <div className="flex items-center gap-3 text-slate-700">
                     <MapPin className="text-blue-900 shrink-0" size={16} />
-                    <span className="text-sm">Bangalore / Bengaluru, India</span>
+                    <span className="text-sm">Bengaluru, India</span>
                   </div>
                 </div>
                 
@@ -130,7 +130,7 @@ const AboutFounder = () => {
                   <h3 className="text-xl font-semibold text-slate-900">Professional Overview</h3>
                 </div>
                 
-                <p className="text-slate-700 leading-relaxed mb-6">With over two decades of experience in B2B Sales and Business Development, I specialize in IT, Cloud, Cyber Security, Software, Telecom Services PAN India and across the globe. At Zenitech Solutions, we've built our foundation on personalized consulting that addresses the unique challenges faced by enterprise clients in today's rapidly evolving technological landscape.
+                <p className="text-slate-700 leading-relaxed mb-6">With over two decades of experience in B2B Sales and Business Development, I specialize in Cybersecurity & Cloud Services PAN India and across the globe. At Zenitech Solutions, we've built our foundation on personalized consulting that addresses the unique challenges faced by enterprise clients in today's rapidly evolving technological landscape.
                 </p>
                 
                 <p className="text-slate-700 leading-relaxed mb-6">My core expertise lies in cultivating strategic partnerships and nurturing enterprises, consistently opening new business avenues and driving sustainable growth. Working alongside industry-leading OEMs and technology partners, our team has developed a reputation for delivering cutting-edge solutions that seamlessly integrate with our clients' existing infrastructure.
@@ -221,7 +221,6 @@ const AboutFounder = () => {
               { title: "Strategic IT Consulting", description: "Tailored technology solutions that drive business growth" },
               { title: "Enterprise Cloud Solutions", description: "Seamless migration and optimization of cloud infrastructure" },
               { title: "Cybersecurity", description: "Comprehensive protection against evolving digital threats" },
-              { title: "Software Development", description: "Custom applications designed for specific business needs" },
               { title: "Technology Partnerships", description: "Strategic alliances with leading global technology providers" },
               { title: "Digital Transformation", description: "Guiding enterprises through technological evolution" }
             ].map((item, index) => (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Cloud, Shield, Check, ArrowRight, ChevronDown, ChevronUp, Phone, Mail } from 'lucide-react';
+import { Cloud, Shield, Check, ArrowRight, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Phone, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Bright1 from '../components/Common/Bright1';
 import ServiceHeader from '../components/Service/ServiceHeader';
@@ -7,35 +7,93 @@ import ServiceHeader from '../components/Service/ServiceHeader';
 /* ══════════════════════════════════════════════════════════════
    DATA  — edit content here without touching JSX or CSS
 ══════════════════════════════════════════════════════════════ */
-
 const services = [
+  {
+    title: 'Cybersecurity',
+    category: 'Security',
+    icon: Shield,
+    fullDesc:
+      'Comprehensive cybersecurity solutions designed to protect digital assets, mitigate evolving threats, and ensure regulatory compliance. Leveraging a layered security approach, these services strengthen resilience across networks, applications, and user access points.',
+    
+    features: [
+      'Threat Detection & Incident Response',
+      'Vulnerability Assessment & Penetration Testing',
+      'Compliance & Risk Management',
+      'Identity & Access Management (IAM)',
+      'Network & Endpoint Security',
+      'Security Awareness & Training'
+    ],
+
+  },
+
   {
     title: 'Cloud Computing',
     category: 'Cloud',
     icon: Cloud,
-    fullDesc: 'We provide comprehensive cloud solutions including cloud migration, infrastructure setup, and managed services across AWS, Azure, and Google Cloud. Our cloud services help businesses reduce costs, improve scalability, and enhance operational efficiency.',
-    features: ['Cloud Migration & Strategy', 'Infrastructure as a Service (IaaS)', 'Platform as a Service (PaaS)'],
-    technologies: ['AWS', 'Azure', 'Google Cloud', 'Terraform', 'Docker', 'Kubernetes', 'Jio Cloud'],
-  },
-  {
-    title: 'Cyber Security',
-    category: 'Security',
-    icon: Shield,
-    fullDesc: 'Keeping your systems safe with reliable, scalable, and future-ready cybersecurity solutions that guard against evolving threats and ensure compliance across your organization.',
-    features: ['Threat Detection & Response', 'Security Audits & Assessments', 'Compliance Management', 'Identity & Access Management', 'Network Security', 'Security Training'],
-    technologies: ['SIEM', 'EDR', 'Firewall', 'VPN', 'MFA', 'Zero Trust'],
+    fullDesc:
+      'End-to-end cloud solutions focused on scalability, performance, and cost optimization. Services include cloud strategy, seamless migration, and managed infrastructure across leading cloud platforms, enabling businesses to operate with agility and efficiency.',
+    
+    features: [
+      'Cloud Strategy & Migration',
+      'Infrastructure as a Service (IaaS)',
+      'Platform as a Service (PaaS)',
+      'Cloud Architecture & Deployment',
+      'Monitoring & Managed Services',
+      'Cost Optimization & Resource Management'
+    ],
   },
 ];
 
 const processSteps = [
-  { step: 1, title: 'Discovery & Analysis', description: 'We begin by understanding your business needs, challenges, and objectives through detailed consultation and analysis.' },
-  { step: 2, title: 'Strategy & Planning', description: 'Our team develops a comprehensive strategy and implementation plan tailored to your specific requirements.' },
-  { step: 3, title: 'Implementation', description: 'We execute the solution using industry best practices and agile methodologies for optimal results.' },
-  { step: 4, title: 'Testing & QA', description: 'Rigorous testing and quality checks ensure the solution meets all requirements and standards.' },
-  { step: 5, title: 'Deployment & Training', description: 'Smooth deployment and comprehensive training ensure successful adoption of the solution.' },
-  { step: 6, title: 'Ongoing Support', description: 'Continuous monitoring, maintenance, and support ensure long-term success and optimization.' },
+  {
+    step: 1,
+    title: 'Discovery & Risk Assessment',
+    description:
+      'Assess business objectives, existing infrastructure, and security posture to identify risks, gaps, and compliance requirements.',
+  },
+  {
+    step: 2,
+    title: 'Architecture & Solution Design',
+    description:
+      'Design secure and scalable cloud architectures aligned with best practices, incorporating Zero Trust principles and defense-in-depth strategies.',
+  },
+  {
+    step: 3,
+    title: 'Strategy & Roadmap Planning',
+    description:
+      'Define a clear implementation roadmap covering cloud migration, security integration, and operational workflows.',
+  },
+  {
+    step: 4,
+    title: 'Secure Infrastructure Setup',
+    description:
+      'Provision cloud infrastructure with built-in security controls, including network segmentation, identity policies, and access management.',
+  },
+  {
+    step: 5,
+    title: 'Implementation & Integration',
+    description:
+      'Deploy applications, security tools, and cloud services using automation and DevSecOps practices to ensure consistency and efficiency.',
+  },
+  {
+    step: 6,
+    title: 'Testing, Validation & Compliance',
+    description:
+      'Conduct rigorous testing including vulnerability assessments, penetration testing, and compliance validation against industry standards.',
+  },
+  {
+    step: 7,
+    title: 'Deployment & Knowledge Transfer',
+    description:
+      'Execute secure deployment with minimal downtime and provide training to ensure smooth adoption and operational readiness.',
+  },
+  {
+    step: 8,
+    title: 'Monitoring, Optimization & Support',
+    description:
+      'Continuously monitor systems, respond to threats, optimize performance, and provide ongoing support for sustained reliability and security.',
+  },
 ];
-
 const caseStudies = [
   {
     title: 'Multi-Cloud Infrastructure Optimization',
@@ -82,10 +140,46 @@ const caseStudies = [
 ];
 
 const whyUs = [
-  { title: 'Deep Expertise', desc: 'Certified engineers with 10+ years of experience across cloud, security, and infrastructure domains.' },
-  { title: 'Agile Delivery', desc: 'Iterative, transparent delivery that adapts to your evolving needs and timelines.' },
-  { title: 'End-to-End Support', desc: '24/7 monitoring, maintenance, and dedicated support from day one to long-term operation.' },
-  { title: 'Proven Results', desc: '100+ successful projects across fintech, healthcare, manufacturing, and more.' },
+  {
+    title: 'Security-First Architecture',
+    desc: 'Solutions are designed with security embedded at every layer, ensuring protection across infrastructure, applications, and user access.',
+  },
+  {
+    title: 'Cloud-Native Expertise',
+    desc: 'Built on modern cloud principles to deliver scalable, resilient, and high-performance environments.',
+  },
+  {
+    title: 'Zero Trust Implementation',
+    desc: 'Adopts Zero Trust security models to enforce strict identity verification and minimize attack surfaces.',
+  },
+  {
+    title: 'DevSecOps Integration',
+    desc: 'Security is integrated throughout the development lifecycle, enabling faster and safer deployments.',
+  },
+  {
+    title: 'Automation & Infrastructure as Code',
+    desc: 'Leverages automation and IaC to ensure consistent, efficient, and repeatable infrastructure management.',
+  },
+  {
+    title: 'Real-Time Monitoring & Response',
+    desc: 'Continuous monitoring and proactive threat detection ensure high availability and rapid incident response.',
+  },
+  {
+    title: 'Scalable & Cost-Optimized Solutions',
+    desc: 'Architectures are designed to scale seamlessly while optimizing performance and operational costs.',
+  },
+  {
+    title: 'Compliance-Oriented Approach',
+    desc: 'Solutions are aligned with industry standards and best practices to support regulatory and security compliance.',
+  },
+  {
+    title: 'Agile & Transparent Execution',
+    desc: 'Iterative delivery with clear communication ensures adaptability and alignment with evolving business needs.',
+  },
+  {
+    title: 'End-to-End Ownership',
+    desc: 'From design to deployment and ongoing support, complete responsibility is maintained across the entire lifecycle.',
+  },
 ];
 
 const faqs = [
@@ -185,14 +279,6 @@ const ServiceCard = ({ service }) => {
         {service.features.slice(0, 3).map((f, i) => <CheckBullet key={i} text={f} />)}
       </div>
 
-      {/* Technologies */}
-      <p className="sv-label-tiny sv-mt">Technologies</p>
-      <div className="sv-tech-chips">
-        {service.technologies.slice(0, 5).map(t => (
-          <span key={t} className="sv-tech-chip">{t}</span>
-        ))}
-      </div>
-
       {/* CTA */}
       <Link to="/contact" className={`sv-card-cta${hovered ? ' sv-card-cta-hov' : ''}`}>
         Contact Us <ArrowRight size={15} />
@@ -207,6 +293,27 @@ const ServiceCard = ({ service }) => {
 
 const Services = () => {
   const [activeFaq, setActiveFaq] = useState(null);
+  const [processIndex, setProcessIndex] = useState(0);
+  const [caseStudyIndex, setCaseStudyIndex] = useState(0);
+  const [whyUsIndex, setWhyUsIndex] = useState(0);
+  const [itemsPerSlide, setItemsPerSlide] = useState(window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerSlide(window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const prevProcess = () => setProcessIndex((prev) => (prev === 0 ? 0 : prev - 1));
+  const nextProcess = () => setProcessIndex((prev) => (prev >= processSteps.length - itemsPerSlide ? 0 : prev + 1));
+
+  const prevCaseStudy = () => setCaseStudyIndex((prev) => (prev === 0 ? 0 : prev - 1));
+  const nextCaseStudy = () => setCaseStudyIndex((prev) => (prev >= caseStudies.length - itemsPerSlide ? 0 : prev + 1));
+
+  const prevWhyUs = () => setWhyUsIndex((prev) => (prev === 0 ? 0 : prev - 1));
+  const nextWhyUs = () => setWhyUsIndex((prev) => (prev >= whyUs.length - itemsPerSlide ? 0 : prev + 1));
 
   return (
     <div className="sv-root">
@@ -220,7 +327,7 @@ const Services = () => {
           <div className="sv-section-header">
             <SectionLabel text="Our Expertise" />
             <SectionHead>Services &amp; Solutions</SectionHead>
-            <SectionSub>Empowering businesses with cutting-edge digital and IT services — from Cloud Computing to Cyber Security.</SectionSub>
+            <SectionSub>Empowering businesses with cutting-edge digital services — Cybersecurity & Cloud Computing.</SectionSub>
           </div>
           <div className="sv-services-grid">
             {services.map((s, i) => <ServiceCard key={i} service={s} />)}
@@ -236,15 +343,32 @@ const Services = () => {
             <SectionHead>How We Work</SectionHead>
             <SectionSub>Our proven methodology ensures successful delivery of technology solutions that drive real business value.</SectionSub>
           </div>
-          <div className="sv-process-grid">
-            {processSteps.map((step, i) => (
-              <div key={i} className="sv-process-card">
-                <div className="sv-step-num">
-                  <span>{step.step}</span>
+          <div className="sv-carousel-wrapper">
+            <button className="sv-carousel-btn sv-carousel-btn-prev" onClick={prevProcess}>
+              <ChevronLeft size={24} />
+            </button>
+            <div className="sv-process-grid sv-carousel-grid">
+              {processSteps.slice(processIndex, processIndex + itemsPerSlide).map((step, i) => (
+                <div key={i} className="sv-process-card">
+                  <div className="sv-step-num">
+                    <span>{step.step}</span>
+                  </div>
+                  <h3 className="sv-process-title">{step.title}</h3>
+                  <p className="sv-process-desc">{step.description}</p>
                 </div>
-                <h3 className="sv-process-title">{step.title}</h3>
-                <p className="sv-process-desc">{step.description}</p>
-              </div>
+              ))}
+            </div>
+            <button className="sv-carousel-btn sv-carousel-btn-next" onClick={nextProcess}>
+              <ChevronRight size={24} />
+            </button>
+          </div>
+          <div className="sv-carousel-dots">
+            {Array.from({ length: Math.ceil(processSteps.length / itemsPerSlide) }).map((_, i) => (
+              <button
+                key={i}
+                className={`sv-carousel-dot${i === Math.floor(processIndex / itemsPerSlide) ? ' sv-carousel-dot-active' : ''}`}
+                onClick={() => setProcessIndex(i * itemsPerSlide)}
+              />
             ))}
           </div>
         </div>
@@ -258,28 +382,45 @@ const Services = () => {
             <SectionHead>Case Studies</SectionHead>
             <SectionSub>Discover how we've helped organizations transform their business through technology.</SectionSub>
           </div>
-          <div className="sv-case-grid">
-            {caseStudies.map((study, i) => (
-              <div key={i} className="sv-case-card">
+          <div className="sv-carousel-wrapper">
+            <button className="sv-carousel-btn sv-carousel-btn-prev" onClick={prevCaseStudy}>
+              <ChevronLeft size={24} />
+            </button>
+            <div className="sv-case-grid sv-carousel-grid">
+              {caseStudies.slice(caseStudyIndex, caseStudyIndex + itemsPerSlide).map((study, i) => (
+                <div key={i} className="sv-case-card">
 
-                <div className="sv-case-header">
-                  <h3 className="sv-case-title">{study.title}</h3>
-                  <span className="sv-case-chip">Case Study</span>
-                </div>
-
-                <p className="sv-case-client">{study.client}</p>
-
-                {[['Challenge', study.challenge], ['Solution', study.solution]].map(([lbl, txt]) => (
-                  <div key={lbl} className="sv-case-block">
-                    <p className="sv-label-tiny">{lbl}</p>
-                    <p className="sv-case-text">{txt}</p>
+                  <div className="sv-case-header">
+                    <h3 className="sv-case-title">{study.title}</h3>
+                    <span className="sv-case-chip">Case Study</span>
                   </div>
-                ))}
 
-                <p className="sv-label-tiny sv-mt">Results</p>
-                {study.results.map((r, j) => <CheckBullet key={j} text={r} />)}
+                  <p className="sv-case-client">{study.client}</p>
 
-              </div>
+                  {[['Challenge', study.challenge], ['Solution', study.solution]].map(([lbl, txt]) => (
+                    <div key={lbl} className="sv-case-block">
+                      <p className="sv-label-tiny">{lbl}</p>
+                      <p className="sv-case-text">{txt}</p>
+                    </div>
+                  ))}
+
+                  <p className="sv-label-tiny sv-mt">Results</p>
+                  {study.results.map((r, j) => <CheckBullet key={j} text={r} />)}
+
+                </div>
+              ))}
+            </div>
+            <button className="sv-carousel-btn sv-carousel-btn-next" onClick={nextCaseStudy}>
+              <ChevronRight size={24} />
+            </button>
+          </div>
+          <div className="sv-carousel-dots">
+            {Array.from({ length: Math.ceil(caseStudies.length / itemsPerSlide) }).map((_, i) => (
+              <button
+                key={i}
+                className={`sv-carousel-dot${i === Math.floor(caseStudyIndex / itemsPerSlide) ? ' sv-carousel-dot-active' : ''}`}
+                onClick={() => setCaseStudyIndex(i * itemsPerSlide)}
+              />
             ))}
           </div>
         </div>
@@ -299,13 +440,30 @@ const Services = () => {
             </SectionHead>
             <SectionSub>We combine technical expertise with business acumen to deliver solutions that drive real value and results.</SectionSub>
           </div>
-          <div className="sv-why-grid">
-            {whyUs.map((item, i) => (
-              <div key={i} className="sv-why-card">
-                <div className="sv-why-dot" />
-                <h4 className="sv-why-title">{item.title}</h4>
-                <p className="sv-why-desc">{item.desc}</p>
-              </div>
+          <div className="sv-carousel-wrapper">
+            <button className="sv-carousel-btn sv-carousel-btn-prev" onClick={prevWhyUs}>
+              <ChevronLeft size={24} />
+            </button>
+            <div className="sv-why-grid sv-carousel-grid">
+              {whyUs.slice(whyUsIndex, whyUsIndex + itemsPerSlide).map((item, i) => (
+                <div key={i} className="sv-why-card">
+                  <div className="sv-why-dot" />
+                  <h4 className="sv-why-title">{item.title}</h4>
+                  <p className="sv-why-desc">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+            <button className="sv-carousel-btn sv-carousel-btn-next" onClick={nextWhyUs}>
+              <ChevronRight size={24} />
+            </button>
+          </div>
+          <div className="sv-carousel-dots">
+            {Array.from({ length: Math.ceil(whyUs.length / itemsPerSlide) }).map((_, i) => (
+              <button
+                key={i}
+                className={`sv-carousel-dot${i === Math.floor(whyUsIndex / itemsPerSlide) ? ' sv-carousel-dot-active' : ''}`}
+                onClick={() => setWhyUsIndex(i * itemsPerSlide)}
+              />
             ))}
           </div>
         </div>
@@ -466,6 +624,61 @@ const Services = () => {
         .sv-orange-accent { color: var(--sv-orange); }
 
         /* Hero + Stats handled by ServiceHeader component */
+
+        /* ── Carousel ─────────────────────────────────────── */
+        .sv-carousel-wrapper {
+          position: relative;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+        .sv-carousel-btn {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          background: var(--sv-white);
+          border: 1.5px solid var(--sv-gray-200);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.2s;
+          flex-shrink: 0;
+          color: var(--sv-purple-600);
+        }
+        .sv-carousel-btn:hover {
+          background: var(--sv-purple-600);
+          color: #fff;
+          border-color: var(--sv-purple-600);
+          transform: scale(1.05);
+        }
+        .sv-carousel-grid {
+          flex: 1;
+          overflow: hidden;
+        }
+        .sv-carousel-dots {
+          display: flex;
+          justify-content: center;
+          gap: 0.5rem;
+          margin-top: 1.5rem;
+        }
+        .sv-carousel-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: var(--sv-gray-200);
+          border: none;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+        .sv-carousel-dot:hover {
+          background: var(--sv-purple-400);
+        }
+        .sv-carousel-dot.sv-carousel-dot-active {
+          background: var(--sv-purple-600);
+          width: 24px;
+          border-radius: 4px;
+        }
 
         /* ── Service cards ─────────────────────────────────── */
         .sv-services-grid {

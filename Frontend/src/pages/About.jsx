@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   PhoneCall, Network, ArrowRight, ChevronRight,
   Users, Award, Target, BarChart3, Shield, Clock,
-  Mail, ChevronDown, ChevronUp
+  Mail, ChevronDown, ChevronUp, Activity, Cloud, Lock, ChevronLeft
 } from 'lucide-react';
 import heroimg from "../assets/Abthero.jpg";
-import Pic1 from '../assets/pic1.jpg';
-import Pic2 from '../assets/pic2.jpg';
+import Pic1 from '../assets/Abtsc.jpg';
+import Pic2 from '../assets/heroslider/cyber.jpg'
 import Logo from '../assets/Logo.png';
 import Founder from '../assets/Founder.jpg';
 import { FaLinkedin, FaFacebookF, FaWhatsapp } from 'react-icons/fa';
@@ -19,19 +19,54 @@ import OptimizedImage from '../components/Common/OptimizedImage.jsx';
 ══════════════════════════════════════════════════════════════ */
 
 const stats = [
-  { icon: Users, count: '100+', label: 'Clients Served' },
-  { icon: Award, count: '5+', label: 'Years Experience' },
-  { icon: Target, count: '98%', label: 'Client Retention' },
-  { icon: BarChart3, count: '100+', label: 'Projects Completed' },
+  { icon: Shield, count: '99.9%', label: 'System Uptime' },
+  { icon: Activity, count: '24/7', label: 'Monitoring & Support' },
+  { icon: Cloud, count: 'Multi-Cloud', label: 'Deployment Capability' },
+  { icon: Lock, count: 'Zero Trust', label: 'Security Model' },
 ];
 
 const values = [
-  { title: 'Innovation Excellence', description: 'We constantly explore emerging technologies to deliver cutting-edge solutions that keep our clients ahead in the digital landscape.' },
-  { title: 'Client-Centric Approach', description: 'We build lasting partnerships through transparent communication, personalized attention, and a deep understanding of business objectives.' },
-  { title: 'Technical Expertise', description: 'Our team of certified professionals brings specialized knowledge across diverse technology domains to solve complex challenges.' },
-  { title: 'Integrity & Trust', description: 'We uphold the highest ethical standards in all our engagements, ensuring reliability and confidentiality in every relationship.' },
+  {
+    title: 'Innovation Excellence',
+    description:
+      'Continuously explores emerging technologies to deliver forward-looking solutions that keep organizations competitive in a rapidly evolving digital landscape.',
+  },
+  {
+    title: 'Client-Centric Approach',
+    description:
+      'Builds long-term partnerships through clear communication, tailored solutions, and a deep understanding of business objectives.',
+  },
+  {
+    title: 'Technical Expertise',
+    description:
+      'Applies specialized knowledge across cloud and security domains to design and implement reliable, scalable solutions.',
+  },
+  {
+    title: 'Integrity & Trust',
+    description:
+      'Maintains the highest standards of ethics, confidentiality, and accountability across all engagements.',
+  },
+  {
+    title: 'Security by Design',
+    description:
+      'Integrates security principles at every stage of the solution lifecycle to ensure resilient and protected systems.',
+  },
+  {
+    title: 'Scalability & Performance',
+    description:
+      'Designs architectures that are optimized for performance, flexibility, and seamless scalability as business needs evolve.',
+  },
+  {
+    title: 'Operational Excellence',
+    description:
+      'Follows structured processes and best practices to ensure consistent quality, reliability, and efficient delivery.',
+  },
+  {
+    title: 'Continuous Improvement',
+    description:
+      'Regularly evaluates and enhances systems, processes, and strategies to adapt to new challenges and technological advancements.',
+  },
 ];
-
 const services = [
   { icon: Shield, title: 'Cyber Security', description: 'Comprehensive security solutions to protect your digital assets and infrastructure.' },
   { icon: Clock, title: 'Cloud Computing', description: 'Strategic cloud adoption and migration services for enhanced scalability and efficiency.' },
@@ -53,12 +88,57 @@ const founderData = {
 };
 
 const faqData = [
-  { question: 'What does ZENITECH TECHNOLOGIES PRIVATE LIMITED specialize in?', answer: 'ZENITECH TECHNOLOGIES PRIVATE LIMITED specializes in comprehensive IT services & consulting services including Cybersecurity & Cloud solutions.' },
-  { question: 'Where is ZENITECH TECHNOLOGIES PRIVATE LIMITED located?', answer: 'ZENITECH TECHNOLOGIES PRIVATE LIMITED is headquartered in Bengaluru (Bangalore), India, the Silicon Valley of India.' },
-  { question: 'What industries does ZENITECH TECHNOLOGIES PRIVATE LIMITED serve?', answer: 'We serve organizations across various sectors including IT/ITES, Software, Startup, BFSI, Manufacturing, Healthcare, Education, Retail, and many more.' },
-  { question: 'How long has ZENITECH TECHNOLOGIES PRIVATE LIMITED been in business?', answer: 'ZENITECH TECHNOLOGIES PRIVATE LIMITED has been delivering technology solutions since 2021, with over 5+ years of combined industry experience.' },
+  {
+    question: 'What services are offered?',
+    answer:
+      'Services include cybersecurity solutions, cloud architecture design, infrastructure deployment, monitoring, and ongoing support tailored to modern business needs.',
+  },
+  {
+    question: 'Where is the company based?',
+    answer:
+      'Operations are based in India, with the ability to support clients remotely across different regions and time zones.',
+  },
+  {
+    question: 'Which industries are supported?',
+    answer:
+      'Solutions are designed to support a wide range of industries including technology, startups, finance, healthcare, education, and manufacturing.',
+  },
+  {
+    question: 'What is the approach to cybersecurity?',
+    answer:
+      'A security-first approach is followed, incorporating principles such as Zero Trust, layered defense, and continuous monitoring to protect systems and data.',
+  },
+  {
+    question: 'Which cloud platforms are supported?',
+    answer:
+      'Solutions are compatible with major cloud platforms and include support for multi-cloud and hybrid environments.',
+  },
+  {
+    question: 'How is data security ensured?',
+    answer:
+      'Data is protected through encryption, secure access controls, identity management, and regular security assessments.',
+  },
+  {
+    question: 'Is ongoing support provided?',
+    answer:
+      'Yes, continuous monitoring, maintenance, and support services are available to ensure system stability and security over time.',
+  },
+  {
+    question: 'Can solutions be customized?',
+    answer:
+      'All solutions are tailored based on specific business requirements, infrastructure, and security needs.',
+  },
+  {
+    question: 'How is scalability handled in cloud solutions?',
+    answer:
+      'Cloud architectures are designed to scale dynamically based on workload demands, ensuring performance and cost efficiency.',
+  },
+  {
+    question: 'What makes the approach reliable for a new company?',
+    answer:
+      'The focus is on modern technologies, best practices, and structured processes, ensuring reliable and future-ready solutions without over-reliance on legacy systems.',
+  },
 ];
-
 /* ══════════════════════════════════════════════════════════════
    HOOKS & SMALL COMPONENTS
 ══════════════════════════════════════════════════════════════ */
@@ -130,6 +210,9 @@ function useAboutSEO() {
 
 const About = () => {
   const [activeFaq, setActiveFaq] = useState(null);
+  const [valueIndex, setValueIndex] = useState(0);
+  const [missionIndex, setMissionIndex] = useState(0);
+  const [itemsPerSlide, setItemsPerSlide] = useState(2);
   const heroRef = useRef(null);
   useAboutSEO();
 
@@ -137,6 +220,12 @@ const About = () => {
     const el = heroRef.current;
     if (el) setTimeout(() => el.classList.add('ab-hero-in'), 60);
   }, []);
+
+  const prevValue = () => setValueIndex((prev) => (prev === 0 ? 0 : prev - 1));
+  const nextValue = () => setValueIndex((prev) => (prev >= values.length - itemsPerSlide ? 0 : prev + 1));
+
+  const prevMission = () => setMissionIndex((prev) => (prev === 0 ? 0 : prev - 1));
+  const nextMission = () => setMissionIndex((prev) => (prev >= 4 - itemsPerSlide ? 0 : prev + 1));
 
   return (
     <div className="ab-root">
@@ -199,12 +288,12 @@ const About = () => {
           <RevealCard className="ab-half">
             <span className="ab-badge-pill">
               <span className="ab-badge-pill-inner">WHO WE ARE</span>
-              <span className="ab-badge-pill-sub">Excellence Since 2021</span>
+              <span className="ab-badge-pill-sub">Excellence Since 2026</span>
             </span>
             <div className="ab-text-stack">
               <p><span className="ab-orange ab-fw">ZENITECH TECHNOLOGIES PRIVATE LIMITED</span> is a premier IT Services &amp; Consulting company headquartered in Bengaluru, the Silicon Valley of India. As a trusted system integrator, we specialise in comprehensive technology solutions that drive business growth.</p>
-              <p>With a team of highly skilled professionals, we offer expert services in IT, Cloud, and Cyber Security. Our strategic partnerships with leading OEMs and technology providers enable us to deliver cutting-edge solutions tailored to each client.</p>
-              <p>We serve organisations across IT/ITES, BFSI, Manufacturing, Healthcare, ISPs, Education, and more, helping them navigate the digital landscape with confidence.</p>
+              <p>With a team of highly skilled professionals, we offer expert services in Cybersecurity & Cloud Computing . Our strategic partnerships with leading OEMs and technology providers enable us to deliver cutting-edge solutions tailored to each client.</p>
+              <p>We serve organisations across IT/ITES, BFSI, Manufacturing, Healthcare, ISPs, Education and more helping them navigate the digital landscape with confidence.</p>
             </div>
             <a href="/services" className="ab-link-arrow">
               Explore Our Services <ChevronRight size={16} className="ab-link-chevron" />
@@ -216,34 +305,69 @@ const About = () => {
               <div className="ab-img-blob-tl" />
               <div className="ab-img-blob-br" />
               <OptimizedImage src={Pic1} alt="Zenitech Team" className="ab-section-img" loading="lazy" />
-              <div className="ab-img-chip ab-img-chip-tl">Since 2021</div>
+              <div className="ab-img-chip ab-img-chip-tl">Cybersecurity and Cloud Experts</div>
             </div>
           </RevealCard>
         </div>
       </section>
+{/* ══ MISSION & VISION ═══════════════════════════════════ */}
+<section className="ab-section ab-section-faded">
+  <SectionHeader tag="OUR PURPOSE" title="Mission & Vision" />
 
-      {/* ══ MISSION & VISION ═══════════════════════════════════ */}
-      <section className="ab-section ab-section-faded">
-        <SectionHeader tag="OUR PURPOSE" title="Mission & Vision" />
-        <div className="ab-mission-grid">
-          {[
-            {
-              Icon: Target, head: 'Our Mission',
-              body: 'At ZENITECH TECHNOLOGIES PRIVATE LIMITED, our mission is to empower businesses of all sizes by delivering innovative, reliable, and scalable technology solutions. We aim to create lasting value by seamlessly integrating advanced IT, Cloud, and Cyber Security to drive operational efficiency, security, and growth.',
-            },
-            {
-              Icon: Award, head: 'Our Vision',
-              body: 'Our vision is to become a leading force in the global technology landscape, transforming the way industries leverage digital solutions. We aspire to create a connected, secure, and intelligent future by constantly innovating and delivering cutting-edge technologies.',
-            },
-          ].map((card, i) => (
-            <RevealCard key={i} className="ab-mission-card" delay={i * 100}>
-              <div className="ab-mission-icon-wrap"><card.Icon size={26} color="#fff" /></div>
-              <h3 className="ab-mission-title">{card.head}</h3>
-              <p className="ab-mission-body">{card.body}</p>
-            </RevealCard>
-          ))}
-        </div>
-      </section>
+  <div className="ab-carousel-wrapper">
+    <button className="ab-carousel-btn ab-carousel-btn-prev" onClick={prevMission}>
+      <ChevronLeft size={24} />
+    </button>
+    <div className="ab-mission-grid ab-carousel-grid">
+      {[
+        {
+          Icon: Target,
+          head: 'Our Mission',
+          body:
+            'To deliver secure, scalable, and efficient cloud and cybersecurity solutions that help businesses operate with confidence. The focus is on simplifying complex technologies, strengthening security posture, and enabling organizations to adapt and grow in a rapidly evolving digital environment.',
+        },
+        {
+          Icon: Award,
+          head: 'Our Vision',
+          body:
+            'To build a trusted technology practice that enables organizations to adopt cloud and security solutions with clarity, reliability, and long-term sustainability. The vision is centered on creating systems that are resilient, secure, and designed for future growth.',
+        },
+        {
+          Icon: Shield,
+          head: 'Security Commitment',
+          body:
+            'Security is treated as a core foundation, not an add-on. Every solution is designed with principles such as Zero Trust, data protection, and continuous monitoring to ensure systems remain protected against evolving threats.',
+        },
+        {
+          Icon: Cloud,
+          head: 'Cloud Focus',
+          body:
+            'Emphasis is placed on modern cloud architectures that are scalable, cost-efficient, and performance-driven. Solutions are designed to support flexibility, high availability, and seamless integration across environments.',
+        },
+      ].slice(missionIndex, missionIndex + itemsPerSlide).map((card, i) => (
+        <RevealCard key={i} className="ab-mission-card" delay={i * 100}>
+          <div className="ab-mission-icon-wrap">
+            <card.Icon size={26} color="#fff" />
+          </div>
+          <h3 className="ab-mission-title">{card.head}</h3>
+          <p className="ab-mission-body">{card.body}</p>
+        </RevealCard>
+      ))}
+    </div>
+    <button className="ab-carousel-btn ab-carousel-btn-next" onClick={nextMission}>
+      <ChevronRight size={24} />
+    </button>
+  </div>
+  <div className="ab-carousel-dots">
+    {Array.from({ length: Math.ceil(4 / itemsPerSlide) }).map((_, i) => (
+      <button
+        key={i}
+        className={`ab-carousel-dot${i === Math.floor(missionIndex / itemsPerSlide) ? ' ab-carousel-dot-active' : ''}`}
+        onClick={() => setMissionIndex(i * itemsPerSlide)}
+      />
+    ))}
+  </div>
+</section>
 
       {/* ══ WHAT WE DO ═════════════════════════════════════════ */}
       <section className="ab-section ab-section-white" id="services">
@@ -264,7 +388,7 @@ const About = () => {
 
           <RevealCard className="ab-half">
             <h2 className="ab-sub-heading">Our premium services</h2>
-            <p className="ab-sub-body">As a leading IT Services &amp; Consulting company, we bring together best-in-class technologies to create seamless, integrated solutions for our clients' most complex challenges.</p>
+            <p className="ab-sub-body">As a cybersecurity and cloud computing solutions provider, we combine best-in-class technologies to deliver seamless, integrated solutions for complex business challenges.</p>
             <div className="ab-services-mini-grid">
               {services.map((svc, i) => (
                 <div key={i} className="ab-mini-card">
@@ -322,33 +446,14 @@ const About = () => {
               ))}
             </div>
 
-            <a href="/about/founder-profile" className="ab-btn-primary ab-btn-inline">
+            <a href="/about/founder" className="ab-btn-primary ab-btn-inline">
               Full Profile <ArrowRight size={16} />
             </a>
           </div>
         </RevealCard>
       </section>
 
-      {/* ══ FAQ ════════════════════════════════════════════════ */}
-      <section className="ab-section ab-section-white">
-        <SectionHeader tag="FAQ" title="Frequently asked questions" />
-        <div className="ab-faq-box">
-          {faqData.map((faq, i) => (
-            <div key={i} className={`ab-faq-item${i < faqData.length - 1 ? ' ab-faq-divider' : ''}`}>
-              <button
-                className={`ab-faq-btn${activeFaq === i ? ' ab-faq-btn-open' : ''}`}
-                onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-              >
-                <span className={`ab-faq-q${activeFaq === i ? ' ab-faq-q-open' : ''}`}>{faq.question}</span>
-                {activeFaq === i
-                  ? <ChevronUp size={18} color="#7C3AED" style={{ flexShrink: 0 }} />
-                  : <ChevronDown size={18} color="#9CA3AF" style={{ flexShrink: 0 }} />}
-              </button>
-              {activeFaq === i && <div className="ab-faq-answer">{faq.answer}</div>}
-            </div>
-          ))}
-        </div>
-      </section>
+    
 
       {/* ══ STATISTICS ═════════════════════════════════════════ */}
       <section className="ab-stats-section">
@@ -372,13 +477,51 @@ const About = () => {
           title="Our core values"
           subtitle="The principles that guide our approach and define who we are as an organisation."
         />
-        <div className="ab-values-grid">
-          {values.map((v, i) => (
-            <RevealCard key={i} className="ab-value-card" delay={i * 80}>
-              <div className="ab-value-accent" />
-              <h3 className="ab-value-title">{v.title}</h3>
-              <p className="ab-value-desc">{v.description}</p>
-            </RevealCard>
+        <div className="ab-carousel-wrapper">
+          <button className="ab-carousel-btn ab-carousel-btn-prev" onClick={prevValue}>
+            <ChevronLeft size={24} />
+          </button>
+          <div className="ab-values-grid ab-carousel-grid">
+            {values.slice(valueIndex, valueIndex + itemsPerSlide).map((v, i) => (
+              <RevealCard key={i} className="ab-value-card" delay={i * 80}>
+                <div className="ab-value-accent" />
+                <h3 className="ab-value-title">{v.title}</h3>
+                <p className="ab-value-desc">{v.description}</p>
+              </RevealCard>
+            ))}
+          </div>
+          <button className="ab-carousel-btn ab-carousel-btn-next" onClick={nextValue}>
+            <ChevronRight size={24} />
+          </button>
+        </div>
+        <div className="ab-carousel-dots">
+          {Array.from({ length: Math.ceil(values.length / itemsPerSlide) }).map((_, i) => (
+            <button
+              key={i}
+              className={`ab-carousel-dot${i === Math.floor(valueIndex / itemsPerSlide) ? ' ab-carousel-dot-active' : ''}`}
+              onClick={() => setValueIndex(i * itemsPerSlide)}
+            />
+          ))}
+        </div>
+      </section>
+
+        {/* ══ FAQ ════════════════════════════════════════════════ */}
+      <section className="ab-section ab-section-white">
+        <SectionHeader tag="FAQ" title="Frequently asked questions" />
+        <div className="ab-faq-box">
+          {faqData.map((faq, i) => (
+            <div key={i} className={`ab-faq-item${i < faqData.length - 1 ? ' ab-faq-divider' : ''}`}>
+              <button
+                className={`ab-faq-btn${activeFaq === i ? ' ab-faq-btn-open' : ''}`}
+                onClick={() => setActiveFaq(activeFaq === i ? null : i)}
+              >
+                <span className={`ab-faq-q${activeFaq === i ? ' ab-faq-q-open' : ''}`}>{faq.question}</span>
+                {activeFaq === i
+                  ? <ChevronUp size={18} color="#7C3AED" style={{ flexShrink: 0 }} />
+                  : <ChevronDown size={18} color="#9CA3AF" style={{ flexShrink: 0 }} />}
+              </button>
+              {activeFaq === i && <div className="ab-faq-answer">{faq.answer}</div>}
+            </div>
           ))}
         </div>
       </section>
@@ -1058,6 +1201,68 @@ const About = () => {
           letter-spacing: 0.04em;
         }
 
+        /* ── carousel ── */
+        .ab-carousel-wrapper {
+          position: relative;
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+          margin: 0 auto;
+          max-width: 1200px;
+        }
+        .ab-carousel-btn {
+          width: 52px;
+          height: 52px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, var(--ab-purple-600), var(--ab-purple-700));
+          border: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          flex-shrink: 0;
+          color: #fff;
+          box-shadow: 0 4px 14px rgba(124,58,237,0.3);
+        }
+        .ab-carousel-btn:hover {
+          background: linear-gradient(135deg, var(--ab-purple-700), var(--ab-purple-800));
+          transform: scale(1.1);
+          box-shadow: 0 8px 24px rgba(124,58,237,0.4);
+        }
+        .ab-carousel-btn:active {
+          transform: scale(0.95);
+        }
+        .ab-carousel-grid {
+          flex: 1;
+          overflow: hidden;
+        }
+        .ab-carousel-dots {
+          display: flex;
+          justify-content: center;
+          gap: 0.75rem;
+          margin-top: 2rem;
+        }
+        .ab-carousel-dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: var(--ab-gray-300);
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .ab-carousel-dot:hover {
+          background: var(--ab-purple-400);
+          transform: scale(1.2);
+        }
+        .ab-carousel-dot.ab-carousel-dot-active {
+          background: linear-gradient(135deg, var(--ab-purple-600), var(--ab-purple-700));
+          width: 32px;
+          border-radius: 5px;
+          box-shadow: 0 2px 8px rgba(124,58,237,0.3);
+        }
+
         /* ── Core Values ─────────────────────────────────────── */
         .ab-values-grid {
           display: grid;
@@ -1111,12 +1316,14 @@ const About = () => {
           .ab-two-col-reverse > :first-child { order: 2; }
           .ab-two-col-reverse > :last-child  { order: 1; }
           .ab-mission-grid  { grid-template-columns: 1fr; }
-          .ab-values-grid   { grid-template-columns: 1fr; }
+          .ab-values-grid   { grid-template-columns: 1fr 1fr; }
           .ab-founder-card  { flex-direction: column; align-items: center; gap: 2rem; }
         }
         @media (max-width: 600px) {
           .ab-services-mini-grid { grid-template-columns: 1fr; }
           .ab-hero-btns { flex-direction: column; }
+          .ab-mission-grid  { grid-template-columns: 1fr 1fr; }
+          .ab-values-grid   { grid-template-columns: 1fr 1fr; }
         }
       `}</style>
     </div>

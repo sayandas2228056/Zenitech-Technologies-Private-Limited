@@ -81,9 +81,9 @@ const AppointmentForm = () => {
 
                 {/* Gradient header */}
                 <div className="apf-card-header">
-                    <h2 className="apf-card-title">Book Your Consultation</h2>
+                    <h2 className="apf-card-title">Schedule a Meeting</h2>
                     <p className="apf-card-sub">
-                        Schedule a personalised session with our cybersecurity experts
+                        Schedule a personalised session with our cybersecurity & Cloud experts.
                     </p>
                 </div>
 

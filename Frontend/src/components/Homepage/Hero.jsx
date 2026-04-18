@@ -607,7 +607,7 @@ const Hero = () => {
         </p>
 
         <div className="hero-actions">
-          <a href="#" className="btn-gs">
+          <a href="/appointment" className="btn-gs">
             Get Started
             <span className="btn-arrow">↗</span>
           </a>
@@ -627,6 +627,10 @@ const Hero = () => {
 
               <a href="tel:+917439004545" className="c-num block hover:underline">
                 +91 74390 04545
+              </a>
+
+              <a href="mailto:info@zenitech.in" className="c-num block hover:underline">
+                info@zenitech.in
               </a>
             </div>
           </div>

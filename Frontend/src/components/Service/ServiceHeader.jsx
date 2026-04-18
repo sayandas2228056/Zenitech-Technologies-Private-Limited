@@ -8,12 +8,11 @@ import HeroBg from '../../assets/serv.jpg';
 ══════════════════════════════════════════════════════════════ */
 
 const statistics = [
-    { number: '100+', label: 'Projects Completed' },
-    { number: '98%', label: 'Client Satisfaction' },
-    { number: '24/7', label: 'Support Available' },
-    { number: '50+', label: 'Expert Engineers' },
+  { number: '10+', label: 'Security Tools Integrated' },
+  { number: '99.9%', label: 'System Uptime' },
+  { number: '24/7', label: 'Monitoring & Support' },
+  { number: 'ISO Ready', label: 'Compliance Standards' },
 ];
-
 const ServiceHeader = () => {
     return (
         <>
@@ -30,11 +29,6 @@ const ServiceHeader = () => {
 
                 {/* Content */}
                 <div className="sh-hero-inner">
-                    <div className="sh-badge">
-                        <span className="sh-badge-dot sh-pulse" />
-                        <span className="sh-badge-text">ZENITECH TECHNOLOGIES PRIVATE LIMITED</span>
-                    </div>
-
                     <h1 className="sh-heading sh-anim" style={{ animationDelay: '0.08s' }}>
                         Technology Solutions for{' '}
                         <span className="sh-accent">Modern Business</span>
@@ -150,7 +144,6 @@ const ServiceHeader = () => {
         @keyframes sh-pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
 
         .sh-badge-text {
-          color: rgba(255,255,255,0.88);
           font-size: 0.72rem;
           font-weight: 700;
           letter-spacing: 0.1em;

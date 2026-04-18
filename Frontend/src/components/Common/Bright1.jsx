@@ -109,10 +109,7 @@ const Bright1 = () => {
         </div>
       </div>
       {/* Floating Dots for Depth */}
-      <div className="absolute top-1/4 right-10 w-2 h-2 bg-fuchsia-400/60 rounded-full animate-ping" />
-      <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-purple-400/40 rounded-full animate-ping delay-1000" />
-      <div className="absolute bottom-1/3 left-10 w-1.5 h-1.5 bg-violet-400/50 rounded-full animate-ping delay-2000" />
-      <style>{`
+     <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-10px); }

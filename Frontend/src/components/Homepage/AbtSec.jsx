@@ -1,5 +1,5 @@
 import { FaPhoneAlt, FaCheckCircle, FaEnvelope } from 'react-icons/fa';
-import pic8 from "../../assets/pic3.jpg";
+import pic8 from "../../assets/heroslider/Cloud.jpg";
 import AbtPic from "../../assets/CyberSec.jpg";
 import { useEffect } from 'react';
 import BgPic from "../../assets/pic1.jpg";

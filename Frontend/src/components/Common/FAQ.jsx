@@ -10,36 +10,78 @@ import {
 const FAQ = () => {
   const [activeFaq, setActiveFaq] = useState(null);
 
-  const faqs = [
-    {
-      question: 'What services does ZENITECH TECHNOLOGIES PRIVATE LIMITED offer?',
-      answer:
-        'ZENITECH TECHNOLOGIES PRIVATE LIMITED provides Cybersecurity & Cloud Computing services',
-      category: 'Services',
-      icon: <Zap size={20} className="text-orange-500" />,
-    },
-    {
-      question: 'What cybersecurity solutions do you provide?',
-      answer:
-        'We offer Firewall , Endpoint Security , EDR , XDR , MDR , Email Security , DLP , Patch Management , Endpoint Management , Mobile Device Management , VAPT , Web Security , CDN , WAF , API Security , Brand Protection Security , Cloud Security , Application Security , Network Security , OT Security etc to safeguard your infrastructure.',
-      category: 'Cybersecurity',
-      icon: <Shield size={20} className="text-orange-500" />,
-    },
-    {
-      question: 'Who are your typical clients?',
-      answer:
-        'Our clients include enterprises of all sizes from IT/ITES, Startups, BFSI, Fintech, Healthcare, Pharmaceuticals , Manufacturing , Automobile, Retail, Ecommerce , Education , Media & Entertainment , Logistics and many more.',
-      category: 'Clients',
-      icon: <Users size={20} className="text-orange-500" />,
-    },
-    {
-      question: 'How can we get in touch with ZENITECH TECHNOLOGIES PRIVATE LIMITED?',
-      answer:
-        'Email us at info@zenitech.in or call +91 88200 66999 / +91 74390 04545. Corporate Office in Bengaluru, India . Serving customers in PAN India and across the globe.',
-      category: 'Contact',
-      icon: <HelpCircle size={20} className="text-orange-500" />,
-    },
-  ];
+ const faqs = [
+  {
+    question: 'What services are offered?',
+    answer:
+      'Services include cybersecurity solutions, cloud architecture design, infrastructure deployment, monitoring, and managed support tailored to modern business environments.',
+    category: 'Services',
+    icon: <Zap size={20} className="text-orange-500" />,
+  },
+  {
+    question: 'What cybersecurity solutions are provided?',
+    answer:
+      'Solutions cover endpoint security, EDR/XDR, network security, firewall management, identity and access management, vulnerability assessments, and application security to protect critical systems and data.',
+    category: 'Cybersecurity',
+    icon: <Shield size={20} className="text-orange-500" />,
+  },
+  {
+    question: 'Which cloud platforms are supported?',
+    answer:
+      'Solutions are designed to work across major cloud platforms, supporting multi-cloud and hybrid environments with a focus on scalability, performance, and security.',
+    category: 'Cloud',
+    icon: <Zap size={20} className="text-orange-500" />,
+  },
+  {
+    question: 'How is data security ensured?',
+    answer:
+      'Data security is implemented through encryption, secure access controls, identity management, and continuous monitoring to prevent unauthorized access and data loss.',
+    category: 'Security',
+    icon: <Shield size={20} className="text-orange-500" />,
+  },
+  {
+    question: 'Do you provide ongoing monitoring and support?',
+    answer:
+      'Yes, continuous monitoring, maintenance, and support services are available to ensure system reliability, performance, and security over time.',
+    category: 'Support',
+    icon: <Users size={20} className="text-orange-500" />,
+  },
+  {
+    question: 'Can solutions be customized based on business needs?',
+    answer:
+      'All solutions are tailored to align with specific business requirements, infrastructure, and security objectives.',
+    category: 'Solutions',
+    icon: <Users size={20} className="text-orange-500" />,
+  },
+  {
+    question: 'How do you ensure scalability in cloud environments?',
+    answer:
+      'Cloud architectures are designed with auto-scaling, load balancing, and resource optimization to handle varying workloads efficiently.',
+    category: 'Cloud',
+    icon: <Zap size={20} className="text-orange-500" />,
+  },
+  {
+    question: 'What is your approach to security architecture?',
+    answer:
+      'A layered security model is followed, incorporating Zero Trust principles, network segmentation, and continuous threat monitoring to strengthen overall security posture.',
+    category: 'Security',
+    icon: <Shield size={20} className="text-orange-500" />,
+  },
+  {
+    question: 'How do you handle compliance and risk management?',
+    answer:
+      'Solutions are designed following industry best practices and frameworks, with regular assessments to identify risks and maintain compliance readiness.',
+    category: 'Compliance',
+    icon: <Shield size={20} className="text-orange-500" />,
+  },
+  {
+    question: 'How can support or consultation be requested?',
+    answer:
+      'Support or consultation can be requested through the contact page or by scheduling an appointment for a detailed discussion.',
+    category: 'Contact',
+    icon: <HelpCircle size={20} className="text-orange-500" />,
+  },
+];
 
   return (
     <div className="bg-white text-black py-20 px-2 sm:px-0 relative overflow-hidden">

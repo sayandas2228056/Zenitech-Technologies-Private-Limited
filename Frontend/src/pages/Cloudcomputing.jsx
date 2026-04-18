@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   Cloud, Server, Database, Globe, Shield,
   Zap, ArrowRight, Settings, Cpu, Lock,
-  Check, ChevronDown, ChevronUp, Phone, Mail, MapPin
+  Check, ChevronDown, ChevronUp, Phone, Mail, MapPin, ChevronLeft, ChevronRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Cloud1 from '../assets/serviceimg/Cloud1.jpg';
 import Cloud2 from '../assets/serviceimg/Cloud2.jpg';
 import Cloud3 from '../assets/serviceimg/Cloud3.jpg';
+import Bright2 from '../components/Common/Bright2';
 
 /* ══════════════════════════════════════════════════════════════
    DATA
@@ -45,10 +46,10 @@ const services = [
 ];
 
 const processSteps = [
-  { step: '01', title: 'Assessment',   description: 'Evaluate your current infrastructure and identify cloud migration opportunities.',          icon: '🔎' },
-  { step: '02', title: 'Planning',     description: 'Develop a comprehensive cloud strategy aligned with your business objectives.',              icon: '📋' },
-  { step: '03', title: 'Migration',    description: 'Execute the migration with minimal disruption to your business operations.',                 icon: '🚀' },
-  { step: '04', title: 'Optimization', description: 'Continuously optimize your cloud infrastructure for performance and cost efficiency.',       icon: '📡' },
+  { step: '01', title: 'Assessment',   description: 'Evaluate your current infrastructure and identify cloud migration opportunities.',          icon: '' },
+  { step: '02', title: 'Planning',     description: 'Develop a comprehensive cloud strategy aligned with your business objectives.',              icon: '' },
+  { step: '03', title: 'Migration',    description: 'Execute the migration with minimal disruption to your business operations.',                 icon: '' },
+  { step: '04', title: 'Optimization', description: 'Continuously optimize your cloud infrastructure for performance and cost efficiency.',       icon: '' },
 ];
 
 const tabContent = [
@@ -93,23 +94,22 @@ const cloudPartners = [
 
 const stats = [
   { num: '99.99%', label: 'Uptime SLA' },
-  { num: '100+',   label: 'Cloud Projects' },
   { num: '24/7',   label: 'Cloud Support' },
-  { num: '5+',     label: 'Years Experience' },
+  { num: 'Experts',     label: 'in Cloud Computing' },
 ];
 
-const trustBadges = ['AWS Partner', 'Azure Certified', 'Google Cloud Partner', 'ISO 27001 Compliant', 'SOC 2 Certified'];
+const trustBadges = [
+  'Cloud-Native Architecture',
+  'Auto-Scaling Infrastructure',
+  'High Availability Design',
+  'Infrastructure as Code (IaC)',
+  'Secure Cloud Deployments'
+];
 
 const contactItems = [
-  { icon: Phone, label: 'Call Us 24/7',    lines: ['+91 88200 66999', '+91 74390 04545'] },
-  { icon: Mail,  label: 'Email Us',        lines: ['info@zenitech.in'] },
-  {
-    icon: MapPin, label: 'Our Locations',
-    sub: [
-      { city: 'Bengaluru Office', addr: 'Dex Co Work, 2nd Floor, 1383/433, 5th Block, HBR Layout, Bengaluru – 560043, India' },
-      { city: 'Kolkata Office',   addr: 'Sunny Seasons, 15/1C, Kamalgazi, P.O. Narendrapur, Kolkata, West Bengal – 700103, India' },
-    ],
-  },
+  { icon: Phone, label: 'Call Us 24/7',    lines: ['+91 88200 66999', '+91 74390 04545'], links: ['tel:+918820066999', 'tel:+917439004545'] },
+  { icon: Mail,  label: 'Email Us',        lines: ['info@zenitech.in'], links: ['mailto:info@zenitech.in'] },
+
 ];
 
 /* ══════════════════════════════════════════════════════════════
@@ -164,12 +164,33 @@ const Tick = () => (
 
 const Cloudcomputing = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [serviceIndex, setServiceIndex] = useState(0);
+  const [processIndex, setProcessIndex] = useState(0);
+  const [featureIndex, setFeatureIndex] = useState(0);
+  const [itemsPerSlide, setItemsPerSlide] = useState(window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3);
   const heroRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerSlide(window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const el = heroRef.current;
     if (el) setTimeout(() => el.classList.add('cc-hero-in'), 60);
   }, []);
+
+  const prevService = () => setServiceIndex((prev) => (prev === 0 ? 0 : prev - 1));
+  const nextService = () => setServiceIndex((prev) => (prev >= services.length - itemsPerSlide ? 0 : prev + 1));
+
+  const prevProcess = () => setProcessIndex((prev) => (prev === 0 ? 0 : prev - 1));
+  const nextProcess = () => setProcessIndex((prev) => (prev >= processSteps.length - itemsPerSlide ? 0 : prev + 1));
+
+  const prevFeature = () => setFeatureIndex((prev) => (prev === 0 ? 0 : prev - 1));
+  const nextFeature = () => setFeatureIndex((prev) => (prev >= features.length - itemsPerSlide ? 0 : prev + 1));
 
   return (
     <div className="cc-root">
@@ -190,7 +211,7 @@ const Cloudcomputing = () => {
 
             <h1 className="cc-hero-heading cc-text-animate" style={{ animationDelay: '0.1s' }}>
               Transform your business with{' '}
-              <em className="cc-hero-em">Cloud</em>
+              <em className="cc-hero-em">Cloud Computing</em>
             </h1>
 
             <p className="cc-hero-sub cc-text-animate" style={{ animationDelay: '0.2s' }}>
@@ -198,8 +219,8 @@ const Cloudcomputing = () => {
             </p>
 
             <div className="cc-hero-btns cc-text-animate" style={{ animationDelay: '0.3s' }}>
-              <Link to="/contact"      className="cc-btn-primary">Get Started ↗</Link>
-              <Link to="/product-demo" className="cc-btn-ghost">▶ &nbsp;Request a Demo</Link>
+              <Link to="/contact"      className="cc-btn-primary">Contact Us</Link>
+              <Link to="/appointment" className="cc-btn-ghost">▶ &nbsp;Schedule a meeting</Link>
             </div>
 
             <div className="cc-badge cc-badge-sm cc-text-animate" style={{ animationDelay: '0.4s' }}>
@@ -252,40 +273,38 @@ const Cloudcomputing = () => {
           title="Comprehensive cloud services"
           subtitle="Transform your business with advanced cloud computing solutions designed to drive innovation, resilience, and sustained growth."
         />
-        <div className="cc-services-grid">
-          {services.map((svc, i) => (
-            <RevealCard key={i} className="cc-service-card" delay={i * 80}>
-              <div className="cc-card-accent-bar" />
-              <div className="cc-card-icon-wrap" style={{ background: svc.color }}>
-                <svc.icon size={24} color="#1565C0" />
-              </div>
-              <h3 className="cc-card-title">{svc.title}</h3>
-              <p className="cc-card-desc">{svc.description}</p>
-              <div className="cc-feat-grid">
-                {svc.features.map((f, j) => (
-                  <span key={j} className="cc-feat-chip"><Tick />{f}</span>
-                ))}
-              </div>
-            </RevealCard>
-          ))}
+        <div className="cc-carousel-wrapper">
+          <button className="cc-carousel-btn cc-carousel-btn-prev" onClick={prevService}>
+            <ChevronLeft size={24} />
+          </button>
+          <div className="cc-services-grid cc-carousel-grid">
+            {services.slice(serviceIndex, serviceIndex + itemsPerSlide).map((svc, i) => (
+              <RevealCard key={i} className="cc-service-card" delay={i * 80}>
+                <div className="cc-card-accent-bar" />
+                <div className="cc-card-icon-wrap" style={{ background: svc.color }}>
+                  <svc.icon size={24} color="#1565C0" />
+                </div>
+                <h3 className="cc-card-title">{svc.title}</h3>
+                <p className="cc-card-desc">{svc.description}</p>
+                <div className="cc-feat-grid">
+                  {svc.features.map((f, j) => (
+                    <span key={j} className="cc-feat-chip"><Tick />{f}</span>
+                  ))}
+                </div>
+              </RevealCard>
+            ))}
+          </div>
+          <button className="cc-carousel-btn cc-carousel-btn-next" onClick={nextService}>
+            <ChevronRight size={24} />
+          </button>
         </div>
-      </section>
-
-      {/* ══ PROCESS ════════════════════════════════════════════ */}
-      <section className="cc-section cc-section-white">
-        <SectionHeader
-          eyebrow="OUR PROCESS"
-          title="Your journey to the cloud"
-          subtitle="A four-step approach that takes you from assessment to fully optimised cloud operations with minimal disruption."
-        />
-        <div className="cc-process-grid">
-          {processSteps.map((ps, i) => (
-            <RevealCard key={i} className="cc-process-card" delay={i * 100}>
-              <div className="cc-step-num">{ps.step}</div>
-              <div className="cc-step-emoji">{ps.icon}</div>
-              <h3 className="cc-card-title cc-card-title-sm">{ps.title}</h3>
-              <p className="cc-card-desc cc-card-desc-xs">{ps.description}</p>
-            </RevealCard>
+        <div className="cc-carousel-dots">
+          {Array.from({ length: Math.ceil(services.length / itemsPerSlide) }).map((_, i) => (
+            <button
+              key={i}
+              className={`cc-carousel-dot${i === Math.floor(serviceIndex / itemsPerSlide) ? ' cc-carousel-dot-active' : ''}`}
+              onClick={() => setServiceIndex(i * itemsPerSlide)}
+            />
           ))}
         </div>
       </section>
@@ -336,24 +355,45 @@ const Cloudcomputing = () => {
         </div>
       </section>
 
-      {/* ══ CLOUD PARTNERS ═════════════════════════════════════ */}
+      <Bright2/>
+
+      {/* ══ PROCESS ════════════════════════════════════════════ */}
       <section className="cc-section cc-section-white">
         <SectionHeader
-          eyebrow="OUR PARTNERS"
-          title="Cloud technology partners"
-          subtitle="We partner with the world's leading cloud providers to deliver the best-fit solutions for your business."
+          eyebrow="OUR PROCESS"
+          title="Your journey to the cloud"
+          subtitle="A four-step approach that takes you from assessment to fully optimised cloud operations with minimal disruption."
         />
-        <div className="cc-partners-grid">
-          {cloudPartners.map((p, i) => (
-            <RevealCard key={i} className="cc-partner-card" delay={i * 80}>
-              <div className="cc-partner-logo-wrap" style={{ background: p.bg }}>
-                <span className="cc-partner-short" style={{ color: p.color }}>{p.short}</span>
-              </div>
-              <h4 className="cc-partner-name">{p.name}</h4>
-            </RevealCard>
+        <div className="cc-carousel-wrapper">
+          <button className="cc-carousel-btn cc-carousel-btn-prev" onClick={prevProcess}>
+            <ChevronLeft size={24} />
+          </button>
+          <div className="cc-process-grid cc-carousel-grid">
+            {processSteps.slice(processIndex, processIndex + itemsPerSlide).map((ps, i) => (
+              <RevealCard key={i} className="cc-process-card" delay={i * 100}>
+                <div className="cc-step-num">{ps.step}</div>
+                <div className="cc-step-emoji">{ps.icon}</div>
+                <h3 className="cc-card-title cc-card-title-sm">{ps.title}</h3>
+                <p className="cc-card-desc cc-card-desc-xs">{ps.description}</p>
+              </RevealCard>
+            ))}
+          </div>
+          <button className="cc-carousel-btn cc-carousel-btn-next" onClick={nextProcess}>
+            <ChevronRight size={24} />
+          </button>
+        </div>
+        <div className="cc-carousel-dots">
+          {Array.from({ length: Math.ceil(processSteps.length / itemsPerSlide) }).map((_, i) => (
+            <button
+              key={i}
+              className={`cc-carousel-dot${i === Math.floor(processIndex / itemsPerSlide) ? ' cc-carousel-dot-active' : ''}`}
+              onClick={() => setProcessIndex(i * itemsPerSlide)}
+            />
           ))}
         </div>
       </section>
+
+      
 
       {/* ══ FEATURES ═══════════════════════════════════════════ */}
       <section className="cc-section cc-section-gray">
@@ -362,15 +402,32 @@ const Cloudcomputing = () => {
           title="Advanced cloud capabilities"
           subtitle="Every layer of your cloud environment protected and optimised by intelligent, adaptive tools."
         />
-        <div className="cc-features-grid">
-          {features.map((feat, i) => (
-            <RevealCard key={i} className="cc-feat-card" delay={i * 80}>
-              <div className="cc-feat-icon-wrap">
-                <feat.icon size={22} color="#1565C0" />
-              </div>
-              <h3 className="cc-card-title cc-card-title-sm">{feat.title}</h3>
-              <p className="cc-card-desc cc-card-desc-xs">{feat.description}</p>
-            </RevealCard>
+        <div className="cc-carousel-wrapper">
+          <button className="cc-carousel-btn cc-carousel-btn-prev" onClick={prevFeature}>
+            <ChevronLeft size={24} />
+          </button>
+          <div className="cc-features-grid cc-carousel-grid">
+            {features.slice(featureIndex, featureIndex + itemsPerSlide).map((feat, i) => (
+              <RevealCard key={i} className="cc-feat-card" delay={i * 80}>
+                <div className="cc-feat-icon-wrap">
+                  <feat.icon size={22} color="#1565C0" />
+                </div>
+                <h3 className="cc-card-title cc-card-title-sm">{feat.title}</h3>
+                <p className="cc-card-desc cc-card-desc-xs">{feat.description}</p>
+              </RevealCard>
+            ))}
+          </div>
+          <button className="cc-carousel-btn cc-carousel-btn-next" onClick={nextFeature}>
+            <ChevronRight size={24} />
+          </button>
+        </div>
+        <div className="cc-carousel-dots">
+          {Array.from({ length: Math.ceil(features.length / itemsPerSlide) }).map((_, i) => (
+            <button
+              key={i}
+              className={`cc-carousel-dot${i === Math.floor(featureIndex / itemsPerSlide) ? ' cc-carousel-dot-active' : ''}`}
+              onClick={() => setFeatureIndex(i * itemsPerSlide)}
+            />
           ))}
         </div>
       </section>
@@ -398,7 +455,7 @@ const Cloudcomputing = () => {
                   <div>
                     <p className="cc-contact-item-label">{item.label}</p>
                     {item.lines && item.lines.map((l, j) => (
-                      <span key={j} className="cc-contact-item-value">{l}</span>
+                      <a key={j} href={item.links[j]} className="cc-contact-item-value">{l}</a>
                     ))}
                     {item.sub && item.sub.map((s, j) => (
                       <div key={j} style={{ marginTop: j > 0 ? 10 : 0 }}>
@@ -1013,6 +1070,61 @@ const Cloudcomputing = () => {
           margin: 0;
         }
 
+        /* ── carousel ── */
+        .cc-carousel-wrapper {
+          position: relative;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+        .cc-carousel-btn {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          background: var(--cc-white);
+          border: 1.5px solid var(--cc-gray-200);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.2s;
+          flex-shrink: 0;
+          color: #1565C0;
+        }
+        .cc-carousel-btn:hover {
+          background: #1565C0;
+          color: #fff;
+          border-color: #1565C0;
+          transform: scale(1.05);
+        }
+        .cc-carousel-grid {
+          flex: 1;
+          overflow: hidden;
+        }
+        .cc-carousel-dots {
+          display: flex;
+          justify-content: center;
+          gap: 0.5rem;
+          margin-top: 1.5rem;
+        }
+        .cc-carousel-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: var(--cc-gray-200);
+          border: none;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+        .cc-carousel-dot:hover {
+          background: #4A9AD4;
+        }
+        .cc-carousel-dot.cc-carousel-dot-active {
+          background: #1565C0;
+          width: 24px;
+          border-radius: 4px;
+        }
+
         /* ── Features grid ───────────────────────────────────── */
         .cc-features-grid {
           display: grid;
@@ -1119,6 +1231,13 @@ const Cloudcomputing = () => {
           font-size: 13.5px;
           color: var(--cc-blue-pal2);
           line-height: 1.6;
+          text-decoration: none;
+          transition: color 0.2s;
+          cursor: pointer;
+        }
+        .cc-contact-item-value:hover {
+          color: #1565C0;
+          text-decoration: underline;
         }
         .cc-contact-city {
           display: block;

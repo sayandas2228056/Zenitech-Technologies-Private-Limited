@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Bright from "../components/Common/Bright2.jsx"
 import {
     Phone, Mail, CalendarCheck, Shield, CheckCircle,
     Star, Clock, Users, Award, ArrowRight, Zap, Lock
@@ -24,8 +25,8 @@ const steps = [
     {
         Icon: Phone,
         title: 'Meet an Expert',
-        desc: 'Join a one-on-one call with a Zenitech cybersecurity consultant.',
-        detail: '45-minute personalised consultation session',
+        desc: 'Join a one-on-one call with our consultant.',
+        detail: 'Personalised consultation session',
     },
 ];
 
@@ -33,9 +34,7 @@ const benefits = [
     { Icon: Shield,      title: 'Tailored Advice',              desc: 'Customised recommendations based on your specific industry and risk profile.' },
     { Icon: CheckCircle, title: 'No Obligations',               desc: 'Free consultation — no pressure, no hidden commitments.' },
     { Icon: Award,       title: 'Certified Professionals',      desc: 'CISSP, CEH, and CISM certified experts with 10+ years of field experience.' },
-    { Icon: Zap,         title: 'Live Threat Intelligence',     desc: 'Up-to-date insights on the latest threats, vulnerabilities, and best practices.' },
     { Icon: Users,       title: 'Industry-Specific Solutions',  desc: 'Deep expertise across healthcare, finance, retail, and government.' },
-    { Icon: Star,        title: 'Actionable Roadmap',           desc: 'Walk away with a clear, prioritised plan and immediate next steps.' },
 ];
 
 const featurePills = [
@@ -80,15 +79,14 @@ const Appointment = () => {
                         {/* Badge */}
                         <div className="apg-trust-badge">
                             <span className="apg-badge-dot" />
-                            <Shield size={12} />
-                            <span>Trusted by 100+ Companies</span>
+                            <Phone size={12} />
+                            <span>We are ready to assist you</span>
                         </div>
 
                         {/* Heading */}
                         <h1 className="apg-hero-h1">
-                            Book a Free<br />
-                            
-                            Consultation
+                           Talk to <br />
+                            Us
                         </h1>
 
                         <p className="apg-hero-p">
@@ -119,7 +117,7 @@ const Appointment = () => {
 
                         {/* Stat strip */}
                         <div className="apg-stats">
-                            {[['100+', 'Companies Served'], ['45 min', 'Per Session'], ['24/7', 'Support']].map(([n, l], i) => (
+                            {[['Global', 'Client Support'], ['Interactive', 'Sessions'], ['24/7', 'Support']].map(([n, l], i) => (
                                 <div key={i} className="apg-stat">
                                     <span className="apg-stat-num">{n}</span>
                                     <span className="apg-stat-lbl">{l}</span>
@@ -167,6 +165,7 @@ const Appointment = () => {
                 </div>
             </section>
 
+            <Bright/>
             {/* ══ BENEFITS ═══════════════════════════════════════ */}
             <section className="apg-section apg-section-white apg-reveal">
                 <div className="apg-container">

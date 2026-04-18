@@ -17,7 +17,7 @@ import {
 const services = [
   
   {
-  title: 'Cyber Security',
+  title: 'CyberSecurity',
   shortDesc: 'Protect your digital ecosystem with intelligent, multi-layered security.',
   fullDesc: 'We deliver comprehensive cybersecurity services designed to safeguard your business from evolving threats. From proactive risk assessment to real-time threat detection and rapid incident response, our solutions ensure your systems, networks, and data remain secure, compliant, and resilient.',
   features: [
