@@ -63,9 +63,9 @@ const AppointmentForm = () => {
                     <div className="apf-success-icon"><Check size={26} color="#185FA5" /></div>
                     <h3 className="apf-success-heading">Appointment Scheduled!</h3>
                     <p className="apf-success-sub">
-                        Thank you for reaching out. Our team will confirm your slot within 2 hours.
+                        Thank you for reaching out. We will contact you shortly.
                     </p>
-                    <button className="apf-btn apf-btn-sm" onClick={() => setSubmitted(false)}>
+                    <button className="apf-btn apf-btn-sm " onClick={() => setSubmitted(false)}>
                         Book another slot
                     </button>
                 </div>
