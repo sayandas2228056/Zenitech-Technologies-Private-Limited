@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState, useEffect, useCallback } from 'react';
+import React, { lazy, Suspense, useState, useEffect, useLayoutEffect, useCallback } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 import Navbar from './components/Common/NavBar';
@@ -18,11 +18,18 @@ const Appointment   = lazy(() => import('./pages/Appointment'));
 /* ── Scroll to top on route change (critical for SPA SEO) ─── */
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-  useEffect(() => {
+  // useLayoutEffect runs synchronously before paint — prevents any
+  // visible "scroll from footer to top" flash on navigation
+  useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;
 };
+
+/* ── Page placeholder keeps footer below the fold while chunks load ── */
+const PagePlaceholder = () => (
+  <div style={{ minHeight: '100vh' }} aria-hidden="true" />
+);
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -82,13 +89,12 @@ const App = () => {
       <Navbar />
 
       {/* ✅ Semantic <main> landmark for SEO & accessibility */}
-      <main className="flex-grow" id="main-content">
+      <main className="flex-grow" id="main-content" style={{ minHeight: '100vh' }}>
         {/*
-          fallback={null} — the navbar and footer are already visible,
-          so there's no need for a secondary spinner when switching pages.
-          The new page will simply appear once its chunk is loaded.
+          PagePlaceholder keeps <main> tall while the lazy chunk loads,
+          so the footer stays below the viewport — no flash.
         */}
-        <Suspense fallback={null}>
+        <Suspense fallback={<PagePlaceholder />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
