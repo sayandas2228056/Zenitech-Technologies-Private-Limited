@@ -359,9 +359,11 @@ const HERO_CSS = `
 .badge-spin {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  animation: spinIt 8s linear infinite;
+  animation: spinIt 8s linear infinite !important;
+  animation-play-state: running !important;
   will-change: transform;
 }
+
 @keyframes spinIt { 
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); } 
@@ -625,7 +627,7 @@ const HERO_CSS = `
   }
 }
 
-/* Reduced motion preference */
+/* Reduced motion preference — badge-spin intentionally excluded to keep spinning */
 @media (prefers-reduced-motion: reduce) {
   .s-img,
   .thumb img,
@@ -633,12 +635,11 @@ const HERO_CSS = `
   .hero-left .hero-heading,
   .hero-left .hero-sub,
   .hero-left .hero-actions,
-  .hero-right,
-  .badge-spin {
+  .hero-right {
     animation: none !important;
     transition: none !important;
   }
 }
 `
 
-export default Hero
+export default Hero;
