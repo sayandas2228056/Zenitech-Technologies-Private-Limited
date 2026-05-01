@@ -263,7 +263,6 @@ const Appointment = () => {
                     font-family: 'Inter', system-ui, sans-serif;
                     background: var(--apg-white);
                     color: var(--apg-g900);
-                    overflow-x: hidden;
                 }
 
                 /* ── Scroll reveal ──────────────────────────────── */
@@ -325,7 +324,6 @@ const Appointment = () => {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     align-items: stretch;
-                    min-height: 100vh;
                 }
 
                 /* ── Left panel ─────────────────────────────────── */
@@ -516,7 +514,6 @@ const Appointment = () => {
                     align-items: flex-start;
                     justify-content: center;
                     padding: clamp(5rem,8vw,8rem) clamp(1.25rem,3.5vw,2.75rem) clamp(2.5rem,5vw,4rem);
-                    overflow-y: auto;
                 }
                 .apg-hero-right > * { width: 100%; max-width: 560px; }
 
