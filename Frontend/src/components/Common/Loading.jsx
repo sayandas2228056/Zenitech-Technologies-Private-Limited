@@ -5,26 +5,47 @@ const LoadingLight = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prev) => (prev >= 100 ? 100 : prev + 1));
-    }, 18);
+    /*
+     * Simulate a realistic loading curve:
+     *  – Fast start (0→40) to feel responsive
+     *  – Slow middle (40→80) where real assets load
+     *  – Quick finish (80→100) once resources settle
+     */
+    let raf;
+    const start = Date.now();
+    const DURATION = 2400; // ms, roughly matches the App loader timing
 
-    return () => clearInterval(timer);
+    const tick = () => {
+      const elapsed = Date.now() - start;
+      const t = Math.min(elapsed / DURATION, 1);
+
+      // Ease-out cubic curve — fast then slowing
+      const eased = 1 - Math.pow(1 - t, 3);
+      setProgress(Math.round(eased * 100));
+
+      if (t < 1) {
+        raf = requestAnimationFrame(tick);
+      }
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   const getStatus = () => {
-    if (progress < 30) return "Initializing...";
-    if (progress < 70) return "Preparing environment...";
+    if (progress < 25) return "Initializing systems...";
+    if (progress < 50) return "Loading resources...";
+    if (progress < 80) return "Preparing interface...";
     return "Launching...";
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-[#f8f9fb] overflow-hidden">
+    <div className="fixed inset-0 flex items-center justify-center bg-[#f8f9fb] overflow-hidden z-[9999]">
 
-      {/* 🔥 Soft gradient glow */}
+      {/* Soft gradient glow */}
       <div className="absolute w-[400px] h-[400px] bg-orange-400/10 rounded-full blur-3xl" />
 
-      {/* 🔥 Subtle grid */}
+      {/* Subtle grid */}
       <div
         className="absolute inset-0 opacity-[0.05]"
         style={{
@@ -34,19 +55,19 @@ const LoadingLight = () => {
         }}
       />
 
-      {/* 🔥 Main Card */}
+      {/* Main Card */}
       <div className="relative z-10 w-[90%] max-w-md p-8 rounded-3xl bg-white/70 backdrop-blur-xl border border-orange-200 shadow-xl text-center">
 
-        {/* 🔥 Logo */}
+        {/* Logo */}
         <div className="relative flex justify-center mb-6">
           <div className="w-20 h-20 rounded-full border border-orange-300 flex items-center justify-center animate-spin-slow bg-white">
-            <img src={Logo} alt="logo" className="w-12 h-12 object-contain" />
+            <img src={Logo} alt="Zenitech Technologies logo" className="w-12 h-12 object-contain" />
           </div>
 
           <div className="absolute inset-0 rounded-full border border-orange-200 animate-ping" />
         </div>
 
-        {/* 🔥 Brand */}
+        {/* Brand */}
         <h1 className="text-xl md:text-2xl font-bold tracking-wide">
           <span className="text-orange-500">ZENITECH TECHNOLOGIES</span>{" "}
           
@@ -56,17 +77,20 @@ const LoadingLight = () => {
           PRIVATE LIMITED
         </p>
 
-        {/* 🔥 Status */}
+        {/* Status */}
         <p className="text-sm text-orange-500 mb-4 font-mono tracking-wider">
           {getStatus()}
         </p>
 
-        {/* 🔥 Progress */}
+        {/* Progress */}
         <div className="w-full">
           <div className="relative h-[4px] bg-gray-200 rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-orange-400 to-orange-500 transition-all duration-200"
-              style={{ width: `${progress}%` }}
+              className="h-full bg-gradient-to-r from-orange-400 to-orange-500 rounded-full"
+              style={{
+                width: `${progress}%`,
+                transition: 'width 0.15s ease-out',
+              }}
             />
           </div>
 
@@ -76,13 +100,13 @@ const LoadingLight = () => {
           </div>
         </div>
 
-        {/* 🔥 Footer */}
+        {/* Footer */}
         <p className="mt-6 text-[11px] text-gray-400 tracking-widest uppercase">
           Cybersecurity • Cloud Solutions 
         </p>
       </div>
 
-      {/* 🔥 Animation */}
+      {/* Animation */}
       <style>{`
         .animate-spin-slow {
           animation: spin 6s linear infinite;

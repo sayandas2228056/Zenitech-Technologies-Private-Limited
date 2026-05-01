@@ -3,6 +3,7 @@ import { Cloud, Shield, Check, ArrowRight, ChevronDown, ChevronUp, ChevronLeft, 
 import { Link } from 'react-router-dom';
 import Bright1 from '../components/Common/Bright1';
 import ServiceHeader from '../components/Service/ServiceHeader';
+import useSEO from '../hooks/useSEO';
 
 /* ══════════════════════════════════════════════════════════════
    DATA  — edit content here without touching JSX or CSS
@@ -292,6 +293,67 @@ const ServiceCard = ({ service }) => {
 ══════════════════════════════════════════════════════════════ */
 
 const Services = () => {
+  useSEO({
+    title: 'IT Services — Cloud & Cybersecurity',
+    description:
+      'Explore Zenitech\'s IT services: cybersecurity solutions, cloud computing, cloud migration, managed security & consulting. Trusted by enterprises across India.',
+    canonical: 'https://www.zenitech.in/services',
+    keywords:
+      'IT services India, cybersecurity solutions provider, cloud computing services, cloud security consulting, managed IT services, Zenitech services, cloud migration India',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://www.zenitech.in/' },
+      { name: 'Services', url: 'https://www.zenitech.in/services' },
+    ],
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        serviceType: 'IT Services',
+        provider: {
+          '@type': 'Organization',
+          name: 'Zenitech Technologies Private Limited',
+          url: 'https://www.zenitech.in/',
+        },
+        areaServed: { '@type': 'Country', name: 'India' },
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Zenitech IT Services',
+          itemListElement: [
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Cybersecurity Solutions',
+                url: 'https://www.zenitech.in/services/cybersecurity',
+                description:
+                  'Comprehensive cybersecurity services including threat detection, vulnerability assessment, penetration testing, and 24/7 monitoring.',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Cloud Computing Services',
+                url: 'https://www.zenitech.in/services/cloud-solutions',
+                description:
+                  'End-to-end cloud computing solutions including cloud migration, infrastructure management, multi-cloud strategy, and cost optimization.',
+              },
+            },
+          ],
+        },
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      },
+    ],
+  });
+
   const [activeFaq, setActiveFaq] = useState(null);
   const [processIndex, setProcessIndex] = useState(0);
   const [caseStudyIndex, setCaseStudyIndex] = useState(0);

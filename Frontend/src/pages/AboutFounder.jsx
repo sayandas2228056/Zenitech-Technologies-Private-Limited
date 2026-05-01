@@ -8,7 +8,49 @@ import IIITBLogo from '../assets/EduLogo/iiitbofficial_logo.jpeg';
 import IITRLogo from '../assets/EduLogo/indian_institute_of_technology_roorkee_logo.jpeg';
 import AIMALogo from '../assets/EduLogo/All India Management Association.jpeg';
 import VMLogo from '../assets/EduLogo/ramakrishna_mission_vidyamandira_logo.jpeg';
+import useSEO from '../hooks/useSEO';
 const AboutFounder = () => {
+  useSEO({
+    title: 'Founder & CEO — Mr. Haider Ali',
+    description:
+      'Meet Mr. Haider Ali, Founder & CEO of Zenitech Technologies. 20+ years of experience in enterprise IT, cybersecurity & cloud solutions. IIT Roorkee & IIIT Bangalore alumnus.',
+    canonical: 'https://www.zenitech.in/about/founder',
+    keywords:
+      'Haider Ali Zenitech, Zenitech founder, CEO Zenitech Technologies, IT leader Bengaluru, cybersecurity expert India, cloud computing professional',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://www.zenitech.in/' },
+      { name: 'About', url: 'https://www.zenitech.in/about' },
+      { name: 'Founder', url: 'https://www.zenitech.in/about/founder' },
+    ],
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Haider Ali',
+        jobTitle: 'Founder & CEO',
+        url: 'https://www.haider.zenitech.in/',
+        email: 'haider@zenitech.in',
+        telephone: '+91-88200-66999',
+        worksFor: {
+          '@type': 'Organization',
+          name: 'Zenitech Technologies Private Limited',
+          url: 'https://www.zenitech.in/',
+        },
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Bengaluru',
+          addressRegion: 'Karnataka',
+          addressCountry: 'IN',
+        },
+        alumniOf: [
+          { '@type': 'CollegeOrUniversity', name: 'Indian Institute of Technology, Roorkee' },
+          { '@type': 'CollegeOrUniversity', name: 'International Institute of Information Technology Bangalore' },
+        ],
+        knowsAbout: ['Cybersecurity', 'Cloud Computing', 'IT Consulting', 'Enterprise Solutions', 'B2B Sales'],
+      },
+    ],
+  });
+
   return (
     <div className="md:mt-10 min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
       

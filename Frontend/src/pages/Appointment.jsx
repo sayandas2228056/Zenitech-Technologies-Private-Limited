@@ -5,6 +5,8 @@ import {
     Star, Clock, Users, Award, ArrowRight, Zap, Lock
 } from 'lucide-react';
 import AppointmentForm from '../components/Appointment/AppointmentForm.jsx';
+import { Link } from 'react-router-dom';
+import useSEO from '../hooks/useSEO';
 
 /* ════════════════════════════════════════════════════════════
    DATA
@@ -47,6 +49,19 @@ const featurePills = [
    PAGE
 ════════════════════════════════════════════════════════════ */
 const Appointment = () => {
+    useSEO({
+        title: 'Schedule a Consultation',
+        description:
+            'Book a free cybersecurity & cloud consulting session with Zenitech Technologies experts. Get tailored IT advice for your business. Fast response, 100% confidential.',
+        canonical: 'https://www.zenitech.in/appointment',
+        keywords:
+            'book cybersecurity consultation, cloud computing consultation India, schedule IT consultation, free cybersecurity assessment, Zenitech appointment',
+        breadcrumbs: [
+            { name: 'Home', url: 'https://www.zenitech.in/' },
+            { name: 'Appointment', url: 'https://www.zenitech.in/appointment' },
+        ],
+    });
+
     const [activeStep, setActiveStep] = useState(0);
 
     useEffect(() => {
@@ -213,9 +228,9 @@ const Appointment = () => {
                             <Phone size={16} /> +91 88200 66999
                         </a>
                         <span className="apg-cta-divider" />
-                        <a href="/contact" className="apg-cta-btn">
+                        <Link to="/contact" className="apg-cta-btn">
                             Contact Support <ArrowRight size={15} />
-                        </a>
+                        </Link>
                     </div>
                     <p className="apg-cta-note">
                         ⚡ Average response time under 2 hours during business hours

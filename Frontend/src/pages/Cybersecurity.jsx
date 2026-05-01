@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ShieldAlert, Activity, Globe, Lock, BarChart3, Settings, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Bright2 from '../components/Common/Bright2';
+import useSEO from '../hooks/useSEO';
 import herobg from "../assets/serviceimg/Cybersecurity.jpeg";
 
 import Cyber1 from "../assets/serviceimg/Cybersecurity.jpeg";
@@ -50,6 +52,46 @@ const RevealCard = ({ children, className = '', style = {}, delay = 0 }) => {
 };
 
 const Cybersecurity = () => {
+  useSEO({
+    title: 'Cybersecurity Services India',
+    description:
+      'Enterprise cybersecurity solutions by Zenitech: threat detection, VAPT, network security, cloud security, 24/7 SOC monitoring & incident response. Trusted cybersecurity services provider in India.',
+    canonical: 'https://www.zenitech.in/services/cybersecurity',
+    keywords:
+      'cybersecurity services India, cybersecurity solutions provider, network security, threat detection, penetration testing, cloud security, VAPT, SOC monitoring, Zenitech cybersecurity, managed security services India',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://www.zenitech.in/' },
+      { name: 'Services', url: 'https://www.zenitech.in/services' },
+      { name: 'Cybersecurity', url: 'https://www.zenitech.in/services/cybersecurity' },
+    ],
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: 'Cybersecurity Solutions',
+        serviceType: 'Cybersecurity Services',
+        description:
+          'Comprehensive cybersecurity services including threat detection, vulnerability assessment, penetration testing, identity & access management, network security, and 24/7 SOC monitoring for enterprises in India.',
+        provider: {
+          '@type': 'Organization',
+          name: 'Zenitech Technologies Private Limited',
+          url: 'https://www.zenitech.in/',
+        },
+        areaServed: { '@type': 'Country', name: 'India' },
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Cybersecurity Services',
+          itemListElement: [
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Network Security' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Data Protection & Encryption' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Threat Detection & Monitoring' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Cloud Security' } },
+          ],
+        },
+      },
+    ],
+  });
+
   const [activeTab, setActiveTab] = useState(0);
   const [featureIndex, setFeatureIndex] = useState(0);
   const [itemsPerSlide, setItemsPerSlide] = useState(window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3);
@@ -234,8 +276,8 @@ const Cybersecurity = () => {
 
             {/* Buttons */}
             <div className="cs-hero-btns cs-hero-text-animate" style={{ animationDelay: '0.3s' }}>
-              <a href="/contact" className="cs-btn-primary">Contact Us</a>
-              <a href="/appointment" className="cs-btn-ghost">▶ &nbsp;Schedule a meeting</a>
+              <Link to="/contact" className="cs-btn-primary">Contact Us</Link>
+              <Link to="/appointment" className="cs-btn-ghost">▶ &nbsp;Schedule a meeting</Link>
             </div>
 
             {/* Protected pill */}
@@ -485,7 +527,7 @@ const Cybersecurity = () => {
               ))}
             </div>
 
-            <a href="/contact" className="cs-btn-white">Contact us ↗</a>
+            <Link to="/contact" className="cs-btn-white">Contact us ↗</Link>
           </div>
 
           {/* Right: card */}

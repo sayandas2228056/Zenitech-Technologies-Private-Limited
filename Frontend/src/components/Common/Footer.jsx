@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   FaLinkedinIn,
   FaWhatsapp,
@@ -11,7 +12,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-900 text-white">
+    <footer className="bg-slate-900 text-white" itemScope itemType="https://schema.org/WPFooter">
       <div className="max-w-7xl mx-auto px-6 py-16">
         
         {/* Main Footer Content */}
@@ -25,7 +26,7 @@ const Footer = () => {
                 <span className="text-orange-500"> PRIVATE LIMITED</span>
               </h2>
               <p className="text-slate-300 text-base leading-relaxed max-w-md">
-                We deliver cutting-edge Cybersecurity and Cloud Solutions that safeguard your digital assets, modernize your infrastructure, and empower your business to grow fearlessly in an ever-evolving technology landscape.
+                India's trusted cybersecurity and cloud computing services provider. We deliver enterprise-grade security solutions, cloud migration, managed IT services, and 24/7 threat monitoring from Bengaluru.
               </p>
             </div>
             
@@ -57,76 +58,104 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
+          {/* Quick Links — using React Router <Link> for SPA navigation */}
+          <nav aria-label="Company links">
             <h3 className="text-sm font-semibold text-slate-200 uppercase tracking-wider mb-6">
               Company
             </h3>
             <ul className="space-y-3">
               <li>
-                <a href="/about" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
-                  About Us
-                </a>
+                <Link to="/about" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
+                  About Zenitech Technologies
+                </Link>
               </li>
               <li>
-                <a href="/about/founder" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
-                  Founder Profile
-                </a>
+                <Link to="/about/founder" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
+                  Founder &amp; CEO Profile
+                </Link>
               </li>
               <li>
-                <a href="/services" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
-                  Services
-                </a>
+                <Link to="/services" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
+                  IT Services &amp; Solutions
+                </Link>
               </li>
               <li>
-                <a href="/contact" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
+                <Link to="/contact" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
                   Contact Us
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link to="/appointment" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
+                  Book a Consultation
+                </Link>
               </li>
             </ul>
-          </div>
+          </nav>
 
-          {/* Services */}
-          <div>
+          {/* Services — keyword-rich anchor text for internal linking */}
+          <nav aria-label="Service links">
             <h3 className="text-sm font-semibold text-slate-200 uppercase tracking-wider mb-6">
-              Services
+              Our Services
             </h3>
             <ul className="space-y-3">
               <li>
-                <a href="/services/cybersecurity" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
-                  Cybersecurity
-                </a>
+                <Link to="/services/cybersecurity" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
+                  Cybersecurity Solutions
+                </Link>
               </li>
               <li>
-                <a href="/services/cloud-solutions" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
-                  Cloud Solutions
-                </a>
+                <Link to="/services/cloud-solutions" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
+                  Cloud Computing Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
+                  Managed IT Services India
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
+                  Cloud Security Consulting
+                </Link>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
 
-        {/* Contact Information */}
-        <div className="border-t border-slate-700 pt-12 mb-12">
+        {/* Contact Information — structured NAP data on every page */}
+        <div
+          className="border-t border-slate-700 pt-12 mb-12"
+          itemScope
+          itemType="https://schema.org/LocalBusiness"
+        >
+          <meta itemProp="name" content="Zenitech Technologies Private Limited" />
+          <meta itemProp="url" content="https://www.zenitech.in/" />
+
           <h3 className="text-sm font-semibold text-slate-200 uppercase tracking-wider mb-8">
             Contact Information
           </h3>
           <div className="grid grid-cols-1 lg:grid-cols-1 gap-8">
             
             {/* Bangalore Office */}
-            <div className="space-y-4">
-              <h4 className="text-base font-medium text-white mb-3">Corporate Office - Bengaluru</h4>
+            <div
+              className="space-y-4"
+              itemProp="address"
+              itemScope
+              itemType="https://schema.org/PostalAddress"
+            >
+              <h4 className="text-base font-medium text-white mb-3">Corporate Office — Bengaluru</h4>
               <div className="flex items-start space-x-3">
                 <HiOutlineLocationMarker className="mt-1 text-orange-400 flex-shrink-0" size={18} />
                 <a
-                  href="https://www.google.com/maps/place/ZENITECH+TECHNOLOGIES+PRIVATE+LIMITED/@17.8322113,71.4445055,6z/data=!4m10!1m2!2m1!1sZenitech+Technologies+Pvt.+Ltd.!3m6!1s0x2efa6a1b2571d453:0x6aa2f619aaa4d5aa!8m2!3d13.0335666!4d77.6289726!15sCh9aZW5pdGVjaCBUZWNobm9sb2dpZXMgUHZ0LiBMdGQuWh8iHXplbml0ZWNoIHRlY2hub2xvZ2llcyBwdnQgbHRkkgEQc29mdHdhcmVfY29tcGFueeABAA!16s%2Fg%2F11tjs5xq43?entry=ttu&g_ep=EgoyMDI2MDQwOC4wIKXMDSoASAFQAw%3D%3D"
+                  href="https://www.google.com/maps/place/ZENITECH+TECHNOLOGIES+PRIVATE+LIMITED/@13.0335666,77.6289726,16z"
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm leading-relaxed"
                 >
-                  Dex Co Work, 2nd Floor, 1383/433,<br />
-                  5th Block, HBR Layout,<br />
-                  Bengaluru - 560045, India
+                  <span itemProp="streetAddress">Dex Co Work, 2nd Floor, 1383/433, 5th Block, HBR Layout</span>,<br />
+                  <span itemProp="addressLocality">Bengaluru</span> — <span itemProp="postalCode">560045</span>,{' '}
+                  <span itemProp="addressRegion">Karnataka</span>,{' '}
+                  <span itemProp="addressCountry">India</span>
                 </a>
               </div>
             </div>
@@ -137,13 +166,21 @@ const Footer = () => {
             <div className="flex flex-wrap gap-8">
               <div className="flex items-center space-x-3">
                 <HiOutlineMail className="text-orange-400" size={18} />
-                <a href="mailto:info@zenitech.in" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
+                <a
+                  href="mailto:info@zenitech.in"
+                  className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm"
+                  itemProp="email"
+                >
                   info@zenitech.in
                 </a>
               </div>
               <div className="flex items-center space-x-3">
                 <HiOutlinePhone className="text-orange-400" size={18} />
-                <a href="tel:+918820066999" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
+                <a
+                  href="tel:+918820066999"
+                  className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm"
+                  itemProp="telephone"
+                >
                   +91 88200 66999
                 </a>
               </div>

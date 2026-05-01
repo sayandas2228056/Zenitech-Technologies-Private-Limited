@@ -6,7 +6,9 @@ import {
 } from 'lucide-react';
 import { FaWhatsapp, FaLinkedin } from 'react-icons/fa';
 import Cnt from '../assets/Axep1.jpg';
+import { Link } from 'react-router-dom';
 import ContactForm from '../components/Contact/ContactForm';
+import useSEO from '../hooks/useSEO';
 
 /* ══════════════════════════════════════════════════════════════
    DATA
@@ -112,6 +114,30 @@ const RevealCard = ({ children, className = '', delay = 0 }) => {
 ══════════════════════════════════════════════════════════════ */
 
 const Contact = () => {
+    useSEO({
+        title: 'Contact Us',
+        description:
+            'Contact Zenitech Technologies for cybersecurity & cloud computing solutions. Call +91 88200 66999, email info@zenitech.in, or visit our Bengaluru office. 24/7 support available.',
+        canonical: 'https://www.zenitech.in/contact',
+        keywords:
+            'contact Zenitech, Zenitech Technologies contact, cybersecurity company Bengaluru, cloud computing company contact, IT services contact India',
+        breadcrumbs: [
+            { name: 'Home', url: 'https://www.zenitech.in/' },
+            { name: 'Contact', url: 'https://www.zenitech.in/contact' },
+        ],
+        jsonLd: [
+            {
+                '@context': 'https://schema.org',
+                '@type': 'FAQPage',
+                mainEntity: faqs.map((faq) => ({
+                    '@type': 'Question',
+                    name: faq.question,
+                    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+                })),
+            },
+        ],
+    });
+
     const [activeFaq, setActiveFaq] = useState(null);
     const heroRef = useRef(null);
 
@@ -146,7 +172,7 @@ const Contact = () => {
                     </p>
                     {/* Breadcrumb */}
                     <div className="ct-breadcrumb ct-text-animate" style={{ animationDelay: '0.3s' }}>
-                        <a href="/" className="ct-bread-link">Home</a>
+                        <Link to="/" className="ct-bread-link">Home</Link>
                         <span className="ct-bread-sep">›</span>
                         <span className="ct-bread-current">Contact</span>
                     </div>
@@ -308,9 +334,9 @@ const Contact = () => {
                             </div>
                             <h2 className="ct-section-title ct-faq-title">Frequently asked questions</h2>
                             <p className="ct-col-sub">Quick answers to common questions about our services and processes.</p>
-                            <a href="/appointment" className="ct-btn-primary ct-btn-sm ct-faq-cta">
+                            <Link to="/appointment" className="ct-btn-primary ct-btn-sm ct-faq-cta">
                                 Still have questions? <ArrowRight size={14} />
-                            </a>
+                            </Link>
                         </RevealCard>
                     </div>
 

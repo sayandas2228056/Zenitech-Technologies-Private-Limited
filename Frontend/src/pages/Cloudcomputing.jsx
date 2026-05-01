@@ -9,6 +9,7 @@ import Cloud1 from '../assets/serviceimg/Cloud1.jpg';
 import Cloud2 from '../assets/serviceimg/Cloud2.jpg';
 import Cloud3 from '../assets/serviceimg/Cloud3.jpg';
 import Bright2 from '../components/Common/Bright2';
+import useSEO from '../hooks/useSEO';
 
 /* ══════════════════════════════════════════════════════════════
    DATA
@@ -163,6 +164,46 @@ const Tick = () => (
 ══════════════════════════════════════════════════════════════ */
 
 const Cloudcomputing = () => {
+  useSEO({
+    title: 'Cloud Computing Services India',
+    description:
+      'Best cloud computing company in India — Zenitech offers cloud migration, multi-cloud solutions, IaaS, PaaS, cloud security & cost optimization. 24/7 managed cloud services from Bengaluru.',
+    canonical: 'https://www.zenitech.in/services/cloud-solutions',
+    keywords:
+      'cloud computing services India, best cloud computing company India, cloud migration services, multi-cloud solutions, cloud infrastructure, managed cloud services, cloud security, IaaS PaaS India, Zenitech cloud computing, cloud consulting Bengaluru',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://www.zenitech.in/' },
+      { name: 'Services', url: 'https://www.zenitech.in/services' },
+      { name: 'Cloud Computing', url: 'https://www.zenitech.in/services/cloud-solutions' },
+    ],
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: 'Cloud Computing Services',
+        serviceType: 'Cloud Computing',
+        description:
+          'End-to-end cloud computing solutions including cloud migration, infrastructure management (IaaS), platform services (PaaS), multi-cloud strategy, and cost optimization for businesses in India.',
+        provider: {
+          '@type': 'Organization',
+          name: 'Zenitech Technologies Private Limited',
+          url: 'https://www.zenitech.in/',
+        },
+        areaServed: { '@type': 'Country', name: 'India' },
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Cloud Computing Services',
+          itemListElement: [
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Cloud Migration' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Cloud Infrastructure (IaaS)' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Cloud Storage & Backup' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Multi-Cloud Solutions' } },
+          ],
+        },
+      },
+    ],
+  });
+
   const [activeTab, setActiveTab] = useState(0);
   const [serviceIndex, setServiceIndex] = useState(0);
   const [processIndex, setProcessIndex] = useState(0);

@@ -1,5 +1,6 @@
-import React, { useEffect, lazy, Suspense, useState } from 'react';
+import React, { lazy, Suspense } from 'react';
 import Hero from '../components/Homepage/Hero';
+import useSEO from '../hooks/useSEO';
 
 /* ── Below-fold components loaded lazily (code-split) ─────── */
 const HeroBotm   = lazy(() => import('../components/Homepage/HeroBotm'));
@@ -20,12 +21,57 @@ const Skeleton = () => (
   }} />
 );
 
+/* ── FAQ Schema Data ─────────────────────────────────── */
+const homeFaqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What services does Zenitech Technologies offer?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Zenitech Technologies offers comprehensive cybersecurity solutions and cloud computing services including cloud migration, security monitoring, threat detection, vulnerability assessment, and managed IT services for enterprises across India.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Where is Zenitech Technologies located?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Zenitech Technologies Private Limited is headquartered in Bengaluru (Bangalore), Karnataka, India at Dex Co Work, 2nd Floor, 1383/433, 5th Block, HBR Layout, Bengaluru – 560045.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does Zenitech provide 24/7 cybersecurity monitoring?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, Zenitech Technologies provides round-the-clock 24/7 cybersecurity monitoring and threat detection services to ensure your business systems remain protected against evolving cyber threats.',
+      },
+    },
+  ],
+};
+
 /* ════════════════════════════════════════════════════════════
    HOME PAGE
 ════════════════════════════════════════════════════════════ */
 const Home = () => {
+  useSEO({
+    title: 'Cybersecurity & Cloud Solutions India',
+    description:
+      'Zenitech Technologies — India\'s best cybersecurity and cloud computing company. Enterprise-grade cloud security solutions, managed IT services, cloud migration & 24/7 threat monitoring from Bengaluru.',
+    canonical: 'https://www.zenitech.in/',
+    keywords:
+      'Zenitech Technologies, cybersecurity services India, cloud computing company India, cloud security solutions, managed IT services India, best cloud computing company India, cybersecurity solutions provider, IT services company India, cloud consulting Bengaluru',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://www.zenitech.in/' },
+    ],
+    jsonLd: [homeFaqSchema],
+  });
+
   return (
-    <div>
+    <article>
       {/* Hero is eager — it's above the fold */}
       <Hero />
 
@@ -57,7 +103,7 @@ const Home = () => {
           100% { background-position: -200% 0; }
         }
       `}</style>
-    </div>
+    </article>
   );
 };
 

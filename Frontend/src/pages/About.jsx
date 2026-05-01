@@ -10,9 +10,10 @@ import Pic2 from '../assets/heroslider/cyber.jpg'
 import Logo from '../assets/Logo.png';
 import Founder from '../assets/Founder.jpg';
 import { FaLinkedin, FaFacebookF, FaWhatsapp } from 'react-icons/fa';
-import NavBar from '../components/Common/NavBar.jsx';
+import { Link } from 'react-router-dom';
 import Bright1 from '../components/Common/Bright1.jsx';
 import OptimizedImage from '../components/Common/OptimizedImage.jsx';
+import useSEO from '../hooks/useSEO';
 
 /* ══════════════════════════════════════════════════════════════
    DATA
@@ -180,41 +181,39 @@ const SectionHeader = ({ tag, title, subtitle, light = false }) => (
 );
 
 /* ══════════════════════════════════════════════════════════════
-   SEO — structured data injection
-══════════════════════════════════════════════════════════════ */
-
-function useAboutSEO() {
-  useEffect(() => {
-    document.title = 'About ZENITECH TECHNOLOGIES PRIVATE LIMITED | Leading IT Services in Bengaluru, India';
-
-    const setMeta = (key, val) => {
-      const isProp = key.startsWith('og:');
-      let el = document.querySelector(`meta[${isProp ? 'property' : 'name'}="${key}"]`);
-      if (!el) { el = document.createElement('meta'); el.setAttribute(isProp ? 'property' : 'name', key); document.head.appendChild(el); }
-      el.setAttribute('content', val);
-    };
-
-    setMeta('description', 'Learn about ZENITECH TECHNOLOGIES PRIVATE LIMITED, a premier IT services and consulting company in Bengaluru.');
-    setMeta('keywords', 'IT services Bengaluru, cloud computing, cybersecurity, IT consulting, ZENITECH TECHNOLOGIES');
-    setMeta('og:title', 'About ZENITECH TECHNOLOGIES PRIVATE LIMITED');
-    setMeta('og:description', 'Premier IT services and consulting company specializing in cloud computing and cybersecurity.');
-    setMeta('og:type', 'website');
-    setMeta('og:url', 'https://zenitech.in/about');
-    setMeta('og:image', 'https://zenitech.in/logo.png');
-  }, []);
-}
-
-/* ══════════════════════════════════════════════════════════════
    MAIN PAGE
 ══════════════════════════════════════════════════════════════ */
 
 const About = () => {
+  useSEO({
+    title: 'About Us — IT Services & Consulting',
+    description:
+      'About Zenitech Technologies — a premier IT services & consulting company in Bengaluru, India. Specializing in cybersecurity, cloud computing, and managed IT solutions for enterprises.',
+    canonical: 'https://www.zenitech.in/about',
+    keywords:
+      'about Zenitech Technologies, IT services company India, IT consulting Bengaluru, cybersecurity company India, cloud computing company, managed IT services, Zenitech about',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://www.zenitech.in/' },
+      { name: 'About', url: 'https://www.zenitech.in/about' },
+    ],
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqData.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      },
+    ],
+  });
+
   const [activeFaq, setActiveFaq] = useState(null);
   const [valueIndex, setValueIndex] = useState(0);
   const [missionIndex, setMissionIndex] = useState(0);
   const [itemsPerSlide, setItemsPerSlide] = useState(2);
   const heroRef = useRef(null);
-  useAboutSEO();
 
   useEffect(() => {
     const el = heroRef.current;
@@ -229,7 +228,6 @@ const About = () => {
 
   return (
     <div className="ab-root">
-      <NavBar />
 
       {/* ══ HERO ═══════════════════════════════════════════════ */}
       <section className="ab-hero" ref={heroRef}>
@@ -260,8 +258,8 @@ const About = () => {
             </p>
 
             <div className="ab-hero-btns ab-text-animate" style={{ animationDelay: '0.3s' }}>
-              <a href="/services" className="ab-btn-primary">Our Services <ArrowRight size={16} /></a>
-              <a href="/contact" className="ab-btn-ghost">Contact Us</a>
+              <Link to="/services" className="ab-btn-primary">Our Services <ArrowRight size={16} /></Link>
+              <Link to="/contact" className="ab-btn-ghost">Contact Us</Link>
             </div>
           </div>
 
@@ -294,9 +292,9 @@ const About = () => {
               <p>With a team of highly skilled professionals, we provide cutting-edge Cybersecurity & Cloud Solutions. Our strategic partnerships with leading technology providers enable us to deliver cutting-edge solutions tailored to each client.</p>
               <p>Our clients span from startups to large enterprises across domains like IT/ITES, Startups, BFSI, Fintech, Healthcare, Pharmaceuticals , Manufacturing , Automobile, Retail, Ecommerce , Education , Media & Entertainment , Logistics & Supply and many more.</p>
             </div>
-            <a href="/services" className="ab-link-arrow">
+            <Link to="/services" className="ab-link-arrow">
               Explore Our Services <ChevronRight size={16} className="ab-link-chevron" />
-            </a>
+            </Link>
           </RevealCard>
 
           <RevealCard className="ab-half" delay={80}>
@@ -445,9 +443,9 @@ const About = () => {
               ))}
             </div>
 
-            <a href="/about/founder" className="ab-btn-primary ab-btn-inline">
+            <Link to="/about/founder" className="ab-btn-primary ab-btn-inline">
               Full Profile <ArrowRight size={16} />
-            </a>
+            </Link>
           </div>
         </RevealCard>
       </section>
