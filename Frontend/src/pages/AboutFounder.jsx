@@ -71,20 +71,13 @@ const AboutFounder = () => {
 
       {/* Right Section - Circular Logo */}
       <div className="hidden lg:flex justify-end">
-        <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white/20">
-          {/* Gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-700 to-blue-900 z-0"></div>
-          
-          {/* Glow effect */}
-          <div className="absolute inset-0 bg-blue-800/40 rounded-full blur-md z-0"></div>
-          
-          {/* Centered circular logo */}
-          <div className="absolute inset-0 flex items-center justify-center z-10">
-            <img 
-              src={Logo} 
-              alt="Logo" 
-              className="w-36 h-36 object-cover rounded-full border-2 border-white" 
-            />
+        <div className="relative w-48 h-48 rounded-full flex items-center justify-center bg-blue-900">
+          {/* Blue ring effect */}
+          <div className="absolute inset-0 rounded-full border-4 border-blue-600"></div>
+
+          {/* White circle with Zenitech text */}
+          <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center z-10">
+            <span className="text-orange-500 font-bold text-xl">Zenitech</span>
           </div>
         </div>
       </div>

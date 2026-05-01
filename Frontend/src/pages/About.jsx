@@ -265,7 +265,6 @@ const About = () => {
 
           {/* Right — rotating logo card */}
           <div className="ab-hero-logo-col ab-text-animate" style={{ animationDelay: '0.25s' }}>
-            <div className="ab-logo-tilt-back" />
             <div className="ab-logo-card">
               <OptimizedImage src={Logo} alt="Zenitech Logo" className="ab-logo-img" loading="eager" />
             </div>
@@ -707,25 +706,17 @@ const About = () => {
           align-items: center;
           position: relative;
         }
-        .ab-logo-tilt-back {
-          position: absolute;
-          inset: 0;
-          background: rgba(255,255,255,0.07);
-          border-radius: var(--ab-radius-xl);
-          transform: rotate(4deg);
-          backdrop-filter: blur(4px);
-        }
         .ab-logo-card {
           position: relative;
           background: #fff;
-          border-radius: var(--ab-radius-xl);
+          border-radius: 50%;
           padding: 2.5rem;
           box-shadow: 0 24px 60px rgba(46,6,100,0.35);
-          transform: rotate(-3deg);
-          transition: transform 0.35s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
-        .ab-logo-card:hover { transform: rotate(0); }
-        .ab-logo-img { width: 200px; height: auto; display: block; object-fit: contain; }
+        .ab-logo-img { width: 200px; height: auto; display: block; object-fit: contain; border-radius: 50%; }
 
         /* ── Wave ────────────────────────────────────────────── */
         .ab-wave-wrap {
