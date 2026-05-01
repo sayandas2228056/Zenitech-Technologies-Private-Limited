@@ -13,7 +13,7 @@ const LoadingLight = () => {
      */
     let raf;
     const start = Date.now();
-    const DURATION = 2400; // ms, roughly matches the App loader timing
+    const DURATION = 1800; // ms, matches the optimized App loader timing
 
     const tick = () => {
       const elapsed = Date.now() - start;

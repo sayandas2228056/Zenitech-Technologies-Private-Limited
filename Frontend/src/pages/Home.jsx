@@ -1,25 +1,13 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, memo } from 'react';
 import Hero from '../components/Homepage/Hero';
 import useSEO from '../hooks/useSEO';
 
 /* ── Below-fold components loaded lazily (code-split) ─────── */
-const HeroBotm   = lazy(() => import('../components/Homepage/HeroBotm'));
-const AbtSec     = lazy(() => import('../components/Homepage/AbtSec'));
+const HeroBotm    = lazy(() => import('../components/Homepage/HeroBotm'));
+const AbtSec      = lazy(() => import('../components/Homepage/AbtSec'));
 const ServSection = lazy(() => import('../components/Common/ServSection'));
-const Bright     = lazy(() => import('../components/Common/Bright'));
-const FAQ        = lazy(() => import('../components/Common/FAQ'));
-
-/* ── Skeleton shown while lazy chunks load ────────── */
-const Skeleton = () => (
-  <div style={{ 
-    minHeight: '400px', 
-    background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
-    backgroundSize: '200% 100%',
-    borderRadius: '12px', 
-    margin: '16px 0',
-    animation: 'shimmer 1.5s infinite'
-  }} />
-);
+const Bright      = lazy(() => import('../components/Common/Bright'));
+const FAQ         = lazy(() => import('../components/Common/FAQ'));
 
 /* ── FAQ Schema Data ─────────────────────────────────── */
 const homeFaqSchema = {
@@ -56,7 +44,7 @@ const homeFaqSchema = {
 /* ════════════════════════════════════════════════════════════
    HOME PAGE
 ════════════════════════════════════════════════════════════ */
-const Home = () => {
+const Home = memo(() => {
   useSEO({
     title: 'Cybersecurity & Cloud Solutions India',
     description:
@@ -75,36 +63,48 @@ const Home = () => {
       {/* Hero is eager — it's above the fold */}
       <Hero />
 
-      {/* Each below-fold section gets its own reveal wrapper  */}
-      <Suspense fallback={<Skeleton />}>
+      {/*
+        Single Suspense boundary for all below-fold sections.
+        All lazy chunks load in parallel (no waterfall).
+        The skeleton placeholder maintains layout while loading.
+      */}
+      <Suspense fallback={<BelowFoldSkeleton />}>
         <HeroBotm />
-      </Suspense>
-
-      <Suspense fallback={<Skeleton />}>
         <AbtSec />
-      </Suspense>
-
-      <Suspense fallback={<Skeleton />}>
         <ServSection />
-      </Suspense>
-
-      <Suspense fallback={<Skeleton />}>
         <Bright />
-      </Suspense>
-
-      <Suspense fallback={<Skeleton />}>
         <FAQ />
       </Suspense>
-
-      {/* Scoped animation styles */}
-      <style>{`
-        @keyframes shimmer {
-          0% { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
-        }
-      `}</style>
     </article>
   );
-};
+});
+
+Home.displayName = 'Home';
+
+/* ── Lightweight skeleton for below-fold content ────────── */
+const BelowFoldSkeleton = () => (
+  <div aria-hidden="true" style={{ background: '#fafafa' }}>
+    {[1, 2, 3].map(i => (
+      <div
+        key={i}
+        style={{
+          height: '300px',
+          margin: '16px auto',
+          maxWidth: '1200px',
+          background: 'linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%)',
+          backgroundSize: '200% 100%',
+          borderRadius: '12px',
+          animation: 'home-shimmer 1.5s infinite',
+        }}
+      />
+    ))}
+    <style>{`
+      @keyframes home-shimmer {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
+    `}</style>
+  </div>
+);
 
 export default Home;

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import { FaRegHandshake } from 'react-icons/fa';
 import CntPic from "../../assets/pic3.jpg";
 
-const Bright = () => {
+const Bright = memo(() => {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -10,31 +10,32 @@ const Bright = () => {
     setIsVisible(true);
   }, []);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = useCallback((e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     setMousePosition({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
     });
-  };
+  }, []);
 
   return (
     <section
-      className="relative min-h-[80vh] bg-cover bg-center flex items-center justify-center py-24 overflow-hidden"
-      style={{ backgroundImage: `url(${CntPic})` }}
+      className="relative min-h-[80vh] flex items-center justify-center py-24 overflow-hidden"
+      style={{
+        backgroundImage: `url(${CntPic})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
     >
-      {/* 🔥 Background Image (Proper Layering) */}
-      <img
-        src={CntPic}
-        alt="Background"
-        className="absolute inset-0 w-full h-full object-cover"
+      {/* Dark overlay — replaces the duplicate <img> that was loading the same image twice */}
+      <div
+        className="absolute inset-0"
         style={{
-          filter: 'blur(6px) brightness(0.45)',
-          opacity: 0.25,
+          background: 'rgba(0, 0, 0, 0.65)',
         }}
       />
 
-      {/* 🔥 Subtle Dot Grid */}
+      {/* Subtle Dot Grid */}
       <div
         className="absolute inset-0 opacity-[0.05]"
         style={{
@@ -44,7 +45,7 @@ const Bright = () => {
         }}
       />
 
-      {/* 🔥 Main Glass Container */}
+      {/* Main Glass Container */}
       <div
         onMouseMove={handleMouseMove}
         className={`relative z-10 flex flex-col items-center justify-center max-w-3xl w-full mx-4 md:mx-auto py-20 px-6 md:px-12 rounded-[2.5rem] text-center transition-all duration-1000 ${
@@ -60,7 +61,7 @@ const Bright = () => {
             '0 25px 50px -12px rgba(140,50,0,0.35), inset 0 1px 0 rgba(205,127,50,0.08)',
         }}
       >
-        {/* 🔥 Mouse Glow Effect */}
+        {/* Mouse Glow Effect */}
         <div
           className="absolute inset-0 rounded-[2.5rem] pointer-events-none"
           style={{
@@ -68,7 +69,7 @@ const Bright = () => {
           }}
         />
 
-        {/* 🔥 Availability Badge */}
+        {/* Availability Badge */}
         <div
           className="inline-flex items-center gap-2 mb-7 px-4 py-1.5 rounded-full"
           style={{
@@ -88,8 +89,8 @@ const Bright = () => {
           </span>
         </div>
 
-        {/* 🔥 Heading */}
-        <h1
+        {/* Heading */}
+        <h2
           className={`text-4xl md:text-6xl font-bold leading-[1.08] text-white mb-7 transition-all duration-1000 delay-200 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
           }`}
@@ -108,9 +109,9 @@ Partner with  {' '}
           >
           Zenitech
           </span>{' '}
-        </h1>
+        </h2>
 
-        {/* 🔥 Subtitle */}
+        {/* Subtitle */}
         <p
           className={`text-xl md:text-2xl mb-12 max-w-2xl mx-auto leading-relaxed transition-all duration-1000 delay-400 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
@@ -123,7 +124,7 @@ Partner with  {' '}
           to deliver exceptional results that exceed your expectations.
         </p>
 
-        {/* 🔥 CTA Button */}
+        {/* CTA Button */}
         <div
           className={`transition-all duration-1000 delay-600 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
@@ -161,6 +162,8 @@ Partner with  {' '}
 
      </section>
   );
-};
+});
+
+Bright.displayName = 'Bright';
 
 export default Bright;

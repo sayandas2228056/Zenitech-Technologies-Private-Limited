@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import BgPic from "../../assets/pic6.jpg";
-import OptimizedImage from "../Common/OptimizedImage";
 
 const taglineLines = [
   "Our success is measured by your success.",
@@ -11,6 +10,64 @@ const taglineLines = [
   "adapts effortlessly, and delivers measurable business value.",
 ];
 
+const HeroBotm = memo(() => {
+  const [displayedLines, setDisplayedLines] = useState([""]);
+  const [lineIdx, setLineIdx] = useState(0);
+  const [charIdx, setCharIdx] = useState(0);
+
+  useEffect(() => {
+    if (lineIdx >= taglineLines.length) return;
+    const timer = setTimeout(() => {
+      if (charIdx < taglineLines[lineIdx].length) {
+        setDisplayedLines(prev => {
+          const newLines = [...prev];
+          newLines[lineIdx] = taglineLines[lineIdx].slice(0, charIdx + 1);
+          return newLines;
+        });
+        setCharIdx(c => c + 1);
+      } else {
+        setDisplayedLines(prev => [...prev, ""]);
+        setLineIdx(l => l + 1);
+        setCharIdx(0);
+      }
+    }, charIdx < taglineLines[lineIdx]?.length ? 20 : 500);
+    return () => clearTimeout(timer);
+  }, [lineIdx, charIdx]);
+
+  return (
+    <section
+      className="hero-botm-section"
+      style={{ backgroundImage: `url(${BgPic})` }}
+    >
+      {/* Black overlay */}
+      <div className="hero-botm-overlay" />
+
+      <div className="hero-botm-content">
+        <div className="hero-botm-text font-bold">
+          {displayedLines.map((line, idx) => (
+            <span key={idx}>{line}<br /></span>
+          ))}
+        </div>
+        <div className="hero-botm-buttons">
+          <a href='/services' className="hero-botm-btn">
+            Our Services
+          </a>
+          <a href='/contact' className="hero-botm-btn">
+            Contact Us
+          </a>
+          <a href='/appointment' className="hero-botm-btn">
+            Book an Appointment
+          </a>
+        </div>
+      </div>
+
+      <style>{HERO_BOTM_CSS}</style>
+    </section>
+  );
+});
+
+HeroBotm.displayName = 'HeroBotm';
+
 const HERO_BOTM_CSS = `
 .hero-botm-section {
   width: 100%;
@@ -18,10 +75,8 @@ const HERO_BOTM_CSS = `
   position: relative;
   overflow-x: hidden;
   background: linear-gradient(to bottom right, #111827, #1f2937);
-  background-image: url('${BgPic}');
   background-size: cover;
   background-position: center;
-  will-change: transform;
 }
 
 .hero-botm-overlay {
@@ -53,7 +108,6 @@ const HERO_BOTM_CSS = `
   margin-bottom: clamp(16px, 2vw, 24px);
   font-family: 'Courier New', monospace;
   min-height: clamp(8em, 12vw, 12em);
-  will-change: opacity;
 }
 
 .hero-botm-buttons {
@@ -75,7 +129,6 @@ const HERO_BOTM_CSS = `
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  will-change: transform, background-color, color;
 }
 
 .hero-botm-btn:hover {
@@ -157,105 +210,13 @@ const HERO_BOTM_CSS = `
   }
 }
 
-/* High DPI displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .hero-botm-section {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-}
-
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   .hero-botm-section,
   .hero-botm-btn {
     transition: none !important;
-    animation: none !important;
-    will-change: auto;
   }
 }
 `;
-
-const HeroBotm = () => {
-  const [displayedLines, setDisplayedLines] = useState([""]);
-  const [lineIdx, setLineIdx] = useState(0);
-  const [charIdx, setCharIdx] = useState(0);
-
-  useEffect(() => {
-    // Preload background image
-    const preloadLink = document.createElement('link');
-    preloadLink.rel = 'preload';
-    preloadLink.as = 'image';
-    preloadLink.href = BgPic;
-    preloadLink.id = '__herobotm_preload__';
-    if (!document.getElementById('__herobotm_preload__')) {
-      document.head.appendChild(preloadLink);
-    }
-
-    // Inject CSS
-    let styleEl = document.getElementById('__herobotm_css__');
-    if (!styleEl) {
-      styleEl = document.createElement('style');
-      styleEl.id = '__herobotm_css__';
-      document.head.appendChild(styleEl);
-    }
-    styleEl.textContent = HERO_BOTM_CSS;
-
-    return () => {
-      const preloadEl = document.getElementById('__herobotm_preload__');
-      if (preloadEl && preloadEl.parentNode) {
-        preloadEl.parentNode.removeChild(preloadEl);
-      }
-      if (styleEl && styleEl.parentNode) {
-        styleEl.parentNode.removeChild(styleEl);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (lineIdx >= taglineLines.length) return;
-    const timer = setTimeout(() => {
-      if (charIdx < taglineLines[lineIdx].length) {
-        setDisplayedLines(prev => {
-          const newLines = [...prev];
-          newLines[lineIdx] = taglineLines[lineIdx].slice(0, charIdx + 1);
-          return newLines;
-        });
-        setCharIdx(c => c + 1);
-      } else {
-        setDisplayedLines(prev => [...prev, ""]);
-        setLineIdx(l => l + 1);
-        setCharIdx(0);
-      }
-    }, charIdx < taglineLines[lineIdx]?.length ? 20 : 500);
-    return () => clearTimeout(timer);
-  }, [lineIdx, charIdx]);
-
-  return (
-    <section className="hero-botm-section">
-      {/* Black overlay */}
-      <div className="hero-botm-overlay" />
-
-      <div className="hero-botm-content">
-        <div className="hero-botm-text font-bold">
-          {displayedLines.map((line, idx) => (
-            <span key={idx}>{line}<br /></span>
-          ))}
-        </div>
-        <div className="hero-botm-buttons">
-          <a href='/services' className="hero-botm-btn">
-            Our Services
-          </a>
-          <a href='/contact' className="hero-botm-btn">
-            Contact Us
-          </a>
-          <a href='/appointment' className="hero-botm-btn">
-            Book an Appointment
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-};
 
 export default HeroBotm;

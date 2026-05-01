@@ -15,6 +15,17 @@ const CloudComputing = lazy(() => import('./pages/Cloudcomputing'));
 const Contact       = lazy(() => import('./pages/Contact'));
 const Appointment   = lazy(() => import('./pages/Appointment'));
 
+/* ── Prefetch other pages after idle ────────────────────────── */
+const prefetchPages = () => {
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      import('./pages/About');
+      import('./pages/Services');
+      import('./pages/Contact');
+    });
+  }
+};
+
 /* ── Scroll to top on route change (critical for SPA SEO) ─── */
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -41,11 +52,13 @@ const App = () => {
    */
   const finishLoading = useCallback(() => {
     setIsLoading(false);
+    // Once the main page is ready, prefetch other pages during idle time
+    prefetchPages();
   }, []);
 
   useEffect(() => {
-    const MIN_DISPLAY_MS = 1800;          // minimum loader visibility
-    const MAX_WAIT_MS    = 6000;          // hard timeout fallback
+    const MIN_DISPLAY_MS = 1400;          // reduced from 1800 — images are smaller now
+    const MAX_WAIT_MS    = 5000;          // reduced hard timeout
     const start = Date.now();
 
     let done = false;

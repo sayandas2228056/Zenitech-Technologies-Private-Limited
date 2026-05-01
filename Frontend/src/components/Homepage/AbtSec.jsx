@@ -1,13 +1,13 @@
+import { memo, useEffect, useRef } from 'react';
 import { FaPhoneAlt, FaCheckCircle, FaEnvelope } from 'react-icons/fa';
 import pic8 from "../../assets/heroslider/Cloud.jpg";
 import AbtPic from "../../assets/CyberSec.jpg";
-import { useEffect } from 'react';
-import BgPic from "../../assets/pic1.jpg";
-import OptimizedImage from '../Common/OptimizedImage';
 
-const AbtSection = () => {
+const AbtSection = memo(() => {
+  const sectionRef = useRef(null);
+
   useEffect(() => {
-    const observer = new window.IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -16,24 +16,22 @@ const AbtSection = () => {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: '50px' }
     );
-    const elements = document.querySelectorAll('.animate-on-scroll');
-    elements.forEach((el) => observer.observe(el));
+
+    const elements = sectionRef.current?.querySelectorAll('.animate-on-scroll');
+    elements?.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <>
+    <div ref={sectionRef}>
       <div className="relative py-12 md:py-20 px-4 md:px-20 flex flex-col md:flex-row items-center gap-8 md:gap-12 animate-on-scroll" style={{ animationDelay: '0.1s' }}>
-        {/* Background with opacity */}
+        {/* Background with opacity — pure CSS, no image element needed */}
         <div
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: `url(${BgPic})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: '0.05'
+            backgroundColor: '#fafafa',
           }}
         />
 
@@ -41,22 +39,28 @@ const AbtSection = () => {
         <div className="relative z-10 w-full flex flex-col md:flex-row items-center gap-8 md:gap-12">
           {/* Left Side - Images */}
           <div className="relative w-full md:w-1/2">
-            <OptimizedImage
+            <img
               src={AbtPic}
-              alt="About Us Main"
+              alt="Zenitech Cybersecurity Services"
               className="rounded-xl w-full h-auto shadow-lg"
               loading="lazy"
+              decoding="async"
+              width="600"
+              height="400"
             />
             <div className="absolute top-4 md:top-6 left-4 md:left-6 bg-orange-500 text-white text-center px-4 md:px-5 py-2 md:py-3 rounded-md shadow-xl">
               <h2 className="text-xl md:text-2xl font-bold">Expertise in:</h2>
               <p className="text-xs md:text-sm tracking-wide">Cybersecurity & Cloud Solutions</p>
             </div>
             <div className="absolute -bottom-4 md:-bottom-5 -right-4 md:-right-5">
-              <OptimizedImage
+              <img
                 src={pic8}
-                alt="Team"
+                alt="Zenitech Cloud Team"
                 className="w-32 md:w-40 rounded-xl shadow-md border-4 border-white"
                 loading="lazy"
+                decoding="async"
+                width="160"
+                height="120"
               />
             </div>
           </div>
@@ -65,11 +69,11 @@ const AbtSection = () => {
           <div className="w-full md:w-1/2 text-center md:text-left">
             <p className="uppercase tracking-widest text-sm text-gray-500 mb-2">About ZENITECH TECHNOLOGIES PRIVATE LIMITED</p>
             <h2 className="text-2xl md:text-3xl font-bold text-orange-500 mb-5 leading-snug typewriter">
-              Empowering Digital Growth <br /> with Trusted Technology Partner
+              Empowering Digital Growth <br />with Trusted Technology Partner
             </h2>
             <div className="space-y-4">
               <p className="text-sm md:text-base text-gray-700">
-                <span className='font-bold'>ZENITECH TECHNOLOGIES PRIVATE LIMITED </span> is a leading IT Services & Consulting company headquartered in Bengaluru — the Silicon Valley of India.
+                <span className='font-bold'>ZENITECH TECHNOLOGIES PRIVATE LIMITED </span>is a leading IT Services & Consulting company headquartered in Bengaluru — the Silicon Valley of India.
               </p>
               <p className="text-sm md:text-base text-gray-700">
                Defending What Matters. Powering What's Next.
@@ -181,8 +185,10 @@ Your trusted partner in<span className='font-bold'> Cybersecurity </span>&<span 
           transform: translateY(0) !important;
         }
       `}</style>
-    </>
+    </div>
   );
-};
+});
+
+AbtSection.displayName = 'AbtSection';
 
 export default AbtSection;
