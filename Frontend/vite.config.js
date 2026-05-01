@@ -13,24 +13,25 @@ export default defineConfig({
 
   /* ── Build Optimization for SEO & Performance ─────────── */
   build: {
-    // Enable minification
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,   // Remove console.log in production
-        drop_debugger: true,
-        passes: 2,            // Extra compression pass
-      },
-    },
-
     // Chunk splitting strategy for better caching
     rollupOptions: {
       output: {
-        manualChunks: {
+        manualChunks(id) {
           // Vendor chunks — cached separately from app code
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'animation-vendor': ['framer-motion', 'gsap'],
-          'ui-vendor': ['lucide-react', 'react-icons', 'swiper'],
+          if (id.includes('node_modules/react/') ||
+              id.includes('node_modules/react-dom/') ||
+              id.includes('node_modules/react-router-dom/')) {
+            return 'react-vendor';
+          }
+          if (id.includes('node_modules/framer-motion/') ||
+              id.includes('node_modules/gsap/')) {
+            return 'animation-vendor';
+          }
+          if (id.includes('node_modules/lucide-react/') ||
+              id.includes('node_modules/react-icons/') ||
+              id.includes('node_modules/swiper/')) {
+            return 'ui-vendor';
+          }
         },
       },
     },
