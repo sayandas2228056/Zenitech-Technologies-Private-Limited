@@ -236,7 +236,7 @@ const HERO_CSS = `
 .badge-spin {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  animation: spinIt 10s linear infinite;
+  animation: spinIt 8s linear infinite;
   will-change: transform;
 }
 @keyframes spinIt { 
@@ -506,7 +506,6 @@ const HERO_CSS = `
 @media (prefers-reduced-motion: reduce) {
   .s-img,
   .thumb img,
-  .badge-spin,
   .hero-left .expert-tag,
   .hero-left .hero-heading,
   .hero-left .hero-sub,
@@ -514,10 +513,6 @@ const HERO_CSS = `
   .hero-right {
     animation: none;
     transition: none;
-  }
-  
-  .badge-spin {
-    transform: none;
   }
 }
 `
@@ -644,7 +639,7 @@ const Hero = () => {
       <div className="hero-right">
         {/* Main image */}
         <div className="main-img-box">
-          {/* Spinning badge — sits outside clip, on the left */}
+         {/* Spinning badge — sits outside clip, on the left */}
           <div className="badge-wrap">
             <div className="badge-bg" />
             <svg className="badge-spin" viewBox="0 0 116 116" xmlns="http://www.w3.org/2000/svg">
@@ -652,11 +647,11 @@ const Hero = () => {
                 <path id="bp" d="M 58,58 m -39,0 a 39,39 0 1,1 78,0 a 39,39 0 1,1 -78,0" />
               </defs>
               <text fontSize="8.2" fontWeight="700" letterSpacing="3.8" fill="#111111" fontFamily="Manrope,sans-serif">
-                <textPath href="#bp" className='text-orange-600'>Zenitech Technologies Pvt Ltd</textPath>
+                <textPath href="#bp">Zenitech Technologies Pvt Ltd</textPath>
               </text>
             </svg>
             <div className="badge-star">
-              <img src={Logo} alt="Zenitech Logo" className="w-10 h-10 rounded-full" loading="eager" width="40" height="40" decoding="async" fetchPriority="high" />
+              <img src={Logo} alt="Zenitech Logo" className="w-12 h-12 rounded-full" loading="eager" width="48" height="48" decoding="async" fetchPriority="high" />
             </div>
           </div>
 

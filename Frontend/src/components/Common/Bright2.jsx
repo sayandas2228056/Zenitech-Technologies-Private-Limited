@@ -70,7 +70,7 @@ const Bright2 = () => {
                         className="w-2 h-2 rounded-full"
                         style={{ background: '#85B7EB', animation: 'b2-pulse 2s ease infinite' }}
                     />
-                    Zenitech Technology
+                    Available for new projects
                 </div>
 
                 {/* Heading */}
@@ -83,18 +83,14 @@ const Bright2 = () => {
                         letterSpacing: '-0.01em',
                     }}
                 >
-                    Let&apos;s build something{' '}
-                    <span
-                        style={{
-                            background: 'linear-gradient(90deg, #85B7EB, #378ADD, #B5D4F4)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            backgroundClip: 'text',
-                        }}
-                    >
-                        extraordinary
-                    </span>{' '}
-                    together
+                    Partner with{' '}
+                     <span
+            className="bg-gradient-to-r from-orange-400 via-orange-550 to-orange-400 bg-clip-text text-transparent"
+            style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
+          >
+            Zenitech
+          </span>
+                    
                 </h2>
 
                 {/* Subtitle */}

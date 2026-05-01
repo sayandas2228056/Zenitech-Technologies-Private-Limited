@@ -75,34 +75,41 @@ const NavBar = () => {
   };
 
   return (
-    <header className="fixed left-0 top-0 w-full z-40 transition-all duration-300">
+    <header className="fixed left-0 top-0 w-full z-60 transition-all duration-300">
       <div
-        className={`flex items-center justify-between mx-auto transition-all duration-500
-          ${scrolled
-            ? `max-w-5xl mx-auto mt-6 px-6 py-2.5
-               bg-white/90 backdrop-blur-xl rounded-full
-               shadow-[0_8px_25px_rgba(0,0,0,0.12)]
-               border border-gray-200`
-            : `max-w-full mt-0 px-10 py-4 bg-white shadow-md`
-          }
-        `}
+        className={`flex items-center justify-between mx-auto transition-all duration-300 max-w-full mt-0 px-10 py-4 bg-white ${
+          scrolled
+            ? 'shadow-[0_4px_24px_rgba(0,0,0,0.13)] border-b border-gray-100'
+            : 'shadow-md'
+        }`}
       >
         {/* Logo */}
         <a href="/">
           <div className="flex items-center gap-3">
-            <img src={Logo} alt="Zenitech Logo" className="w-12 h-12 rounded-full" loading="eager" width="48" height="48" decoding="async" />
-            <div className="flex flex-col leading-tight">
-              <span className="text-sm md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-red-500 via-orange-500 to-red-400 bg-clip-text text-transparent tracking-wide whitespace-nowrap">
+            <img
+              src={Logo}
+              alt="Zenitech Logo"
+              className="logo-img rounded-full"
+              loading="eager"
+              decoding="async"
+            />
+            {/* Desktop/Landscape: single line */}
+            <span className="hidden md:block text-sm lg:text-xl xl:text-2xl font-bold bg-gradient-to-r from-red-500 via-orange-500 to-red-400 bg-clip-text text-transparent tracking-wide whitespace-nowrap">
+              ZENITECH TECHNOLOGIES PRIVATE LIMITED
+            </span>
+            {/* Mobile/Tablet: two lines */}
+            <div className="flex md:hidden flex-col leading-tight">
+              <span className="text-xs sm:text-sm font-bold bg-gradient-to-r from-red-500 via-orange-500 to-red-400 bg-clip-text text-transparent tracking-wide whitespace-nowrap">
                 ZENITECH TECHNOLOGIES
               </span>
-              <span className="text-sm md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-red-500 via-orange-500 to-red-400 bg-clip-text text-transparent tracking-wide whitespace-nowrap">
+              <span className="text-xs sm:text-sm font-bold bg-gradient-to-r from-red-500 via-orange-500 to-red-400 bg-clip-text text-transparent tracking-wide whitespace-nowrap">
                 PRIVATE LIMITED
               </span>
             </div>
           </div>
         </a>
 
-        {/* Nav Links */}
+        {/* Nav Links - Desktop only */}
         <nav className="hidden md:flex gap-6 font-semibold text-amber-600 font-medium items-center">
           <a href="/" className="nav-link relative transition-all duration-200 hover:text-orange-600 px-2 py-1">
             Home
@@ -128,7 +135,7 @@ const NavBar = () => {
               <span className="nav-underline" />
             </button>
             <div
-              className={`absolute top-full left-0 mt-2 bg-white/98 backdrop-blur-xl rounded-xl shadow-xl border border-gray-100 py-2 min-w-[180px] z-50 transition-all duration-200 ${aboutDropdown || hoveredDropdown === 'About'
+              className={`absolute top-full left-0 mt-2 bg-white/98 backdrop-blur-xl rounded-xl shadow-xl border border-gray-100 py-2 min-w-[180px] z-70 transition-all duration-200 ${aboutDropdown || hoveredDropdown === 'About'
                 ? 'opacity-100 visible translate-y-0'
                 : 'opacity-0 invisible -translate-y-2'
                 }`}
@@ -157,14 +164,14 @@ const NavBar = () => {
               <span className="nav-underline" />
             </button>
             <div
-              className={`absolute top-full left-0 mt-2 bg-white/98 backdrop-blur-xl rounded-xl shadow-xl border border-gray-100 py-2 min-w-[180px] z-50 transition-all duration-200 ${servicesDropdown || hoveredDropdown === 'Services'
+              className={`absolute top-full left-0 mt-2 bg-white/98 backdrop-blur-xl rounded-xl shadow-xl border border-gray-100 py-2 min-w-[180px] z-70 transition-all duration-200 ${servicesDropdown || hoveredDropdown === 'Services'
                 ? 'opacity-100 visible translate-y-0'
                 : 'opacity-0 invisible -translate-y-2'
                 }`}
             >
               <a href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-all duration-150 rounded-lg mx-2">All Services</a>
               <a href="/services/cybersecurity" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-all duration-150 rounded-lg mx-2">Cybersecurity</a>
-              <a href="/services/cloud-computing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-all duration-150 rounded-lg mx-2">Cloud Computing</a>
+              <a href="/services/cloud-solutions" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-all duration-150 rounded-lg mx-2">Cloud Solutions</a>
             </div>
           </div>
           <a href="/contact" className="nav-link relative transition-all duration-200 hover:text-orange-600 px-2 py-1">
@@ -173,16 +180,41 @@ const NavBar = () => {
           </a>
         </nav>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white border border-gray-200 shadow-sm"
-          onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Right side: Mobile shows Let's Talk + hamburger, Desktop shows Let's Talk */}
+        <div className="md:hidden flex items-center gap-2 ml-auto">
+          {/* Let's Talk - Mobile */}
+          <a href="/appointment">
+            <button className="flex items-center gap-1.5 bg-white border border-gray-200 text-gray-900 font-semibold text-xs px-3 py-2 rounded-full shadow-sm hover:shadow-md transition-all duration-300 group">
+              <span>Let's Talk</span>
+              <span className="w-5 h-5 flex items-center justify-center bg-gray-900 rounded-full text-white transition-all duration-300 group-hover:bg-red-500">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-2.5 h-2.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="7" y1="17" x2="17" y2="7" />
+                  <polyline points="7 7 17 7 17 17" />
+                </svg>
+              </span>
+            </button>
+          </a>
 
-        {/* Let's Talk Button */}
+          {/* Hamburger */}
+          <button
+            className="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-gray-200 shadow-sm"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+
+        {/* Let's Talk Button - Desktop only */}
         <a href="/appointment" className="hidden md:block">
           <button className="flex items-center gap-2 bg-white border border-gray-200 text-gray-900 font-semibold text-sm px-5 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all duration-300 group">
             <span>Let's Talk</span>
@@ -371,6 +403,12 @@ const NavBar = () => {
       </div>
 
       <style>{`
+        /* Logo image sizing */
+        .logo-img {
+          width: 48px;
+          height: 48px;
+        }
+
         .nav-link {
           position: relative;
         }
@@ -391,56 +429,47 @@ const NavBar = () => {
           right: 0;
         }
 
-        /* Responsive optimizations */
-        @media (max-width: 768px) {
-          header {
-            padding: 0 clamp(12px, 3vw, 16px);
+        /* Mobile: clean layout — logo left, hamburger right only */
+        @media (max-width: 767px) {
+          header > div {
+            padding: 8px 12px !important;
+            max-width: 100% !important;
+            margin-top: 0 !important;
+            border-radius: 0 !important;
+          }
+
+          .logo-img {
+            width: 38px;
+            height: 38px;
           }
         }
 
         @media (max-width: 480px) {
-          header {
-            padding: 0 12px;
+          header > div {
+            padding: 8px 10px !important;
           }
-          
-          .text-xl {
-            font-size: 1rem;
-          }
-          
-          .text-2xl {
-            font-size: 1.25rem;
+
+          .logo-img {
+            width: 34px;
+            height: 34px;
           }
         }
 
         @media (max-width: 360px) {
-          .w-12 {
-            width: 2.5rem;
-            height: 2.5rem;
+          header > div {
+            padding: 6px 8px !important;
           }
-          
-          .text-xl {
-            font-size: 0.875rem;
-          }
-          
-          .text-2xl {
-            font-size: 1.125rem;
+
+          .logo-img {
+            width: 30px;
+            height: 30px;
           }
         }
 
-        /* Landscape orientation */
-        @media (max-height: 500px) and (orientation: landscape) {
-          header {
-            padding: 0 clamp(8px, 2vw, 16px);
-          }
-          
-          .py-2\.5 {
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-          }
-          
-          .py-4 {
-            padding-top: 0.75rem;
-            padding-bottom: 0.75rem;
+        /* Landscape on mobile: keep compact */
+        @media (max-height: 500px) and (orientation: landscape) and (max-width: 900px) {
+          header > div {
+            padding: 6px 12px !important;
           }
         }
 
@@ -461,54 +490,6 @@ const NavBar = () => {
           .transition-opacity {
             transition: none !important;
             animation: none !important;
-          }
-        }
-
-        /* Mobile navbar fixes */
-        @media (max-width: 768px) {
-          header {
-            padding: 0;
-          }
-          
-          header > div {
-            padding: 8px 12px;
-            max-width: 100%;
-          }
-          
-          header > div > a {
-            display: flex !important;
-            align-items: center;
-          }
-          
-          header > div > a > div {
-            display: flex !important;
-            align-items: center;
-          }
-        }
-
-        @media (max-width: 480px) {
-          header > div {
-            padding: 8px 10px;
-          }
-          
-          header > div > a > div > img {
-            width: 40px;
-            height: 40px;
-          }
-        }
-
-        @media (max-width: 360px) {
-          header > div {
-            padding: 6px 8px;
-          }
-          
-          header > div > a > div {
-            gap: 8px;
-          }
-          
-          header > div > a > div > img {
-            width: 36px;
-            height: 36px;
           }
         }
       `}</style>

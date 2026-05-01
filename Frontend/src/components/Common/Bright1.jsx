@@ -71,14 +71,13 @@ const Bright1 = () => {
             textShadow: '0 2px 40px rgba(91,33,182,0.5)', // purple shadow
           }}
         >
-          Let&apos;s create something{' '}
+         Partner with{' '}
           <span
-            className="bg-gradient-to-r from-purple-400 via-violet-500 to-fuchsia-400 bg-clip-text text-transparent"
+            className="bg-gradient-to-r from-orange-400 via-orange-450 to-orange-400 bg-clip-text text-transparent"
             style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
           >
-            extraordinary
+            Zenitech
           </span>{' '}
-          together
         </h1>
         {/* Subtitle */}
         <p
