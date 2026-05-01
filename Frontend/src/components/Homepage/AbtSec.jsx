@@ -49,7 +49,7 @@ const AbtSection = () => {
             />
             <div className="absolute top-4 md:top-6 left-4 md:left-6 bg-orange-500 text-white text-center px-4 md:px-5 py-2 md:py-3 rounded-md shadow-xl">
               <h2 className="text-xl md:text-2xl font-bold">Expertise in:</h2>
-              <p className="text-xs md:text-sm tracking-wide">Cybersecurity & Cloud Computing</p>
+              <p className="text-xs md:text-sm tracking-wide">Cybersecurity & Cloud Solutions</p>
             </div>
             <div className="absolute -bottom-4 md:-bottom-5 -right-4 md:-right-5">
               <OptimizedImage
@@ -65,20 +65,21 @@ const AbtSection = () => {
           <div className="w-full md:w-1/2 text-center md:text-left">
             <p className="uppercase tracking-widest text-sm text-gray-500 mb-2">About ZENITECH TECHNOLOGIES PRIVATE LIMITED</p>
             <h2 className="text-2xl md:text-3xl font-bold text-orange-500 mb-5 leading-snug typewriter">
-              Empowering Digital Growth <br /> with Trusted Technology
+              Empowering Digital Growth <br /> with Trusted Technology Partner
             </h2>
             <div className="space-y-4">
               <p className="text-sm md:text-base text-gray-700">
                 <span className='font-bold'>ZENITECH TECHNOLOGIES PRIVATE LIMITED </span> is a leading IT Services & Consulting company headquartered in Bengaluru — the Silicon Valley of India.
               </p>
               <p className="text-sm md:text-base text-gray-700">
-                We provide a comprehensive portfolio of services including<span className='font-bold'> Cybersecurity </span>&<span className='font-bold'> Cloud Computing</span>.
+               Defending What Matters. Powering What's Next.
+Your trusted partner in<span className='font-bold'> Cybersecurity </span>&<span className='font-bold'> Cloud Solutions</span>.
               </p>
               <p className="text-sm md:text-base text-gray-700">
-                Through strong partnerships with top-tier OEMs and global tech brands, we consistently deliver high-value outcomes across multiple industries.
+                Through strong partnerships with top-tier technology partners and global tech brands, we consistently deliver high-value outcomes across multiple industries.
               </p>
               <p className="text-sm md:text-base text-gray-700">
-                Our clients span from startups to large enterprises across domains like IT/ITES, Startups, BFSI,  Fintech, Healthcare, Pharmaceuticals ,  Manufacturing , Automobile, Retail, Ecommerce , Education , Media & Entertainment , Logistic & Supply and many more.
+                Our clients span from startups to large enterprises across domains like IT/ITES, Startups, BFSI,  Fintech, Healthcare, Pharmaceuticals ,  Manufacturing , Automobile, Retail, Ecommerce , Education , Media & Entertainment , Logistics & Supply and many more.
               </p>
             </div>
 
@@ -134,7 +135,7 @@ const AbtSection = () => {
               </div>
             </div>
             <p className="text-sm md:text-base text-gray-800 max-w-4xl mx-auto leading-relaxed">
-              Your Strategic Partner for <span className='text-orange-500 font-bold'>Cybersecurity</span> & <span className='text-orange-500 font-bold'>Cloud Computing</span> Services
+              Your Strategic Partner for <span className='text-orange-500 font-bold'>Cybersecurity</span> & <span className='text-orange-500 font-bold'>Cloud Solutions</span>
             </p>
           </div>
         </div>

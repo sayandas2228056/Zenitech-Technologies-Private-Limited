@@ -58,7 +58,7 @@ const infoCards = [
 const offices = [
     {
         name: 'Bengaluru Office',
-        address: 'Dex Co Work, 2nd Floor, 1383/433, 5th Block, HBR Layout, Bengaluru – 560043, India',
+        address: 'Dex Co Work, 2nd Floor, 1383/433, 5th Block, HBR Layout, Bengaluru – 560045, India',
         mapUrl: 'https://www.google.com/maps?ll=13.033567,77.628973&z=16&t=m&hl=en&gl=IN&mapclient=embed&cid=7683974504345032106',
     }
 ];

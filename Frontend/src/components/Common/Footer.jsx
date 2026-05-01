@@ -25,7 +25,7 @@ const Footer = () => {
                 <span className="text-orange-500"> PRIVATE LIMITED</span>
               </h2>
               <p className="text-slate-300 text-base leading-relaxed max-w-md">
-                Innovative Solutions of Cybersecurity & Cloud Computing Designed to Modernize, Protect, and Propel Your Business Forward with cutting-edge technology solutions.
+                We deliver cutting-edge Cybersecurity and Cloud Solutions that safeguard your digital assets, modernize your infrastructure, and empower your business to grow fearlessly in an ever-evolving technology landscape.
               </p>
             </div>
             
@@ -98,8 +98,8 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/services/cloud-computing" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
-                  Cloud Computing
+                <a href="/services/cloud-solutions" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
+                  Cloud Solutions
                 </a>
               </li>
             </ul>

@@ -288,12 +288,11 @@ const About = () => {
           <RevealCard className="ab-half">
             <span className="ab-badge-pill">
               <span className="ab-badge-pill-inner">WHO WE ARE</span>
-              <span className="ab-badge-pill-sub">Excellence Since 2026</span>
             </span>
             <div className="ab-text-stack">
-              <p><span className="ab-orange ab-fw">ZENITECH TECHNOLOGIES PRIVATE LIMITED</span> is a premier IT Services &amp; Consulting company headquartered in Bengaluru, the Silicon Valley of India. As a trusted system integrator, we specialise in comprehensive technology solutions that drive business growth.</p>
-              <p>With a team of highly skilled professionals, we offer expert services in Cybersecurity & Cloud Computing . Our strategic partnerships with leading OEMs and technology providers enable us to deliver cutting-edge solutions tailored to each client.</p>
-              <p>We serve organisations across IT/ITES, BFSI, Manufacturing, Healthcare, ISPs, Education and more helping them navigate the digital landscape with confidence.</p>
+              <p><span className="ab-orange ab-fw">ZENITECH TECHNOLOGIES PRIVATE LIMITED</span> is a premier IT Services &amp; Consulting company headquartered in Bengaluru, the Silicon Valley of India. As a trusted IT Services Company, we specialise in comprehensive technology solutions that drive business growth.</p>
+              <p>With a team of highly skilled professionals, we provide cutting-edge Cybersecurity & Cloud Solutions. Our strategic partnerships with leading technology providers enable us to deliver cutting-edge solutions tailored to each client.</p>
+              <p>Our clients span from startups to large enterprises across domains like IT/ITES, Startups, BFSI, Fintech, Healthcare, Pharmaceuticals , Manufacturing , Automobile, Retail, Ecommerce , Education , Media & Entertainment , Logistics & Supply and many more.</p>
             </div>
             <a href="/services" className="ab-link-arrow">
               Explore Our Services <ChevronRight size={16} className="ab-link-chevron" />

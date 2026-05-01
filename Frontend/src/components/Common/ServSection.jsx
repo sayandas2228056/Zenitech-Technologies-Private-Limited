@@ -17,9 +17,9 @@ import {
 const services = [
   
   {
-  title: 'CyberSecurity',
+  title: 'Cybersecurity',
   shortDesc: 'Protect your digital ecosystem with intelligent, multi-layered security.',
-  fullDesc: 'We deliver comprehensive cybersecurity services designed to safeguard your business from evolving threats. From proactive risk assessment to real-time threat detection and rapid incident response, our solutions ensure your systems, networks, and data remain secure, compliant, and resilient.',
+  fullDesc: 'We deliver comprehensive cybersecurity solutions designed to safeguard your business from evolving threats. From proactive risk assessment to real-time threat detection and rapid incident response, our solutions ensure your systems, networks, and data remain secure, compliant, and resilient.',
   features: [
     'Advanced Vulnerability Assessment & Penetration Testing (VAPT)',
     '24/7 Security Monitoring & Incident Response (SOC Services)',
@@ -33,7 +33,7 @@ const services = [
   route: '/services/cybersecurity',
 },
   {
-  title: 'Cloud Computing',
+  title: 'Cloud Solutions',
   shortDesc: 'Accelerate your business with scalable, secure, and high-performance cloud solutions.',
   fullDesc: 'We help organizations seamlessly adopt and optimize cloud technologies to enhance agility, reduce costs, and drive innovation. Whether you\'re migrating existing systems or building cloud-native applications, our expertise ensures a smooth, secure, and efficient cloud journey.',
   features: [
@@ -46,7 +46,7 @@ const services = [
   ],
   highlight: 'Build. Scale. Optimize. Power your growth with the cloud.',
   icon: Cloud,
-  route: '/services/cloud',
+  route: '/services/cloud-solutions',
 }
 ];
 
@@ -99,7 +99,7 @@ const ServSection = () => {
           Enterprise Cybersecurity & Cloud Solutions
         </h2>
         <p className="text-sm sm:text-base max-w-2xl mx-auto text-gray-600">
-          Delivering comprehensive Cybersecurity & Cloud services to help your business achieve digital transformation and operational excellence.
+          Delivering comprehensive Cybersecurity & Cloud Solutions to help your business achieve digital transformation and operational excellence.
         </p>
       </div>
 

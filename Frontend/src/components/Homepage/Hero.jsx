@@ -236,10 +236,13 @@ const HERO_CSS = `
 .badge-spin {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  animation: spinIt 14s linear infinite;
+  animation: spinIt 10s linear infinite;
   will-change: transform;
 }
-@keyframes spinIt { to { transform: rotate(360deg); } }
+@keyframes spinIt { 
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); } 
+}
 
 .badge-star {
   position: absolute; inset: 0;
@@ -596,7 +599,7 @@ const Hero = () => {
 
         <h1 className="hero-heading">
           Empower your business with our expertise in <br />
-          <span className='text-orange-400'>Cybersecurity <span className='text-black'>&</span> Cloud Computing<br /> </span>
+          <span className='text-orange-400'>Cybersecurity <span className='text-black'>&</span> Cloud Solutions<br /> </span>
         </h1>
 
         <p className="hero-sub">
@@ -649,7 +652,7 @@ const Hero = () => {
                 <path id="bp" d="M 58,58 m -39,0 a 39,39 0 1,1 78,0 a 39,39 0 1,1 -78,0" />
               </defs>
               <text fontSize="8.2" fontWeight="700" letterSpacing="3.8" fill="#111111" fontFamily="Manrope,sans-serif">
-                <textPath href="#bp" className='text-orange-600'>•ZENITECH TECHNOLOGIES PRIVATE LIMITED</textPath>
+                <textPath href="#bp" className='text-orange-600'>Zenitech Technologies Pvt Ltd</textPath>
               </text>
             </svg>
             <div className="badge-star">

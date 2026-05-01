@@ -45,7 +45,7 @@ const App = () => {
           <Route path="/about/founder" element={<AboutFounder />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/cybersecurity" element={<Cybersecurity />} />
-          <Route path="/services/cloud-computing" element={<CloudComputing />} />
+          <Route path="/services/cloud-solutions" element={<CloudComputing />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/appointment" element={<Appointment />} />
 

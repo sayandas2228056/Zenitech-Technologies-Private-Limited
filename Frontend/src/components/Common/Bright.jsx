@@ -97,7 +97,7 @@ const Bright = () => {
             textShadow: '0 2px 40px rgba(160,60,0,0.6)',
           }}
         >
-          Let&apos;s create something{' '}
+Partner with  {' '}
           <span
             style={{
               background:
@@ -106,9 +106,8 @@ const Bright = () => {
               WebkitTextFillColor: 'transparent',
             }}
           >
-            extraordinary
+          Zenitech
           </span>{' '}
-          together
         </h1>
 
         {/* 🔥 Subtitle */}

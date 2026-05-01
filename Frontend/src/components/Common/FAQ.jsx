@@ -14,14 +14,14 @@ const FAQ = () => {
   {
     question: 'What services are offered?',
     answer:
-      'Services include cybersecurity solutions, cloud architecture design, infrastructure deployment, monitoring, and managed support tailored to modern business environments.',
+      'Services include cutting-edge cybersecurity solutions, cloud architecture design, cloud assessment, cost optimizations, cloud migration, infrastructure deployment, monitoring, and managed services tailored to modern business environments.',
     category: 'Services',
     icon: <Zap size={20} className="text-orange-500" />,
   },
   {
     question: 'What cybersecurity solutions are provided?',
     answer:
-      'Solutions cover endpoint security, EDR/XDR, network security, firewall management, identity and access management, vulnerability assessments, and application security to protect critical systems and data.',
+      'Solutions cover Endpoint Security, EDR/XDR, MDR, Email Security, Data Loss Prevention, Endpoint Management, Patch Management, Mobile Device Management, Cloud Security, Application Security, API Security, AI Security, Brand Protection Security, Network Security, Identity and Access Management, Vulnerability Assessments & many more to protect critical systems and data.',
     category: 'Cybersecurity',
     icon: <Shield size={20} className="text-orange-500" />,
   },

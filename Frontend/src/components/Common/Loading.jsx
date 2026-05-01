@@ -78,7 +78,7 @@ const LoadingLight = () => {
 
         {/* 🔥 Footer */}
         <p className="mt-6 text-[11px] text-gray-400 tracking-widest uppercase">
-          Cybersecurity • Cloud • Software
+          Cybersecurity • Cloud Solutions 
         </p>
       </div>
 
