@@ -526,17 +526,17 @@ const About = () => {
       <style>{`
         /* ── Tokens ──────────────────────────────────────────── */
         .ab-root {
-          --ab-purple-900: #2E0664;
-          --ab-purple-800: #4B0082;
-          --ab-purple-700: #5B21B6;
-          --ab-purple-600: #7C3AED;
-          --ab-purple-500: #8B5CF6;
-          --ab-purple-400: #A78BFA;
-          --ab-purple-300: #C4B5FD;
-          --ab-purple-100: #EDE9FE;
-          --ab-purple-50:  #F5F3FF;
-          --ab-orange:     #F97316;
-          --ab-orange-lt:  #FB923C;
+          --ab-orange-900: #7C2D12;
+          --ab-orange-800: #9A3412;
+          --ab-orange-700: #C2410C;
+          --ab-orange-600: #EA580C;
+          --ab-orange-500: #F97316;
+          --ab-orange-400: #FB923C;
+          --ab-orange-300: #FDBA74;
+          --ab-orange-100: #FFEDD5;
+          --ab-orange-50:  #FFF7ED;
+          --ab-accent:     #185FA5;
+          --ab-accent-lt:  #378ADD;
           --ab-white:      #ffffff;
           --ab-gray-50:    #FAFAFA;
           --ab-gray-100:   #F3F4F6;
@@ -544,16 +544,16 @@ const About = () => {
           --ab-gray-500:   #6B7280;
           --ab-gray-700:   #374151;
           --ab-gray-900:   #111827;
-          --ab-text-main:  #1A0533;
-          --ab-text-body:  #3D2060;
-          --ab-text-muted: #7C6A9A;
-          --ab-faded:      #FAF8FF;
+          --ab-text-main:  #331A05;
+          --ab-text-body:  #60350D;
+          --ab-text-muted: #9A7C5A;
+          --ab-faded:      #FFFBF7;
           --ab-radius-sm:  8px;
           --ab-radius-md:  12px;
           --ab-radius-lg:  16px;
           --ab-radius-xl:  20px;
-          --ab-shadow-card: 0 2px 12px rgba(124,58,237,0.07), 0 1px 3px rgba(0,0,0,0.05);
-          --ab-shadow-hov:  0 10px 36px rgba(124,58,237,0.14), 0 2px 8px rgba(0,0,0,0.06);
+          --ab-shadow-card: 0 2px 12px rgba(234,88,12,0.07), 0 1px 3px rgba(0,0,0,0.05);
+          --ab-shadow-hov:  0 10px 36px rgba(234,88,12,0.14), 0 2px 8px rgba(0,0,0,0.06);
           font-family: 'Satoshi', 'Inter', system-ui, sans-serif;
           background: var(--ab-white);
           color: var(--ab-text-main);

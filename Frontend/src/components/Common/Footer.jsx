@@ -9,7 +9,7 @@ import {
   HiOutlineMail,
   HiOutlineLocationMarker,
 } from 'react-icons/hi';
-
+import Logo from "../../assets/Logo.png";
 const Footer = () => {
   return (
     <footer className="bg-slate-900 text-white" itemScope itemType="https://schema.org/WPFooter">
@@ -21,12 +21,15 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="mb-6">
-              <h2 className="text-2xl font-bold mb-3">
-                <span className="text-orange-500">ZENITECH TECHNOLOGIES</span>
-                <span className="text-orange-500"> PRIVATE LIMITED</span>
-              </h2>
+              <div className="flex items-center gap-4 mb-3">
+                <img src={Logo} alt="Zenitech Technologies" className="w-16 h-16 rounded-full object-cover hidden lg:block" />
+                <h2 className="text-2xl font-bold">
+                  <span className="text-orange-500">ZENITECH TECHNOLOGIES</span>
+                  <span className="text-orange-500"> PRIVATE LIMITED</span>
+                </h2>
+              </div>
               <p className="text-slate-300 text-base leading-relaxed max-w-md">
-                India's trusted cybersecurity and cloud computing services provider. We deliver enterprise-grade security solutions, cloud migration, managed IT services, and 24/7 threat monitoring from Bengaluru.
+              We provide cutting-edge cybersecurity and cloud solutions engineered for India's growing businesses. We protect what you've built today while preparing your infrastructure for tomorrow.
               </p>
             </div>
             
@@ -66,7 +69,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <Link to="/about" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
-                  About Zenitech Technologies
+                  About Us
                 </Link>
               </li>
               <li>
@@ -76,7 +79,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/services" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
-                  IT Services &amp; Solutions
+                  Services
                 </Link>
               </li>
               <li>
@@ -86,7 +89,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/appointment" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
-                  Book a Consultation
+                  Schedule a Meeting
                 </Link>
               </li>
             </ul>
@@ -100,24 +103,15 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <Link to="/services/cybersecurity" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
-                  Cybersecurity Solutions
+                  Cybersecurity
                 </Link>
               </li>
               <li>
                 <Link to="/services/cloud-solutions" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
-                  Cloud Computing Services
+                  Cloud Solutions
                 </Link>
               </li>
-              <li>
-                <Link to="/services" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
-                  Managed IT Services India
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="text-slate-300 hover:text-orange-400 transition-colors duration-200 text-sm">
-                  Cloud Security Consulting
-                </Link>
-              </li>
+              
             </ul>
           </nav>
         </div>
