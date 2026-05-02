@@ -73,8 +73,8 @@ const socialLinks = [
 ];
 
 const faqs = [
-    { icon: Clock, question: 'What are your business hours?', answer: 'Monday to Friday 24/7 emergency technical support is also available.' },
-    { icon: Zap, question: 'How quickly can I expect a response?', answer: 'We respond within 24 hours during business days. For urgent matters, our support line is available round the clock.' },
+    { icon: Clock, question: 'What are your business hours?', answer: 'Monday to Friday 9AM to 6PM.' },
+    { icon: Zap, question: 'How quickly can I expect a response?', answer: 'We respond within 2-4 hours during business days. For urgent matters, our support line is available round the clock.' },
     { icon: Globe, question: 'Do you offer remote services?', answer: 'Yes, we serve clients globally with remote support, virtual consultations, and cloud-delivered solutions.' },
     { icon: Calendar, question: 'How can I schedule a consultation?', answer: 'Use our contact form, email, or phone call to schedule a consultation at a time that works best for you.' },
     { icon: Wrench, question: 'What services do you offer?', answer: 'We provide comprehensive solutions including cybersecurity & cloud computing' },

@@ -17,18 +17,21 @@ const services = [
       'Comprehensive cybersecurity solutions designed to protect digital assets, mitigate evolving threats, and ensure regulatory compliance. Leveraging a layered security approach, these services strengthen resilience across networks, applications, and user access points.',
     
     features: [
-      'Threat Detection & Incident Response',
-      'Vulnerability Assessment & Penetration Testing',
-      'Compliance & Risk Management',
-      'Identity & Access Management (IAM)',
-      'Network & Endpoint Security',
-      'Security Awareness & Training'
+       'Threat Detection & Incident Response',
+       'Vulnerability Assessment & Penetration Testing',
+       'Compliance & Risk Advisory',
+       'Identity & Access Management (IAM)',
+       'Network Security & Firewall Management',
+       'Data Loss Prevention (DLP)',
+       'Security Operations Center (SOC) Services',
+       'Endpoint Detection & Response (EDR)',
+       'Cloud Security Posture Management',
     ],
 
   },
 
   {
-    title: 'Cloud Computing',
+    title: 'Cloud Solutions',
     category: 'Cloud',
     icon: Cloud,
     fullDesc:
@@ -36,11 +39,13 @@ const services = [
     
     features: [
       'Cloud Strategy & Migration',
-      'Infrastructure as a Service (IaaS)',
-      'Platform as a Service (PaaS)',
       'Cloud Architecture & Deployment',
       'Monitoring & Managed Services',
-      'Cost Optimization & Resource Management'
+      'Cost Optimization & Resource Management',
+      'Cloud Cost Auditing & FinOps',
+      'Auto-Scaling & Performance Optimization',
+      'Cloud Backup & Data Recovery',
+      'Cloud Vendor Selection & Advisory'
     ],
   },
 ];
@@ -48,53 +53,42 @@ const services = [
 const processSteps = [
   {
     step: 1,
-    title: 'Discovery & Risk Assessment',
+    title: 'Understand Your Business',
     description:
-      'Assess business objectives, existing infrastructure, and security posture to identify risks, gaps, and compliance requirements.',
+      'We start by learning your business — goals, existing infrastructure, risk tolerance, and compliance obligations. No assumptions, no templates. Just a clear picture of where you are and where you need to be.',
   },
   {
     step: 2,
-    title: 'Architecture & Solution Design',
+    title: 'Plan & Prioritize',
     description:
-      'Design secure and scalable cloud architectures aligned with best practices, incorporating Zero Trust principles and defense-in-depth strategies.',
+      'We turn findings into a practical, phased roadmap with clear timelines, priorities, and milestones — so leadership has full visibility and zero surprises throughout the engagement.',
   },
   {
     step: 3,
-    title: 'Strategy & Roadmap Planning',
+    title: 'Design for Scale & Security',
     description:
-      'Define a clear implementation roadmap covering cloud migration, security integration, and operational workflows.',
+      'Our architects design solutions built to grow with your business — secure by default, optimized for performance, and aligned with your long-term technology strategy.',
   },
   {
     step: 4,
-    title: 'Secure Infrastructure Setup',
+    title: 'Build & Deploy',
     description:
-      'Provision cloud infrastructure with built-in security controls, including network segmentation, identity policies, and access management.',
+      'We implement and integrate your solution with minimal disruption to daily operations — using proven practices that ensure consistency, speed, and security at every step.',
   },
   {
     step: 5,
-    title: 'Implementation & Integration',
+    title: 'Validate & Go Live',
     description:
-      'Deploy applications, security tools, and cloud services using automation and DevSecOps practices to ensure consistency and efficiency.',
+      'Before anything goes live, we test thoroughly — vulnerability assessments, compliance checks, and performance validation — so you launch with confidence, not crossed fingers.',
   },
   {
     step: 6,
-    title: 'Testing, Validation & Compliance',
+    title: 'Monitor, Support & Evolve',
     description:
-      'Conduct rigorous testing including vulnerability assessments, penetration testing, and compliance validation against industry standards.',
-  },
-  {
-    step: 7,
-    title: 'Deployment & Knowledge Transfer',
-    description:
-      'Execute secure deployment with minimal downtime and provide training to ensure smooth adoption and operational readiness.',
-  },
-  {
-    step: 8,
-    title: 'Monitoring, Optimization & Support',
-    description:
-      'Continuously monitor systems, respond to threats, optimize performance, and provide ongoing support for sustained reliability and security.',
+      'Our relationship doesn\'t end at deployment. We provide continuous monitoring, proactive support, and regular reviews to keep your systems secure, efficient, and ahead of emerging threats.',
   },
 ];
+
 const caseStudies = [
   {
     title: 'Multi-Cloud Infrastructure Optimization',
@@ -277,7 +271,7 @@ const ServiceCard = ({ service }) => {
       {/* Features */}
       <p className="sv-label-tiny">Key Features</p>
       <div className="sv-feat-list">
-        {service.features.slice(0, 3).map((f, i) => <CheckBullet key={i} text={f} />)}
+        {service.features.slice(0, 8).map((f, i) => <CheckBullet key={i} text={f} />)}
       </div>
 
       {/* CTA */}
@@ -389,7 +383,7 @@ const Services = () => {
           <div className="sv-section-header">
             <SectionLabel text="Our Expertise" />
             <SectionHead>Services &amp; Solutions</SectionHead>
-            <SectionSub>Empowering businesses with cutting-edge digital services — Cybersecurity & Cloud Computing.</SectionSub>
+            <SectionSub>Empowering businesses with cutting-edge digital services — Cybersecurity & Cloud Solutions.</SectionSub>
           </div>
           <div className="sv-services-grid">
             {services.map((s, i) => <ServiceCard key={i} service={s} />)}

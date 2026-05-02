@@ -99,11 +99,11 @@ const AboutFounder = () => {
                     <span className="text-6xl font-bold text-blue-900"><img src={Founder}/></span>
                   </div>
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-1">Mr. Haider Ali</h2>
+                <h2 className="text-2xl font-bold text-slate-900 mb-1">Haider Ali</h2>
                 <p className="text-blue-900 font-medium mb-4">Founder & CEO</p>
                 <div className="w-12 h-1 bg-blue-900 mb-4"></div>
                 <p className="text-slate-600 text-sm mb-6">
-                  Technology visionary with 20+ years of experience in Enterprise Cybersecurity & Cloud Solutions
+                  Technology visionary with 25+ years of experience in Enterprise Cybersecurity & Cloud Solutions
                 </p>
                 
                 {/* Contact Information */}
@@ -129,7 +129,7 @@ const AboutFounder = () => {
                 {/* Social Media */}
                 <div className="flex justify-center gap-3">
                   <a 
-                    href="https://linkedin.com" 
+                    href="https://www.linkedin.com/in/haideraliraja/" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-900 hover:text-white transition-colors"
@@ -165,10 +165,10 @@ const AboutFounder = () => {
                   <h3 className="text-xl font-semibold text-slate-900">Professional Overview</h3>
                 </div>
                 
-                <p className="text-slate-700 leading-relaxed mb-6">With over two decades of experience in B2B Sales and Business Development, I specialize in Cybersecurity & Cloud Services PAN India and across the globe. At Zenitech Solutions, we've built our foundation on personalized consulting that addresses the unique challenges faced by enterprise clients in today's rapidly evolving technological landscape.
+                <p className="text-slate-700 leading-relaxed mb-6">With over two decades of experience in B2B Sales and Business Development, I specialize in Cybersecurity & Cloud Services PAN India and across the globe. At Zenitech, we've built our foundation on personalized consulting that addresses the unique challenges faced by enterprise clients in today's rapidly evolving technological landscape.
                 </p>
                 
-                <p className="text-slate-700 leading-relaxed mb-6">My core expertise lies in cultivating strategic partnerships and nurturing enterprises, consistently opening new business avenues and driving sustainable growth. Working alongside industry-leading OEMs and technology partners, our team has developed a reputation for delivering cutting-edge solutions that seamlessly integrate with our clients' existing infrastructure.
+                <p className="text-slate-700 leading-relaxed mb-6">My core expertise lies in cultivating strategic partnerships and nurturing enterprises, consistently opening new business avenues and driving sustainable growth. Working alongside industry-leading technology partners, our team has developed a reputation for delivering cutting-edge solutions that seamlessly integrate with our clients' existing infrastructure.
                 </p>
                 
                 <div className="mt-8">

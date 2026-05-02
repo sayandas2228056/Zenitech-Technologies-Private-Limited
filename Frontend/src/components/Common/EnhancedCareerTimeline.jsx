@@ -4,9 +4,24 @@ import { Briefcase, Calendar, MapPin, Award, ChevronRight, ChevronLeft, External
 const EnhancedCareerTimeline = () => {
   const experiences = [
     {
+      company: "ZENITECH TECHNOLOGIES PRIVATE LIMITED",
+      role: "Founder & CEO",
+      period: "Apr 2026 - Present",
+      duration: "2 mos",
+      location: "Bengaluru, India",
+      description: "Trusted Experts in Cybersecurity & Cloud Solutions, serving PAN India & Global clients.",
+      highlights: [
+
+        "Serve pan-India and global clients with enterprise-grade Cybersecurity and Cloud Solutions.",
+        
+      ],
+      skills: ["Cybersecurity", "Cloud Computing", "IT Services"],
+      color: "from-blue-600 to-indigo-800"
+    },
+    {
       company: "Zenitech Solutions",
       role: "Founder & CEO",
-      period: "Oct 2021 - Feb 2026",
+      period: "Oct 2021 - present",
       duration: "4 Years 4 Months",
       location: "Bengaluru, India",
       description: "Zenitech Solutions is an IT Services & Consulting firm having corporate office at Bengaluru, Silicon Valley of India. We offer IT, Cloud, Cybersecurity, Software, Telecom services PAN India & across the globe.",

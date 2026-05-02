@@ -35,8 +35,8 @@ const steps = [
 const benefits = [
     { Icon: Shield,      title: 'Tailored Advice',              desc: 'Customised recommendations based on your specific industry and risk profile.' },
     { Icon: CheckCircle, title: 'No Obligations',               desc: 'Free consultation — no pressure, no hidden commitments.' },
-    { Icon: Award,       title: 'Certified Professionals',      desc: 'CISSP, CEH, and CISM certified experts with 10+ years of field experience.' },
-    { Icon: Users,       title: 'Industry-Specific Solutions',  desc: 'Deep expertise across healthcare, finance, retail, and government.' },
+    { Icon: Award,       title: 'Industry Certified Expert',      desc: 'Industry certified experts .' },
+    { Icon: Users,       title: 'Industry-Specific Solutions',  desc: 'Deep expertise across various industries.' },
 ];
 
 const featurePills = [

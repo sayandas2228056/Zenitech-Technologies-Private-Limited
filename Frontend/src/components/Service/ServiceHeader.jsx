@@ -35,7 +35,7 @@ const ServiceHeader = () => {
                     </h1>
 
                     <p className="sh-sub sh-anim" style={{ animationDelay: '0.18s' }}>
-                        Comprehensive Cybersecurity &amp; Cloud Computing services to drive
+                        Comprehensive Cybersecurity &amp; Cloud Solutions to drive
                         innovation and sustainable growth for your organization.
                     </p>
 
@@ -44,7 +44,7 @@ const ServiceHeader = () => {
                             Cybersecurity
                         </Link>
                         <Link to="/services/cloud-computing" className="sh-btn-outline">
-                            Cloud Computing
+                            Cloud Solutions
                         </Link>
                     </div>
                 </div>
