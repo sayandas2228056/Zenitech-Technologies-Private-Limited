@@ -1,24 +1,5 @@
-# Robots.txt for www.zenitech.in
-# Zenitech Technologies Private Limited
-
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /_next/
 Disallow: /admin/
-
-# Sitemap
+Disallow: /private/
 Sitemap: https://www.zenitech.in/sitemap.xml
-
-# Crawl-delay (optional, respected by some bots)
-Crawl-delay: 1
-
-# Google-specific
-User-agent: Googlebot
-Allow: /
-Disallow: /api/
-
-# Bing-specific
-User-agent: Bingbot
-Allow: /
-Disallow: /api/

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 /**
  * useSEO — Comprehensive per-page SEO hook.
  *
- * Sets <title>, meta description, canonical URL, OG tags, Twitter tags,
+ * Sets <title>, meta description, canonical URL, OG tags,
  * and injects JSON-LD structured data (breadcrumbs, FAQ, service, etc.).
  *
  * @param {Object}   options
