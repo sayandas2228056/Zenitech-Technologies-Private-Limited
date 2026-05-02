@@ -27,7 +27,7 @@ const useSEO = ({
   jsonLd,
 }) => {
   useEffect(() => {
-    const BRAND = 'Zenitech';
+    const BRAND = 'ZENITECH';
     const fullTitle = title ? `${title} | ${BRAND}` : `${BRAND} | Cybersecurity & Cloud Solutions`;
     const url = canonical || window.location.href;
 

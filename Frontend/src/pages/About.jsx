@@ -20,10 +20,10 @@ import useSEO from '../hooks/useSEO';
 ══════════════════════════════════════════════════════════════ */
 
 const stats = [
-  
-
-  { icon: Cloud, count: 'Cloud Solutions', label: 'Multi-Cloud Deployment Capability' },
-  { icon: Lock, count: 'Cyber Security', label: 'Advanced cybersecurity solutions' },
+  { icon: Shield, count: '99.9%', label: 'System Uptime' },
+  { icon: Activity, count: '24/7', label: 'Monitoring & Support' },
+  { icon: Cloud, count: 'Multi-Cloud', label: 'Deployment Capability' },
+  { icon: Lock, count: 'Zero Trust', label: 'Security Model' },
 ];
 
 const values = [
@@ -40,7 +40,7 @@ const values = [
   {
     title: 'Technical Expertise',
     description:
-      'Applies specialized knowledge across cloud and cybersecurity domains to design and implement reliable, scalable solutions.',
+      'Applies specialized knowledge across cloud and security domains to design and implement reliable, scalable solutions.',
   },
   {
     title: 'Integrity & Trust',
@@ -74,15 +74,16 @@ const services = [
 ];
 
 const founderData = {
-  name: 'Haider Ali',
+  name: 'Mr. Haider Ali',
   title: 'Founder & CEO',
-  summary: 'Technology visionary with 25+ years of experience in Enterprise IT Solutions. Expertise in IT, Cloud, Cybersecurity, Software, and Telecom Services.',
+  summary: 'Technology visionary with 20+ years of experience in Enterprise IT Solutions. Expertise in IT, Cloud, Cybersecurity, Software, and Telecom Services.',
   email: 'haider@zenitech.in',
   phone: '+91 88200 66999',
   location: 'Bangalore / Bengaluru, India',
   highlights: ['24/7 security monitoring', 'Advanced threat protection', 'Incident response services', 'Tailored security consulting'],
   socials: [
-    { name: 'LinkedIn', icon: <FaLinkedin size={16} />, url: 'https://www.linkedin.com/in/haideraliraja/' },
+    { name: 'LinkedIn', icon: <FaLinkedin size={16} />, url: 'https://linkedin.com' },
+    { name: 'Facebook', icon: <FaFacebookF size={16} />, url: 'https://facebook.com' },
     { name: 'WhatsApp', icon: <FaWhatsapp size={16} />, url: 'https://wa.me/8820066999' },
   ],
 };
@@ -91,7 +92,7 @@ const faqData = [
   {
     question: 'What services are offered?',
     answer:
-      'Services include cutting-edge cybersecurity solutions, cloud architecture design, cloud assessment, cost optimizations, cloud migration, infrastructure deployment, monitoring, and managed services tailored to modern business environments.',
+      'Services include cybersecurity solutions, cloud architecture design, infrastructure deployment, monitoring, and ongoing support tailored to modern business needs.',
   },
   {
     question: 'Where is the company based?',
@@ -101,12 +102,37 @@ const faqData = [
   {
     question: 'Which industries are supported?',
     answer:
-      'Our clients span from startups to large enterprises across domains like IT/ITES, Startups, BFSI, Fintech, Healthcare, Pharmaceuticals , Manufacturing , Automobile, Retail, Ecommerce , Education , Media & Entertainment , Logistics & Supply and many more.',
+      'Solutions are designed to support a wide range of industries including technology, startups, finance, healthcare, education, and manufacturing.',
+  },
+  {
+    question: 'What is the approach to cybersecurity?',
+    answer:
+      'A security-first approach is followed, incorporating principles such as Zero Trust, layered defense, and continuous monitoring to protect systems and data.',
+  },
+  {
+    question: 'Which cloud platforms are supported?',
+    answer:
+      'Solutions are compatible with major cloud platforms and include support for multi-cloud and hybrid environments.',
+  },
+  {
+    question: 'How is data security ensured?',
+    answer:
+      'Data is protected through encryption, secure access controls, identity management, and regular security assessments.',
+  },
+  {
+    question: 'Is ongoing support provided?',
+    answer:
+      'Yes, continuous monitoring, maintenance, and support services are available to ensure system stability and security over time.',
   },
   {
     question: 'Can solutions be customized?',
     answer:
       'All solutions are tailored based on specific business requirements, infrastructure, and security needs.',
+  },
+  {
+    question: 'How is scalability handled in cloud solutions?',
+    answer:
+      'Cloud architectures are designed to scale dynamically based on workload demands, ensuring performance and cost efficiency.',
   },
   {
     question: 'What makes the approach reliable for a new company?',
@@ -382,6 +408,7 @@ const About = () => {
         <RevealCard className="ab-founder-card">
           {/* Photo col */}
           <div className="ab-founder-photo-col">
+            <div className="ab-founder-ring" />
             <OptimizedImage src={Founder} alt={`${founderData.name} – ${founderData.title}`} className="ab-founder-img" loading="lazy" />
             <div className="ab-founder-socials">
               {founderData.socials.map((s, i) => (
@@ -422,6 +449,22 @@ const About = () => {
         </RevealCard>
       </section>
 
+    
+
+      {/* ══ STATISTICS ═════════════════════════════════════════ */}
+      <section className="ab-stats-section">
+        <div className="ab-stats-blob" />
+        <SectionHeader tag="OUR ACHIEVEMENTS" title="Our impact in numbers" subtitle="We take pride in our achievements and the trust our clients place in us." light />
+        <div className="ab-stats-grid">
+          {stats.map((s, i) => (
+            <RevealCard key={i} className="ab-stat-card" delay={i * 80}>
+              <div className="ab-stat-icon-wrap"><s.icon size={28} color="#C4B5FD" /></div>
+              <span className="ab-stat-num">{s.count}</span>
+              <span className="ab-stat-label">{s.label}</span>
+            </RevealCard>
+          ))}
+        </div>
+      </section>
 
       {/* ══ CORE VALUES ════════════════════════════════════════ */}
       <section className="ab-section ab-section-faded">

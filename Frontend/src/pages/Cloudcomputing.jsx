@@ -101,9 +101,12 @@ const stats = [
 
 const trustBadges = [
   'Cloud-Native Architecture',
+  'Cloud Assessment',
+  'Cost Optimization',
+  'Cloud Migration',
   'Auto-Scaling Infrastructure',
-  'High Availability Design',
-  'Infrastructure as Code (IaC)',
+  'Comprehensive Cloud Strategy',
+ 
   'Secure Cloud Deployments'
 ];
 
@@ -311,7 +314,7 @@ const Cloudcomputing = () => {
       <section className="cc-section cc-section-gray">
         <SectionHeader
           eyebrow="OUR SOLUTIONS"
-          title="Comprehensive cloud services"
+          title="Comprehensive Cloud Solutions"
           subtitle="Transform your business with advanced cloud computing solutions designed to drive innovation, resilience, and sustained growth."
         />
         <div className="cc-carousel-wrapper">
@@ -519,20 +522,16 @@ const Cloudcomputing = () => {
               <span>Cloud Computing</span>
             </div>
             <p className="cc-contact-card-body">
-              Empowering businesses with scalable, secure cloud solutions. From migration to optimisation — we've got you covered at every stage.
+              Empowering businesses with scalable, secure cloud solutions. From migration to optimization — we've got you covered at every stage.
             </p>
             <ul className="cc-contact-card-list">
-              {['Cloud Migration Services', 'Infrastructure Management', 'Cost Optimisation', '24/7 Cloud Support'].map((item, i) => (
+              {['Cloud Assessment','Cloud Migration Services', 'Cost Optimization','Infrastructure Management',  'Managed Services'].map((item, i) => (
                 <li key={i}>
                   <span className="cc-contact-card-dot" />
                   {item}
                 </li>
               ))}
             </ul>
-            <div className="cc-badge cc-badge-light" style={{ marginTop: 24 }}>
-              <span className="cc-badge-dot cc-pulse" />
-              <span>All systems operational</span>
-            </div>
           </div>
 
         </div>

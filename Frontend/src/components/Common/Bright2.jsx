@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaRegHandshake } from 'react-icons/fa';
-import BgPic from '../../assets/Axep3.jpg';
+import BgPic from '../../assets/Handshake.jpg';
 
 const Bright2 = () => {
     const [isVisible, setIsVisible] = useState(false);

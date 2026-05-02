@@ -539,7 +539,7 @@ const Cybersecurity = () => {
               <span>Cybersecurity</span>
             </div>
             <p className="cs-contact-card-body">
-              Protecting your digital world with cutting-edge security solutions. From threat detection to compliance — we've got you covered.
+              Protecting your digital world with cutting-edge cybersecurity solutions. From threat detection to compliance — we've got you covered.
             </p>
             <ul className="cs-contact-card-list">
               {['24/7 security monitoring', 'Advanced threat protection', 'Incident response services', 'Tailored security consulting'].map((item, i) => (
@@ -549,10 +549,7 @@ const Cybersecurity = () => {
                 </li>
               ))}
             </ul>
-            <div className="cs-badge cs-badge-light" style={{ marginTop: '24px' }}>
-              <span className="cs-badge-dot cs-pulse" />
-              <span>All systems nominal</span>
-            </div>
+            
           </div>
         </div>
       </section>
