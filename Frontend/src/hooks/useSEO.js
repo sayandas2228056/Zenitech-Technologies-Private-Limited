@@ -28,7 +28,7 @@ const useSEO = ({
 }) => {
   useEffect(() => {
     const BRAND = 'ZENITECH';
-    const fullTitle = title ? `${title} | ${BRAND}` : `${BRAND} | Cybersecurity & Cloud Solutions`;
+    const fullTitle = BRAND;
     const url = canonical || window.location.href;
 
     // ── Title ───────────────────────────────────────
@@ -76,12 +76,6 @@ const useSEO = ({
     setMeta('meta[property="og:type"]', ogType);
     setMeta('meta[property="og:site_name"]', 'Zenitech Technologies');
     setMeta('meta[property="og:locale"]', 'en_IN');
-
-    // ── Twitter ─────────────────────────────────────
-    setMeta('meta[name="twitter:card"]', 'summary_large_image');
-    setMeta('meta[name="twitter:title"]', fullTitle);
-    if (description) setMeta('meta[name="twitter:description"]', description);
-    setMeta('meta[name="twitter:image"]', ogImage);
 
     // ── JSON-LD Injection ───────────────────────────
     // Clean up previously injected JSON-LD from this hook
