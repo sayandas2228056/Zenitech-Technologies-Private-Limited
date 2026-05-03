@@ -74,7 +74,7 @@ const HERO_BOTM_CSS = `
   min-height: 40vh;
   position: relative;
   overflow-x: hidden;
-  background: linear-gradient(to bottom right, #111827, #1f2937);
+  background: linear-gradient(to bottom right, #042C53, #185FA5);
   background-size: cover;
   background-position: center;
 }
@@ -82,7 +82,7 @@ const HERO_BOTM_CSS = `
 .hero-botm-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(4, 44, 83, 0.3);
   z-index: 10;
 }
 
@@ -133,7 +133,7 @@ const HERO_BOTM_CSS = `
 
 .hero-botm-btn:hover {
   background: white;
-  color: #ea580c;
+  color: #185FA5;
   transform: translateY(-2px);
 }
 

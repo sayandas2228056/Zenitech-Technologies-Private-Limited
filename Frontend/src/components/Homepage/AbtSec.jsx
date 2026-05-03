@@ -31,7 +31,7 @@ const AbtSection = memo(() => {
         <div
           className="absolute inset-0 z-0"
           style={{
-            backgroundColor: '#fafafa',
+            backgroundColor: '#E8F1FB',
           }}
         />
 
@@ -48,7 +48,7 @@ const AbtSection = memo(() => {
               width="600"
               height="400"
             />
-            <div className="absolute top-4 md:top-6 left-4 md:left-6 bg-orange-500 text-white text-center px-4 md:px-5 py-2 md:py-3 rounded-md shadow-xl">
+            <div className="absolute top-4 md:top-6 left-4 md:left-6 bg-blue-600 text-white text-center px-4 md:px-5 py-2 md:py-3 rounded-md shadow-xl">
               <h2 className="text-xl md:text-2xl font-bold">Expertise in:</h2>
               <p className="text-xs md:text-sm tracking-wide">Cybersecurity & Cloud Solutions</p>
             </div>
@@ -68,7 +68,7 @@ const AbtSection = memo(() => {
           {/* Right Side - Text Content */}
           <div className="w-full md:w-1/2 text-center md:text-left">
             <p className="uppercase tracking-widest text-sm text-gray-500 mb-2">About ZENITECH TECHNOLOGIES PRIVATE LIMITED</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-orange-500 mb-5 leading-snug typewriter">
+            <h2 className="text-2xl md:text-3xl font-bold text-blue-600 mb-5 leading-snug typewriter">
               Empowering Digital Growth <br />with Trusted Technology Partner
             </h2>
             <div className="space-y-4">
@@ -94,7 +94,7 @@ Your trusted partner in<span className='font-bold'> Cybersecurity </span>&<span 
                 "Certified Expert Team Members",
               ].map((item, index) => (
                 <li key={index} className="flex items-center gap-3 text-gray-800 text-sm md:text-base">
-                  <FaCheckCircle className="text-orange-500 flex-shrink-0" /> {item}
+                  <FaCheckCircle className="text-blue-600 flex-shrink-0" /> {item}
                 </li>
               ))}
             </ul>
@@ -102,18 +102,18 @@ Your trusted partner in<span className='font-bold'> Cybersecurity </span>&<span 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-6">
               {/* Phone Contact */}
               <div className="flex items-center gap-4">
-                <div className="p-3 md:p-4 bg-orange-100 rounded-full">
-                  <FaPhoneAlt className="text-orange-500 text-lg" />
+                <div className="p-3 md:p-4 bg-blue-50 rounded-full">
+                  <FaPhoneAlt className="text-blue-600 text-lg" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Call us anytime</p>
                   <h4 className="text-sm font-semibold">
-                    <a href="tel:+918820066999" className="hover:underline text-orange-600">
+                    <a href="tel:+918820066999" className="hover:underline text-blue-700">
                       +91 88200 66999
                     </a>
                   </h4>
                   <h4 className="text-sm font-semibold">
-                    <a href="tel:+917439004545" className="hover:underline text-orange-600">
+                    <a href="tel:+917439004545" className="hover:underline text-blue-700">
                       +91 74390 04545
                     </a>
                   </h4>
@@ -122,15 +122,15 @@ Your trusted partner in<span className='font-bold'> Cybersecurity </span>&<span 
 
               {/* Email Contact */}
               <div className="flex items-center gap-4">
-                <div className="p-3 md:p-4 bg-orange-100 rounded-full">
-                  <FaEnvelope className="text-orange-500 text-lg" />
+                <div className="p-3 md:p-4 bg-blue-50 rounded-full">
+                  <FaEnvelope className="text-blue-600 text-lg" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Email us</p>
                   <h4 className="text-sm font-semibold">
                     <a
                       href="mailto:info@zenitech.in?subject=We%20are%20interested%20in%20working%20with%20you&body=Hello%20from%20your%20website%20zenitech.in"
-                      className="hover:underline text-orange-600"
+                      className="hover:underline text-blue-700"
                     >
                       info@zenitech.in
                     </a>
@@ -139,7 +139,7 @@ Your trusted partner in<span className='font-bold'> Cybersecurity </span>&<span 
               </div>
             </div>
             <p className="text-sm md:text-base text-gray-800 max-w-4xl mx-auto leading-relaxed">
-              Your Strategic Partner for <span className='text-orange-500 font-bold'>Cybersecurity</span> & <span className='text-orange-500 font-bold'>Cloud Solutions</span>
+              Your Strategic Partner for <span className='text-blue-600 font-bold'>Cybersecurity</span> & <span className='text-blue-600 font-bold'>Cloud Solutions</span>
             </p>
           </div>
         </div>

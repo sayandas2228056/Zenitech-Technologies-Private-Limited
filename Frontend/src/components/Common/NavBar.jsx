@@ -110,8 +110,8 @@ const NavBar = () => {
         </a>
 
         {/* Nav Links - Desktop only */}
-        <nav className="hidden md:flex gap-6 font-semibold text-amber-600 font-medium items-center">
-          <a href="/" className="nav-link relative transition-all duration-200 hover:text-orange-600 px-2 py-1">
+        <nav className="hidden md:flex gap-6 font-semibold text-blue-600 font-medium items-center">
+          <a href="/" className="nav-link relative transition-all duration-200 hover:text-blue-600 px-2 py-1">
             Home
             <span className="nav-underline" />
           </a>
@@ -123,7 +123,7 @@ const NavBar = () => {
           >
             <button
               onClick={toggleDropdown}
-              className={`nav-link flex items-center gap-1 transition-all duration-200 px-2 py-1 ${aboutDropdown || hoveredDropdown === 'About' ? 'text-orange-600' : 'hover:text-orange-600'
+              className={`nav-link flex items-center gap-1 transition-all duration-200 px-2 py-1 ${aboutDropdown || hoveredDropdown === 'About' ? 'text-blue-600' : 'hover:text-blue-600'
                 }`}
             >
               About
@@ -140,8 +140,8 @@ const NavBar = () => {
                 : 'opacity-0 invisible -translate-y-2'
                 }`}
             >
-              <a href="/about" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-all duration-150 rounded-lg mx-2">About Us</a>
-              <a href="/about/founder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-all duration-150 rounded-lg mx-2">About Founder</a>
+              <a href="/about" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-150 rounded-lg mx-2">About Us</a>
+              <a href="/about/founder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-150 rounded-lg mx-2">About Founder</a>
             </div>
           </div>
           <div
@@ -152,10 +152,10 @@ const NavBar = () => {
           >
             <button
               onClick={toggleServicesDropdown}
-              className={`nav-link flex items-center gap-1 transition-all duration-200 px-2 py-1 ${servicesDropdown || hoveredDropdown === 'Services' ? 'text-orange-600' : 'hover:text-orange-600'
+              className={`nav-link flex items-center gap-1 transition-all duration-200 px-2 py-1 ${servicesDropdown || hoveredDropdown === 'Services' ? 'text-blue-600' : 'hover:text-blue-600'
                 }`}
             >
-              Services
+              Solutions
               <ChevronDown
                 size={16}
                 className={`transition-transform duration-200 ${servicesDropdown || hoveredDropdown === 'Services' ? 'rotate-180' : ''
@@ -169,12 +169,12 @@ const NavBar = () => {
                 : 'opacity-0 invisible -translate-y-2'
                 }`}
             >
-              <a href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-all duration-150 rounded-lg mx-2">All Services</a>
-              <a href="/services/cybersecurity" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-all duration-150 rounded-lg mx-2">Cybersecurity</a>
-              <a href="/services/cloud-solutions" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-all duration-150 rounded-lg mx-2">Cloud Solutions</a>
+              <a href="/solutions" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-150 rounded-lg mx-2">All Solutions</a>
+              <a href="/solutions/cybersecurity" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-150 rounded-lg mx-2">Cybersecurity</a>
+              <a href="/solutions/cloud-solutions" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-150 rounded-lg mx-2">Cloud Solutions</a>
             </div>
           </div>
-          <a href="/contact" className="nav-link relative transition-all duration-200 hover:text-orange-600 px-2 py-1">
+          <a href="/contact" className="nav-link relative transition-all duration-200 hover:text-blue-600 px-2 py-1">
             Contact
             <span className="nav-underline" />
           </a>
@@ -286,7 +286,7 @@ const NavBar = () => {
               <nav className="flex flex-col gap-2">
                 <a
                   href="/"
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-all duration-200 font-medium"
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 font-medium"
                   onClick={toggleMobileMenu}
                 >
                   Home
@@ -296,7 +296,7 @@ const NavBar = () => {
                 <div>
                   <button
                     onClick={toggleMobileAbout}
-                    className="flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-all duration-200 font-medium"
+                    className="flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 font-medium"
                   >
                     <span>About</span>
                     <ChevronDown
@@ -308,14 +308,14 @@ const NavBar = () => {
                     <div className="ml-4 mt-2 space-y-1">
                       <a
                         href="/about"
-                        className="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 rounded-lg transition-all duration-200"
+                        className="block px-4 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200"
                         onClick={toggleMobileMenu}
                       >
                         About Us
                       </a>
                       <a
                         href="/about/founder"
-                        className="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 rounded-lg transition-all duration-200"
+                        className="block px-4 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200"
                         onClick={toggleMobileMenu}
                       >
                         About Founder
@@ -328,7 +328,7 @@ const NavBar = () => {
                 <div>
                   <button
                     onClick={toggleMobileServices}
-                    className="flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-all duration-200 font-medium"
+                    className="flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 font-medium"
                   >
                     <span>Services</span>
                     <ChevronDown
@@ -340,21 +340,21 @@ const NavBar = () => {
                     <div className="ml-4 mt-2 space-y-1">
                       <a
                         href="/services"
-                        className="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 rounded-lg transition-all duration-200"
+                        className="block px-4 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200"
                         onClick={toggleMobileMenu}
                       >
                         All Services
                       </a>
                       <a
                         href="/services/cybersecurity"
-                        className="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 rounded-lg transition-all duration-200"
+                        className="block px-4 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200"
                         onClick={toggleMobileMenu}
                       >
                         Cybersecurity
                       </a>
                       <a
                         href="/services/cloud-computing"
-                        className="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 rounded-lg transition-all duration-200"
+                        className="block px-4 py-2 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200"
                         onClick={toggleMobileMenu}
                       >
                         Cloud Computing
@@ -365,7 +365,7 @@ const NavBar = () => {
 
                 <a
                   href="/contact"
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-all duration-200 font-medium"
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 font-medium"
                   onClick={toggleMobileMenu}
                 >
                   Contact

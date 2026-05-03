@@ -112,9 +112,9 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/about/founder" element={<AboutFounder />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/services/cybersecurity" element={<Cybersecurity />} />
-            <Route path="/services/cloud-solutions" element={<CloudComputing />} />
+            <Route path="/solutions" element={<Services />} />
+            <Route path="/solutions/cybersecurity" element={<Cybersecurity />} />
+            <Route path="/solutions/cloud-solutions" element={<CloudComputing />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/appointment" element={<Appointment />} />
 

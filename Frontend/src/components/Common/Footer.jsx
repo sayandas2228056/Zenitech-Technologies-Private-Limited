@@ -80,8 +80,7 @@ const Footer = () => {
               <div className="flex items-center gap-4 mb-3">
                 <img src={Logo} alt="Zenitech Technologies" className="w-16 h-16 rounded-full object-cover hidden lg:block" />
                 <h2 className="text-2xl font-bold">
-                  <span className="ft-text-brand">ZENITECH TECHNOLOGIES</span>
-                  <span className="ft-text-brand"> PRIVATE LIMITED</span>
+                  <span className="text-xl font-bold text-orange-500">ZENITECH TECHNOLOGIES PRIVATE LIMITED</span>
                 </h2>
               </div>
               <p className="ft-text-subtle text-base leading-relaxed max-w-md">
@@ -134,8 +133,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="ft-text-subtle ft-link-hover transition-colors duration-200 text-sm">
-                  Services
+                <Link to="/solutions" className="ft-text-subtle ft-link-hover transition-colors duration-200 text-sm">
+                  Solutions
                 </Link>
               </li>
               <li>
@@ -154,16 +153,16 @@ const Footer = () => {
           {/* Services — keyword-rich anchor text for internal linking */}
           <nav aria-label="Service links">
             <h3 className="text-sm font-semibold ft-text-heading uppercase tracking-wider mb-6">
-              Our Services
+              Our Solutions
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/services/cybersecurity" className="ft-text-subtle ft-link-hover transition-colors duration-200 text-sm">
+                <Link to="/solutions/cybersecurity" className="ft-text-subtle ft-link-hover transition-colors duration-200 text-sm">
                   Cybersecurity
                 </Link>
               </li>
               <li>
-                <Link to="/services/cloud-solutions" className="ft-text-subtle ft-link-hover transition-colors duration-200 text-sm">
+                <Link to="/solutions/cloud-solutions" className="ft-text-subtle ft-link-hover transition-colors duration-200 text-sm">
                   Cloud Solutions
                 </Link>
               </li>

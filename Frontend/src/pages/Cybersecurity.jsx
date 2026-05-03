@@ -1206,7 +1206,7 @@ const Cybersecurity = () => {
         /* ── contact section ── */
         .cs-contact-section {
           position: relative;
-          background: linear-gradient(135deg, #042C53 0%, #0C447C 65%, #185FA5 100%);
+          background: #185FA5;
           color: #fff;
           padding: 80px 48px;
           overflow: hidden;

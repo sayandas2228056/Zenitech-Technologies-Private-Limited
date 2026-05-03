@@ -26,9 +26,9 @@ const Hero = memo(() => {
     <section className="hero-wrap">
       {/* ======= LEFT ======= */}
       <div className="hero-left mt-7">
-        <h1 className="hero-heading">
+        <h1 className="hero-heading text-black">
           Empower your business with our expertise in <br />
-          <span className='text-orange-400'>Cybersecurity <span className='text-black'>&</span> Cloud Solutions<br /> </span>
+          <span className='text-orange-500'>Cybersecurity <span className='text-black'>&</span> Cloud Solutions<br /> </span>
         </h1>
 
         <p className="hero-sub">
@@ -150,7 +150,7 @@ const HERO_CSS = `
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: #f2f2ec center/cover no-repeat;
+  background: #E8F1FB center/cover no-repeat;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -164,7 +164,7 @@ const HERO_CSS = `
   position: absolute;
   inset: 0;
   right: clamp(30%, 40vw, 44%);
-  background: #e8e8e1;
+  background: #EAF4FF;
   clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
   z-index: 0;
 }
@@ -200,7 +200,7 @@ const HERO_CSS = `
   font-size: clamp(28px, 5vw, 70px);
   font-weight: 900;
   line-height: clamp(1.1, 1.15, 1.06);
-  color: #0d0d10;
+  color: #185FA5;
   margin: 0 0 clamp(12px, 2vw, 22px);
   letter-spacing: -0.035em;
 }
@@ -252,7 +252,7 @@ const HERO_CSS = `
   transition: background 0.2s, transform 0.18s;
   letter-spacing: 0.01em;
 }
-.btn-gs:hover { background: #2b2b2b; transform: translateY(-2px); }
+.btn-gs:hover { background: #378ADD; transform: translateY(-2px); }
 
 .btn-arrow {
   width: clamp(28px, 3.5vw, 34px); 
@@ -260,7 +260,7 @@ const HERO_CSS = `
   background: #fff;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  color: #0d0d10;
+  color: #185FA5;
   font-size: clamp(14px, 1.5vw, 16px);
   flex-shrink: 0;
   line-height: 1;
@@ -292,7 +292,7 @@ const HERO_CSS = `
 .c-num  { 
   font-size: clamp(12px, 1.4vw, 14px); 
   font-weight: 800; 
-  color: #0d0d10; 
+  color: #185FA5; 
   letter-spacing: 0.01em; 
   display: block; 
 }
@@ -316,7 +316,7 @@ const HERO_CSS = `
   height: clamp(250px, 35vw, 440px);
   border-radius: clamp(14px, 2vw, 22px);
   overflow: visible;
-  background: #e8e8e1;
+  background: #EAF4FF;
 }
 
 .main-img-box .img-clip {
@@ -416,7 +416,7 @@ const HERO_CSS = `
   transition: border-color 0.25s, transform 0.2s;
 }
 .thumb:hover { transform: translateY(-2px); }
-.thumb.on  { border-color: #0d0d10; }
+.thumb.on  { border-color: #185FA5; }
 .thumb img {
   width: 100%; height: 100%;
   object-fit: cover; display: block;

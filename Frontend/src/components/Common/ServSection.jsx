@@ -56,43 +56,43 @@ const faqs = [
     answer:
       'ZENITECH TECHNOLOGIES PRIVATE LIMITED provides services in Cloud, Cybersecurity, IT Services and more.',
     category: 'Services',
-    icon: <Zap size={20} className="text-orange-500" />,
+    icon: <Zap size={20} className="text-blue-600" />,
   },
   {
     question: 'Which cloud platforms do you support?',
     answer:
       'We support AWS, Azure, Google Cloud and more, covering IaaS, SaaS, PaaS, DR, and Managed Services.',
     category: 'Cloud',
-    icon: <Shield size={20} className="text-orange-500" />,
+    icon: <Shield size={20} className="text-blue-600" />,
   },
   {
     question: 'What cybersecurity solutions do you provide?',
     answer:
       'We offer Firewall , Endpoint Security , EDR , XDR , Email Security , DLP , SOC , VAPT , API Security , Cloud Security , Application Security , Network Security , OT Security etc to safeguard your infrastructure.',
     category: 'Cybersecurity',
-    icon: <Shield size={20} className="text-orange-500" />,
+    icon: <Shield size={20} className="text-blue-600" />,
   },
   {
     question: 'Who are your typical clients?',
     answer:
       'Our clients include enterprises of all sizes from IT/ITES, Startups, BFSI, Fintech, Healthcare, Pharmaceuticals , Manufacturing , Automobile, Retail, Ecommerce , Education , Media & Entertainment , Logistic & Supply and many more.',
     category: 'Clients',
-    icon: <Users size={20} className="text-orange-500" />,
+    icon: <Users size={20} className="text-blue-600" />,
   },
   {
     question: 'How can we get in touch with ZENITECH TECHNOLOGIES PRIVATE LIMITED?',
     answer:
       'Email us at info@zenitech.in or call +91 88200 66999 / +91 74390 04545. Corporate Office in Bengaluru, India . Serving customers in PAN India and across the globe.',
     category: 'Contact',
-    icon: <HelpCircle size={20} className="text-orange-500" />,
+    icon: <HelpCircle size={20} className="text-blue-600" />,
   },
 ];
 
 const ServSection = () => {
   return (
-    <div className="py-16 sm:py-20 bg-gradient-to-br from-orange-100 via-gray-50 to-orange-100">
+    <div className="py-16 sm:py-20 bg-gradient-to-br from-blue-50 via-gray-50 to-blue-100">
       <div className="text-center mb-10 px-4 sm:px-0">
-        <h4 className="text-xs sm:text-sm font-semibold tracking-wider text-orange-600 uppercase mb-2">
+        <h4 className="text-xs sm:text-sm font-semibold tracking-wider text-blue-600 uppercase mb-2">
           Our Expertise
         </h4>
         <h2 className="text-2xl sm:text-4xl font-bold text-gray-800 mb-3">
@@ -120,10 +120,10 @@ const ServSection = () => {
         >
           {services.map((service, index) => (
             <SwiperSlide key={index}>
-              <div className="bg-white p-6 sm:p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col justify-between border-t-4 border-orange-600 min-h-[420px] max-h-[440px]">
+              <div className="bg-white p-6 sm:p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col justify-between border-t-4 border-blue-600 min-h-[420px] max-h-[440px]">
                 <div className="flex-1 flex flex-col">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-orange-100 mb-5 mx-auto">
-                    <service.icon className="text-orange-600" size={32} />
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-50 mb-5 mx-auto">
+                    <service.icon className="text-blue-600" size={32} />
                   </div>
                   <h3 className="text-lg sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3 text-center">
                     {service.title}
@@ -137,7 +137,7 @@ const ServSection = () => {
                 </div>
                 <a
                   href={service.route}
-                  className="mt-4 inline-flex items-center text-orange-600 text-sm sm:text-base font-semibold hover:text-orange-700 transition-colors justify-center"
+                  className="mt-4 inline-flex items-center text-blue-600 text-sm sm:text-base font-semibold hover:text-blue-700 transition-colors justify-center"
                 >
                   Learn More
                   <svg

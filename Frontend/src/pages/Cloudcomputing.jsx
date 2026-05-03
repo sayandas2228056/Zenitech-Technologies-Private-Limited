@@ -477,7 +477,7 @@ const Cloudcomputing = () => {
       </section>
 
       {/* ══ CONTACT CTA ════════════════════════════════════════ */}
-      <section className="cc-contact-section">
+      <section className="cc-contact-section bg-blue-600">
         <div className="cc-contact-blob" />
         <div className="cc-contact-grid">
 
@@ -1209,7 +1209,7 @@ const Cloudcomputing = () => {
         /* ── Contact section ─────────────────────────────────── */
         .cc-contact-section {
           position: relative;
-          background: linear-gradient(135deg, #021828 0%, #082F5C 65%, #0C3E73 100%);
+          background: #185FA5;
           color: #fff;
           padding: 80px 48px;
           overflow: hidden;

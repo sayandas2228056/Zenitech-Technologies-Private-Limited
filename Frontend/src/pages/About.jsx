@@ -290,7 +290,7 @@ const About = () => {
               <p>With a team of highly skilled professionals, we provide cutting-edge Cybersecurity & Cloud Solutions. Our strategic partnerships with leading technology providers enable us to deliver cutting-edge solutions tailored to each client.</p>
               <p>Our clients span from startups to large enterprises across domains like IT/ITES, Startups, BFSI, Fintech, Healthcare, Pharmaceuticals , Manufacturing , Automobile, Retail, Ecommerce , Education , Media & Entertainment , Logistics & Supply and many more.</p>
             </div>
-            <Link to="/services" className="ab-link-arrow">
+            <Link to="/solutions" className="ab-link-arrow">
               Explore Our Services <ChevronRight size={16} className="ab-link-chevron" />
             </Link>
           </RevealCard>
@@ -300,7 +300,7 @@ const About = () => {
               <div className="ab-img-blob-tl" />
               <div className="ab-img-blob-br" />
               <OptimizedImage src={Pic1} alt="Zenitech Team" className="ab-section-img" loading="lazy" />
-              <div className="ab-img-chip ab-img-chip-tl">Cybersecurity and Cloud Experts</div>
+              <div className="ab-img-chip ab-img-chip-tl">Cybersecurity and Cloud Solutions Experts</div>
             </div>
           </RevealCard>
         </div>
