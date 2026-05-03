@@ -153,7 +153,7 @@ const Contact = () => {
             <section className="ct-hero" ref={heroRef}>
                 <div className="ct-hero-bg">
                     <img src={Cnt} alt="Contact Background" className="ct-hero-bg-img" />
-                    <div className="ct-hero-overlay opacity-60" />
+                    <div className="ct-hero-overlay opacity-40" />
                 </div>
                 <div className="ct-hero-blob ct-blob-1" />
                 <div className="ct-hero-blob ct-blob-2" />
@@ -161,13 +161,13 @@ const Contact = () => {
                 <div className="ct-hero-inner">
                     <div className="ct-badge ct-badge-animate">
                         <span className="ct-badge-dot ct-pulse" />
-                        <span className='font-bold'>GET IN TOUCH</span>
+                        <span className='font-bold text-white'>GET IN TOUCH</span>
                         <span className="ct-badge-dot ct-pulse" />
                     </div>
                     <h1 className="ct-hero-heading ct-text-animate" style={{ animationDelay: '0.1s' }}>
                         Contact <em className="ct-hero-em">us</em>
                     </h1>
-                    <p className="ct-hero-sub ct-text-animate text-white" style={{ animationDelay: '0.2s' }}>
+                    <p className="ct-hero-sub ct-text-animate font-bold text-white" style={{ animationDelay: '0.2s' }}>
                         We'd love to hear from you. Our team is always ready to assist — reach out through any channel below.
                     </p>
                     {/* Breadcrumb */}

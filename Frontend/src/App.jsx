@@ -102,7 +102,7 @@ const App = () => {
       <Navbar />
 
       {/* ✅ Semantic <main> landmark for SEO & accessibility */}
-      <main className="flex-grow" id="main-content" style={{ minHeight: '100vh' }}>
+      <main className="grow" id="main-content" style={{ minHeight: '100vh' }}>
         {/*
           PagePlaceholder keeps <main> tall while the lazy chunk loads,
           so the footer stays below the viewport — no flash.

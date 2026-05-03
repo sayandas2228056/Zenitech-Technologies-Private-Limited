@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import HeroBg from '../../assets/serv.jpg';
+import HeroBg from '../../assets/serv1.jpg';
 
 /* ══════════════════════════════════════════════════════════════
    ServiceHeader — Hero section for the Services page
@@ -19,9 +19,25 @@ const ServiceHeader = () => {
             {/* ══ HERO ═══════════════════════════════════════════════ */}
             <section className="sh-hero">
                 {/* Background image */}
-                <div className="sh-hero-bg">
-                    <img src={HeroBg} alt="Services Background" className="sh-hero-bg-img" />
-                </div>
+                <div className="sh-hero-bg relative overflow-hidden">
+
+  {/* Background Image */}
+  <img
+    src={HeroBg}
+    alt="Services Background"
+    className="sh-hero-bg-img w-full h-full object-cover"
+  />
+
+  {/* Blue Overlay */}
+  <div className="absolute inset-0 bg-blue-900/50 mix-blend-overlay"></div>
+
+  {/* Glass / Blur Layer */}
+  <div className="absolute inset-0 backdrop-blur-[0.5px] bg-blue-500/10"></div>
+
+  {/* Optional Gradient for depth */}
+  <div className="absolute inset-0 bg-gradient-to-b from-blue-900/40 via-transparent to-black/60"></div>
+
+</div>
 
                 {/* Decorative blobs */}
                 <div className="sh-blob sh-blob-tr" />
@@ -34,7 +50,7 @@ const ServiceHeader = () => {
                         <span className="sh-accent">Modern Business</span>
                     </h1>
 
-                    <p className="sh-sub sh-anim" style={{ animationDelay: '0.18s' }}>
+                    <p className="sh-anim text-white font-bold mb-8" style={{ animationDelay: '0.18s' }}>
                         Comprehensive Cybersecurity &amp; Cloud Solutions to drive
                         innovation and sustainable growth for your organization.
                     </p>
@@ -64,13 +80,16 @@ const ServiceHeader = () => {
             <style>{`
         /* ── Tokens ─────────────────────────────────────────── */
         .sh-hero {
-          --sh-purple-700: #6d28d9;
-          --sh-purple-600: #7c3aed;
-          --sh-purple-500: #a855f7;
-          --sh-orange:     #f97316;
-          --sh-orange-lt:  #fb923c;
-          --sh-purple-pal: #e9d5ff;
-          --sh-white:      #ffffff;
+          --sh-blue-deep:   #042C53;
+          --sh-blue-mid:    #185FA5;
+          --sh-blue-light:  #378ADD;
+          --sh-blue-pale:   #85B7EB;
+          --sh-blue-pal2:   #B5D4F4;
+          --sh-blue-bg:     #E8F1FB;
+          --sh-blue-bg2:    #EAF4FF;
+          --sh-orange:      #F97316;
+          --sh-orange-lt:   #FB923C;
+          --sh-white:       #ffffff;
           position: relative;
           min-height: clamp(440px, 58vw, 600px);
           display: flex;
@@ -160,7 +179,7 @@ const ServiceHeader = () => {
         }
         .sh-accent { color: var(--sh-orange-lt); }
         .sh-sub {
-          color: rgba(233,213,255,0.88);
+          color: rgba(181,212,244,0.88);
           font-size: 1.05rem;
           line-height: 1.78;
           max-width: 560px;
@@ -176,7 +195,7 @@ const ServiceHeader = () => {
         }
         .sh-btn-solid {
           background: var(--sh-white);
-          color: var(--sh-purple-600);
+          color: var(--sh-blue-mid);
           padding: 0.82rem 2rem;
           border-radius: 10px;
           font-weight: 700;
@@ -221,7 +240,7 @@ const ServiceHeader = () => {
           grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
           background: #fff;
           border-bottom: 1px solid #e5e7eb;
-          box-shadow: 0 4px 20px rgba(124,58,237,0.07);
+          box-shadow: 0 4px 20px rgba(24,95,165,0.07);
           text-align: center;
         }
         .sh-stat {
@@ -234,7 +253,7 @@ const ServiceHeader = () => {
         .sh-stat-num {
           font-size: 2rem;
           font-weight: 800;
-          color: #7c3aed;
+          color: #185FA5;
           margin: 0 0 0.2rem;
           line-height: 1;
         }

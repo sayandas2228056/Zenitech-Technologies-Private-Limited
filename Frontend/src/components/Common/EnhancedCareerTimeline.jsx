@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Briefcase, Calendar, MapPin, Award, ChevronRight, ChevronLeft, ExternalLink, User, Building } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, Award, ChevronRight, ChevronLeft, User, Building } from 'lucide-react';
 
 const EnhancedCareerTimeline = () => {
   const experiences = [
@@ -11,9 +11,7 @@ const EnhancedCareerTimeline = () => {
       location: "Bengaluru, India",
       description: "Trusted Experts in Cybersecurity & Cloud Solutions, serving PAN India & Global clients.",
       highlights: [
-
         "Serve pan-India and global clients with enterprise-grade Cybersecurity and Cloud Solutions.",
-        
       ],
       skills: ["Cybersecurity", "Cloud Computing", "IT Services"],
       color: "from-blue-600 to-indigo-800"
@@ -41,7 +39,7 @@ const EnhancedCareerTimeline = () => {
       period: "Oct 2020 - Sep 2021",
       duration: "1 yr",
       location: "Kolkata, India",
-      description: "Naush Group is a diversified business entity engaged in various sectors including real estate, infrastructure, and trading. The group is known for its entrepreneurial approach and strategic growth in emerging markets.",
+      description: "Naush Group is a diversified business entity engaged in various sectors including real estate, infrastructure, and trading.",
       highlights: [
         "Spearheaded business operations and strategic planning across multiple verticals including real estate and trading.",
         "Identified and explored new business opportunities to drive revenue growth and market presence.",
@@ -49,15 +47,9 @@ const EnhancedCareerTimeline = () => {
         "Implemented cost optimization strategies that improved overall operational efficiency.",
         "Oversaw project execution timelines, ensuring timely delivery and client satisfaction."
       ],
-      skills: [
-        "Business Strategy",
-        "Team Leadership",
-        "Market Expansion",
-        "Project Management",
-        "Operations Management"
-      ],
+      skills: ["Business Strategy", "Team Leadership", "Market Expansion", "Project Management", "Operations Management"],
       color: "from-purple-600 to-indigo-700"
-    },    
+    },
     {
       company: "Reliance Communications Ltd",
       role: "Assistant General Manager (Enterprise Business)",
@@ -77,7 +69,7 @@ const EnhancedCareerTimeline = () => {
     },
     {
       company: "Bharti Airtel Limited",
-      role: "Manager-Sales & Marketing (Market Facing Title: B2B U&R Cluster Head)",
+      role: "Manager-Sales & Marketing",
       period: "Feb 2010 - Jul 2011",
       duration: "1 yr 6 mos",
       location: "Bangalore, India",
@@ -113,6 +105,57 @@ const EnhancedCareerTimeline = () => {
   const [direction, setDirection] = useState('');
   const cardRef = useRef(null);
 
+  const TIMELINE_START = 2009;
+  const TIMELINE_END = 2027; // extended to give right-side breathing room
+
+  const parseStartDecimal = (period) => {
+    const monthMap = {
+      'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+      'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+    };
+    const parts = period.split(' - ')[0].trim().split(' ');
+    const month = parts[0];
+    const year = parseInt(parts[1]);
+    return year + (monthMap[month] || 0) / 12;
+  };
+
+  // Sort experiences by start date ascending for timeline ordering
+  const sortedOrder = [...experiences]
+    .map((exp, i) => ({ i, val: parseStartDecimal(exp.period) }))
+    .sort((a, b) => a.val - b.val)
+    .map(x => x.i);
+
+  const getPositionPercent = (period) => {
+    const decimal = parseStartDecimal(period);
+    return ((decimal - TIMELINE_START) / (TIMELINE_END - TIMELINE_START)) * 100;
+  };
+
+  // Spread dots that are too close together (min 8% gap)
+  const computeDotPositions = () => {
+    const MIN_GAP = 8;
+    // Build raw positions in index order
+    const raw = experiences.map((exp, i) => ({
+      i,
+      raw: getPositionPercent(exp.period),
+      pos: getPositionPercent(exp.period),
+    }));
+
+    // Sort by raw position, spread if overlapping
+    const sorted = [...raw].sort((a, b) => a.raw - b.raw);
+    for (let k = 1; k < sorted.length; k++) {
+      if (sorted[k].pos - sorted[k - 1].pos < MIN_GAP) {
+        sorted[k].pos = sorted[k - 1].pos + MIN_GAP;
+      }
+    }
+
+    // Map back to original index
+    const result = {};
+    sorted.forEach(({ i, pos }) => { result[i] = Math.min(pos, 96); });
+    return result;
+  };
+
+  const dotPositions = computeDotPositions();
+
   const handleNext = () => {
     if (isTransitioning) return;
     setDirection('next');
@@ -120,7 +163,7 @@ const EnhancedCareerTimeline = () => {
     setTimeout(() => {
       setActiveIndex((prev) => (prev === experiences.length - 1 ? 0 : prev + 1));
       setIsTransitioning(false);
-    }, 500);
+    }, 400);
   };
 
   const handlePrev = () => {
@@ -130,63 +173,29 @@ const EnhancedCareerTimeline = () => {
     setTimeout(() => {
       setActiveIndex((prev) => (prev === 0 ? experiences.length - 1 : prev - 1));
       setIsTransitioning(false);
-    }, 500);
+    }, 400);
   };
 
   const handleDotClick = (index) => {
     if (isTransitioning || index === activeIndex) return;
-    
     setDirection(index > activeIndex ? 'next' : 'prev');
     setIsTransitioning(true);
     setTimeout(() => {
       setActiveIndex(index);
       setIsTransitioning(false);
-    }, 500);
+    }, 400);
   };
 
   useEffect(() => {
     if (cardRef.current) {
       cardRef.current.classList.remove('animate-slide-in-right', 'animate-slide-in-left');
-      void cardRef.current.offsetWidth; // Force reflow
+      void cardRef.current.offsetWidth;
       cardRef.current.classList.add(direction === 'next' ? 'animate-slide-in-left' : 'animate-slide-in-right');
     }
   }, [activeIndex, direction]);
 
-  // Generate years for the timeline
-  const generateYearMarks = () => {
-    const startYear = 2009;
-    const endYear = 2025;
-    const years = [];
-    
-    for (let year = startYear; year <= endYear; year++) {
-      years.push(year);
-    }
-    
-    return years;
-  };
-
-  const years = generateYearMarks();
-  
-  // Calculate position percentage for experience on timeline
-  const getPositionPercentage = (period) => {
-    const startYear = 2009;
-    const endYear = 2025;
-    const totalYears = endYear - startYear;
-    
-    const [startDate] = period.split(' - ');
-    const [month, year] = startDate.split(' ');
-    
-    // Convert month to number (0-11)
-    const monthMap = {
-      'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
-      'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
-    };
-    
-    const monthNum = monthMap[month] / 12;
-    const yearDiff = parseInt(year) - startYear;
-    
-    return ((yearDiff + monthNum) / totalYears) * 100;
-  };
+  const years = [];
+  for (let y = TIMELINE_START; y <= TIMELINE_END; y += 2) years.push(y);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4">
@@ -202,78 +211,93 @@ const EnhancedCareerTimeline = () => {
           </p>
         </div>
 
-        {/* Timeline with years */}
-        <div className="relative mb-12 px-6">
-          <div className="h-1 bg-gray-200 rounded-full">
-            <div 
+        {/* Timeline */}
+        <div className="relative mb-6 px-2">
+          {/* Track */}
+          <div className="h-1 bg-gray-200 rounded-full mx-4">
+            <div
               className="h-full bg-gradient-to-r from-blue-600 to-indigo-700 rounded-full transition-all duration-700 ease-in-out"
               style={{ width: `${(activeIndex / (experiences.length - 1)) * 100}%` }}
-            ></div>
+            />
           </div>
-          
-          {/* Year markers */}
-          <div className="flex justify-between mt-2 relative">
-            {years.map((year, idx) => (
-              <div key={idx} className="text-xs text-gray-500 absolute transform -translate-x-1/2" style={{ left: `${((year - 2009) / (2025 - 2009)) * 100}%` }}>
-                {year % 2 === 0 && (
-                  <>
-                    <div className="h-3 w-px bg-gray-300 mx-auto mb-1"></div>
-                    {year}
-                  </>
-                )}
+
+          {/* Year labels */}
+          <div className="relative h-6 mt-1 mx-4">
+            {years.map((year) => (
+              <div
+                key={year}
+                className="absolute flex flex-col items-center"
+                style={{ left: `${((year - TIMELINE_START) / (TIMELINE_END - TIMELINE_START)) * 100}%`, transform: 'translateX(-50%)' }}
+              >
+                <div className="h-2 w-px bg-gray-300" />
+                <span className="text-xs text-gray-400 mt-0.5">{year}</span>
               </div>
             ))}
           </div>
-          
-          {/* Position indicators */}
-          <div className="relative h-14 mt-8">
+
+          {/* Dots row — fixed height, no overflow */}
+          <div className="relative mx-4 mt-6" style={{ height: '80px' }}>
             {experiences.map((exp, idx) => {
-              const position = getPositionPercentage(exp.period);
+              const leftPct = dotPositions[idx];
+              const isActive = idx === activeIndex;
+
               return (
-                <div 
+                <div
                   key={idx}
-                  className={`absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 cursor-pointer
-                    ${idx === activeIndex ? 'z-20' : 'z-10'}`}
-                  style={{ left: `${position}%`, top: '50%' }}
+                  className="absolute flex flex-col items-center cursor-pointer"
+                  style={{
+                    left: `${leftPct}%`,
+                    top: 0,
+                    transform: 'translateX(-50%)',
+                    zIndex: isActive ? 20 : 10,
+                  }}
                   onClick={() => handleDotClick(idx)}
                 >
-                  <div className={`flex flex-col items-center`}>
-                    <div className={`w-6 h-6 rounded-full border-2 transition-all duration-300
-                      ${idx === activeIndex 
-                        ? 'border-indigo-700 bg-white scale-125 shadow-lg' 
-                        : 'border-gray-400 bg-gray-100 hover:scale-110'}`}
-                    ></div>
-                    <div className={`absolute top-full mt-2 transition-all duration-300 whitespace-nowrap text-center
-                      ${idx === activeIndex ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1'}`}>
-                      <p className="font-medium text-gray-800">{exp.company}</p>
-                      <p className="text-xs text-gray-500">{exp.period}</p>
-                    </div>
+                  {/* Dot */}
+                  <div
+                    className={`rounded-full border-2 transition-all duration-300 flex items-center justify-center
+                      ${isActive
+                        ? 'w-5 h-5 border-indigo-700 bg-indigo-700 shadow-lg shadow-indigo-300'
+                        : 'w-4 h-4 border-gray-400 bg-white hover:border-indigo-400'}`}
+                  >
+                    {isActive && <div className="w-2 h-2 bg-white rounded-full" />}
                   </div>
+
+                  {/* Label — only for active dot, clamped width */}
+                  {isActive && (
+                    <div
+                      className="mt-2 bg-white border border-indigo-100 rounded-lg shadow-md px-2 py-1 text-center"
+                      style={{ minWidth: '110px', maxWidth: '160px' }}
+                    >
+                      <p className="font-semibold text-gray-800 text-xs leading-tight truncate">{exp.company}</p>
+                      <p className="text-xs text-indigo-600 mt-0.5 whitespace-nowrap">{exp.period}</p>
+                    </div>
+                  )}
                 </div>
               );
             })}
           </div>
         </div>
 
-        {/* Navigation and Current Position */}
-        <div className="flex justify-between items-center mb-12">
-          <button 
+        {/* Navigation */}
+        <div className="flex justify-between items-center mb-10">
+          <button
             className="bg-white text-gray-800 border border-gray-200 rounded-full p-3 shadow-md hover:shadow-lg hover:bg-gray-50 transition disabled:opacity-50"
             onClick={handlePrev}
             disabled={isTransitioning}
           >
             <ChevronLeft size={24} />
           </button>
-          
+
           <div className="text-center bg-white px-6 py-3 rounded-full shadow-md border border-gray-100">
             <p className="text-gray-800 font-medium flex items-center gap-2">
               <span className="bg-blue-100 text-blue-700 rounded-full px-3 py-1 text-sm">{activeIndex + 1} of {experiences.length}</span>
-              <span className="text-gray-500">|</span>
-              <span>{experiences[activeIndex].period}</span>
+              <span className="text-gray-400">|</span>
+              <span className="text-gray-600 text-sm">{experiences[activeIndex].period}</span>
             </p>
           </div>
-          
-          <button 
+
+          <button
             className="bg-white text-gray-800 border border-gray-200 rounded-full p-3 shadow-md hover:shadow-lg hover:bg-gray-50 transition disabled:opacity-50"
             onClick={handleNext}
             disabled={isTransitioning}
@@ -283,11 +307,11 @@ const EnhancedCareerTimeline = () => {
         </div>
 
         {/* Experience Card */}
-        <div 
-          ref={cardRef} 
-          className={`transform perspective-1000 transition-all duration-500 ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
+        <div
+          ref={cardRef}
+          className={`transform transition-all duration-400 ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
         >
-          <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 transform transition-all duration-500 hover:shadow-2xl">
+          <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-shadow duration-500">
             <div className={`bg-gradient-to-r ${experiences[activeIndex].color} text-white p-8`}>
               <div className="flex justify-between items-start">
                 <div>
@@ -308,20 +332,19 @@ const EnhancedCareerTimeline = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="flex flex-wrap gap-6 mt-6">
                 <div className="flex items-center text-white/90">
                   <Calendar size={16} className="mr-2" />
                   <span>{experiences[activeIndex].period}</span>
                 </div>
-                
                 <div className="flex items-center text-white/90">
                   <MapPin size={16} className="mr-2" />
                   <span>{experiences[activeIndex].location}</span>
                 </div>
               </div>
             </div>
-            
+
             <div className="p-8">
               <div className="grid md:grid-cols-5 gap-8">
                 <div className="md:col-span-2">
@@ -329,22 +352,18 @@ const EnhancedCareerTimeline = () => {
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">About the Role</h3>
                     <p className="text-gray-700 leading-relaxed">{experiences[activeIndex].description}</p>
                   </div>
-                  
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">Skills & Expertise</h3>
                     <div className="flex flex-wrap gap-2">
                       {experiences[activeIndex].skills.map((skill, i) => (
-                        <span 
-                          key={i} 
-                          className="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium"
-                        >
+                        <span key={i} className="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium">
                           {skill}
                         </span>
                       ))}
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="md:col-span-3">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                     <Award size={20} className="mr-3 text-blue-600" />
@@ -354,7 +373,7 @@ const EnhancedCareerTimeline = () => {
                     {experiences[activeIndex].highlights.map((highlight, i) => (
                       <li key={i} className="flex bg-gray-50 p-4 rounded-xl">
                         <div className="mr-4 mt-1">
-                          <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
+                          <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0" />
                         </div>
                         <span className="text-gray-700">{highlight}</span>
                       </li>
@@ -365,23 +384,22 @@ const EnhancedCareerTimeline = () => {
             </div>
           </div>
         </div>
-        
-        {/* Footer - Call to Action */}
+
+        {/* Footer */}
         <div className="mt-16 text-center">
           <div className="inline-block mb-6 mx-auto max-w-3xl">
             <div className="flex items-center justify-center space-x-4">
-              <div className="w-20 h-px bg-gray-300"></div>
+              <div className="w-20 h-px bg-gray-300" />
               <span className="text-gray-500 font-medium">PROFESSIONAL PROFILE</span>
-              <div className="w-20 h-px bg-gray-300"></div>
+              <div className="w-20 h-px bg-gray-300" />
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mt-4 mb-2">Connect with Haider Ali</h3>
-          
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="https://www.linkedin.com/in/haideraliraja/" 
-              target="_blank" 
+            <a
+              href="https://www.linkedin.com/in/haideraliraja/"
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-blue-700 text-white px-8 py-4 rounded-xl hover:bg-blue-800 transition shadow-lg hover:shadow-xl"
             >
@@ -390,40 +408,27 @@ const EnhancedCareerTimeline = () => {
               </svg>
               Connect on LinkedIn
             </a>
-            <a href="https://www.haider.zenitech.in/"><button 
-              className="inline-flex items-center justify-center gap-2 bg-white text-gray-800 border border-gray-200 px-8 py-4 rounded-xl hover:bg-gray-50 transition shadow-lg hover:shadow-xl"
-            >
-              
-              <User size={18} />
-              View Profile
-            </button></a>
-            
+            <a href="https://www.haider.zenitech.in/">
+              <button className="inline-flex items-center justify-center gap-2 bg-white text-gray-800 border border-gray-200 px-8 py-4 rounded-xl hover:bg-gray-50 transition shadow-lg hover:shadow-xl">
+                <User size={18} />
+                View Profile
+              </button>
+            </a>
           </div>
         </div>
       </div>
-      
+
       <style>{`
         @keyframes slideInLeft {
           from { transform: translateX(40px); opacity: 0; }
           to { transform: translateX(0); opacity: 1; }
         }
-        
         @keyframes slideInRight {
           from { transform: translateX(-40px); opacity: 0; }
           to { transform: translateX(0); opacity: 1; }
         }
-        
-        .animate-slide-in-left {
-          animation: slideInLeft 0.5s forwards;
-        }
-        
-        .animate-slide-in-right {
-          animation: slideInRight 0.5s forwards;
-        }
-        
-        .perspective-1000 {
-          perspective: 1000px;
-        }
+        .animate-slide-in-left { animation: slideInLeft 0.4s forwards; }
+        .animate-slide-in-right { animation: slideInRight 0.4s forwards; }
       `}</style>
     </div>
   );

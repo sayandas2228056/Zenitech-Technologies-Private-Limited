@@ -39,14 +39,19 @@ const Bright2 = () => {
                 style={{
                     zIndex: 2,
                     background:
-                        'linear-gradient(135deg, rgba(4,44,83,0.97) 0%, rgba(12,68,124,0.99) 100%)',
-                    backdropFilter: 'blur(36px) saturate(160%)',
-                    WebkitBackdropFilter: 'blur(36px) saturate(160%)',
-                    border: '1.5px solid rgba(55,138,221,0.25)',
+                        'linear-gradient(135deg, rgba(4,44,83,0.25) 0%, rgba(12,68,124,0.35) 100%)',
+                    backdropFilter: 'blur(40px) saturate(180%)',
+                    WebkitBackdropFilter: 'blur(40px) saturate(180%)',
+                    border: '1px solid rgba(255,255,255,0.15)',
                     boxShadow:
-                        '0 25px 50px -12px rgba(4,44,83,0.45), 0 0 0 1px rgba(55,138,221,0.08), inset 0 1px 0 rgba(133,183,235,0.10)',
+                        '0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.2)',
                 }}
             >
+                <div className="absolute inset-0 rounded-[2.5rem] pointer-events-none"
+                    style={{
+                        background: 'linear-gradient(120deg, rgba(255,255,255,0.15), transparent 40%)'
+                    }}
+                />
                 {/* Mouse-follow inner glow */}
                 <div
                     className="absolute inset-0 rounded-[2.5rem] pointer-events-none"

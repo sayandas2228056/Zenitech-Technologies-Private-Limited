@@ -242,27 +242,29 @@ const Appointment = () => {
             <style>{`
                 /* ── Design tokens ───────────────────────────────── */
                 .apg-root {
-                    --apg-blue:       #1d4ed8;
-                    --apg-blue-dk:    #1e3a8a;
-                    --apg-blue-mid:   #185FA5;
-                    --apg-blue-lt:    #dbeafe;
-                    --apg-blue-bg:    #eff6ff;
-                    --apg-ind:        #4f46e5;
-                    --apg-orange:     #f97316;
-                    --apg-white:      #ffffff;
-                    --apg-g900:       #0f172a;
-                    --apg-g700:       #374151;
-                    --apg-g500:       #6b7280;
-                    --apg-g300:       #d1d5db;
-                    --apg-g200:       #e5e7eb;
-                    --apg-g100:       #f3f4f6;
-                    --apg-faded:      #f8faff;
-                    --apg-r:          14px;
-                    --apg-shadow:     0 2px 14px rgba(29,78,216,0.07);
-                    --apg-shadow-h:   0 12px 32px rgba(29,78,216,0.15);
+                    --apg-blue-deep:   #042C53;
+                    --apg-blue-mid:    #185FA5;
+                    --apg-blue-light:  #378ADD;
+                    --apg-blue-pale:   #85B7EB;
+                    --apg-blue-pal2:   #B5D4F4;
+                    --apg-blue-bg:     #E8F1FB;
+                    --apg-blue-bg2:    #EAF4FF;
+                    --apg-orange:      #F97316;
+                    --apg-white:       #ffffff;
+                    --apg-gray-50:     #F7F9FC;
+                    --apg-gray-100:    #EEF2F8;
+                    --apg-gray-200:    #D8E4F0;
+                    --apg-gray-400:    #8FA7C0;
+                    --apg-gray-500:    #6A85A0;
+                    --apg-gray-700:    #3D5470;
+                    --apg-gray-900:    #0D1F33;
+                    --apg-faded:       #F7F9FC;
+                    --apg-r:           14px;
+                    --apg-shadow:      0 2px 14px rgba(24,95,165,0.07), 0 1px 3px rgba(0,0,0,0.05);
+                    --apg-shadow-h:    0 8px 32px rgba(24,95,165,0.14), 0 2px 8px rgba(0,0,0,0.06);
                     font-family: 'Inter', system-ui, sans-serif;
                     background: var(--apg-white);
-                    color: var(--apg-g900);
+                    color: var(--apg-gray-900);
                 }
 
                 /* ── Scroll reveal ──────────────────────────────── */
@@ -286,8 +288,8 @@ const Appointment = () => {
                     align-items: center;
                     gap: 0.4rem;
                     background: var(--apg-blue-bg);
-                    border: 1px solid var(--apg-blue-lt);
-                    color: var(--apg-blue);
+                    border: 1px solid var(--apg-blue-bg2);
+                    color: var(--apg-blue-mid);
                     font-size: 0.69rem;
                     font-weight: 700;
                     letter-spacing: 0.13em;
@@ -305,12 +307,12 @@ const Appointment = () => {
                 .apg-sec-title {
                     font-size: clamp(1.8rem,3.5vw,2.4rem);
                     font-weight: 800;
-                    color: var(--apg-g900);
+                    color: var(--apg-gray-900);
                     margin: 0 0 0.75rem;
                     letter-spacing: -0.02em;
                 }
                 .apg-sec-sub {
-                    color: var(--apg-g500);
+                    color: var(--apg-gray-500);
                     font-size: 0.97rem;
                     line-height: 1.75;
                     max-width: 520px;
@@ -329,7 +331,7 @@ const Appointment = () => {
                 /* ── Left panel ─────────────────────────────────── */
                 .apg-hero-left {
                     position: relative;
-                    background: linear-gradient(140deg, #0f2460 0%, #1e3a8a 30%, #1d4ed8 65%, #4f46e5 100%);
+                    background: linear-gradient(140deg, #042C53 0%, #0C447C 30%, #185FA5 65%, #378ADD 100%);
                     padding: clamp(6rem,10vw,9rem) clamp(1.75rem,4vw,3.75rem) clamp(4rem,7vw,6rem);
                     overflow: hidden;
                     display: flex;
@@ -349,7 +351,7 @@ const Appointment = () => {
                 .apg-blob-tr {
                     top:-6rem; right:-6rem;
                     width:420px; height:420px;
-                    background: radial-gradient(circle, rgba(147,197,253,0.12) 0%, transparent 65%);
+                    background: radial-gradient(circle, rgba(133,183,235,0.12) 0%, transparent 65%);
                     filter: blur(40px);
                     animation: apg-float 8s ease-in-out infinite;
                 }
@@ -364,7 +366,7 @@ const Appointment = () => {
                     top:50%; left:55%;
                     transform: translate(-50%,-50%);
                     width:500px; height:500px;
-                    background: radial-gradient(circle, rgba(79,70,229,0.14) 0%, transparent 65%);
+                    background: radial-gradient(circle, rgba(24,95,165,0.14) 0%, transparent 65%);
                     filter: blur(60px);
                     pointer-events: none;
                 }
@@ -418,14 +420,14 @@ const Appointment = () => {
                     letter-spacing: -0.025em;
                 }
                 .apg-h1-accent {
-                    background: linear-gradient(100deg, #93c5fd 0%, #c4b5fd 100%);
+                    background: linear-gradient(100deg, #85B7EB 0%, #B5D4F4 100%);
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                     background-clip: text;
                 }
                 .apg-hero-p {
                     font-size: 1rem;
-                    color: rgba(219,234,254,0.82);
+                    color: rgba(181,212,244,0.82);
                     line-height: 1.78;
                     max-width: 430px;
                     margin: 0 0 1.6rem;
@@ -449,7 +451,7 @@ const Appointment = () => {
                     backdrop-filter: blur(4px);
                 }
                 .apg-fpill-icon {
-                    color: #93c5fd;
+                    color: #85B7EB;
                     display: flex;
                     align-items: center;
                 }
@@ -479,7 +481,7 @@ const Appointment = () => {
                     align-items: center;
                     gap: 0.6rem;
                     font-size: 0.875rem;
-                    color: rgba(219,234,254,0.85);
+                    color: rgba(181,212,244,0.85);
                 }
                 .apg-check-tick {
                     color: #4ade80;
@@ -505,11 +507,11 @@ const Appointment = () => {
                 }
                 .apg-stat:last-child { border-right: none; }
                 .apg-stat-num { display:block; font-size:1.35rem; font-weight:900; color:#fff; letter-spacing:-0.02em; }
-                .apg-stat-lbl { display:block; font-size:0.67rem; color:rgba(219,234,254,0.6); margin-top:2px; }
+                .apg-stat-lbl { display:block; font-size:0.67rem; color:rgba(181,212,244,0.6); margin-top:2px; }
 
                 /* ── Right panel ─────────────────────────────────── */
                 .apg-hero-right {
-                    background: var(--apg-g100);
+                    background: var(--apg-gray-50);
                     display: flex;
                     align-items: flex-start;
                     justify-content: center;
@@ -535,13 +537,13 @@ const Appointment = () => {
                     left: calc(16.67% + 32px);
                     right: calc(16.67% + 32px);
                     height: 2px;
-                    background: linear-gradient(90deg, var(--apg-blue-lt), var(--apg-blue), var(--apg-blue-lt));
+                    background: linear-gradient(90deg, var(--apg-blue-pal2), var(--apg-blue-mid), var(--apg-blue-pal2));
                     z-index: 0;
                 }
 
                 .apg-step {
                     background: var(--apg-white);
-                    border: 1.5px solid var(--apg-g200);
+                    border: 1.5px solid var(--apg-gray-200);
                     border-radius: 18px;
                     padding: 2.25rem 1.75rem 1.75rem;
                     text-align: center;
@@ -552,7 +554,7 @@ const Appointment = () => {
                     box-shadow: var(--apg-shadow);
                 }
                 .apg-step:hover, .apg-step.apg-step-active {
-                    border-color: var(--apg-blue);
+                    border-color: var(--apg-blue-mid);
                     box-shadow: var(--apg-shadow-h);
                     transform: translateY(-6px);
                     background: var(--apg-blue-bg);
@@ -562,7 +564,7 @@ const Appointment = () => {
                     top: -14px; left: 50%;
                     transform: translateX(-50%);
                     width: 30px; height: 30px;
-                    background: linear-gradient(135deg, var(--apg-blue-dk), var(--apg-blue));
+                    background: linear-gradient(135deg, #042C53, var(--apg-blue-mid));
                     color: #fff;
                     font-weight: 800;
                     font-size: 0.8rem;
@@ -570,14 +572,14 @@ const Appointment = () => {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    box-shadow: 0 4px 12px rgba(29,78,216,0.35);
+                    box-shadow: 0 4px 12px rgba(24,95,165,0.35);
                     border: 2.5px solid var(--apg-white);
                 }
                 .apg-step-icon-wrap {
                     width: 68px; height: 68px;
                     border-radius: 50%;
-                    background: var(--apg-blue-lt);
-                    color: var(--apg-blue);
+                    background: var(--apg-blue-pal2);
+                    color: var(--apg-blue-mid);
                     display: inline-flex;
                     align-items: center;
                     justify-content: center;
@@ -585,17 +587,17 @@ const Appointment = () => {
                     transition: background .3s, color .3s, box-shadow .3s;
                 }
                 .apg-sicon-active {
-                    background: var(--apg-blue);
+                    background: var(--apg-blue-mid);
                     color: #fff;
-                    box-shadow: 0 8px 20px rgba(29,78,216,0.3);
+                    box-shadow: 0 8px 20px rgba(24,95,165,0.3);
                 }
-                .apg-step-title { font-size: 1.05rem; font-weight: 800; color: var(--apg-g900); margin: 0 0 0.45rem; }
-                .apg-step-desc  { font-size: 0.86rem; color: var(--apg-g500); line-height: 1.65; margin: 0 0 0.8rem; }
+                .apg-step-title { font-size: 1.05rem; font-weight: 800; color: var(--apg-gray-900); margin: 0 0 0.45rem; }
+                .apg-step-desc  { font-size: 0.86rem; color: var(--apg-gray-500); line-height: 1.65; margin: 0 0 0.8rem; }
                 .apg-step-detail-chip {
                     display: inline-block;
                     background: var(--apg-blue-bg);
-                    border: 1px solid var(--apg-blue-lt);
-                    color: var(--apg-blue);
+                    border: 1px solid var(--apg-blue-bg2);
+                    color: var(--apg-blue-mid);
                     font-size: 0.72rem;
                     font-weight: 600;
                     border-radius: 100px;
@@ -615,7 +617,7 @@ const Appointment = () => {
                     align-items: flex-start;
                     gap: 1rem;
                     background: var(--apg-white);
-                    border: 1.5px solid var(--apg-g200);
+                    border: 1.5px solid var(--apg-gray-200);
                     border-radius: var(--apg-r);
                     padding: 1.6rem 1.5rem;
                     transition: border-color .3s, box-shadow .3s, transform .3s;
@@ -628,13 +630,13 @@ const Appointment = () => {
                     position: absolute;
                     top: 0; left: 0;
                     width: 3px; height: 100%;
-                    background: linear-gradient(180deg, var(--apg-blue), var(--apg-ind));
+                    background: linear-gradient(180deg, var(--apg-blue-mid), var(--apg-blue-light));
                     opacity: 0;
                     transition: opacity .3s;
                     border-radius: 3px 0 0 3px;
                 }
                 .apg-benefit-card:hover {
-                    border-color: var(--apg-blue-lt);
+                    border-color: var(--apg-blue-pal2);
                     box-shadow: var(--apg-shadow-h);
                     transform: translateY(-4px);
                 }
@@ -643,30 +645,30 @@ const Appointment = () => {
                 .apg-bcard-icon {
                     width: 48px; height: 48px;
                     background: var(--apg-blue-bg);
-                    border: 1.5px solid var(--apg-blue-lt);
+                    border: 1.5px solid var(--apg-blue-bg2);
                     border-radius: 12px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    color: var(--apg-blue);
+                    color: var(--apg-blue-mid);
                     transition: background .25s, box-shadow .25s;
                 }
                 .apg-benefit-card:hover .apg-bcard-icon {
-                    background: var(--apg-blue);
+                    background: var(--apg-blue-mid);
                     color: #fff;
-                    border-color: var(--apg-blue);
-                    box-shadow: 0 6px 16px rgba(29,78,216,0.3);
+                    border-color: var(--apg-blue-mid);
+                    box-shadow: 0 6px 16px rgba(24,95,165,0.3);
                 }
                 .apg-bcard-body {}
-                .apg-bcard-title { font-size: 0.97rem; font-weight: 700; color: var(--apg-g900); margin: 0 0 0.35rem; }
-                .apg-bcard-desc  { font-size: 0.85rem; color: var(--apg-g500); line-height: 1.7; margin: 0; }
+                .apg-bcard-title { font-size: 0.97rem; font-weight: 700; color: var(--apg-gray-900); margin: 0 0 0.35rem; }
+                .apg-bcard-desc  { font-size: 0.85rem; color: var(--apg-gray-500); line-height: 1.7; margin: 0; }
 
                 /* ════════════════════════════════════════════════
                    CTA BANNER
                 ════════════════════════════════════════════════ */
                 .apg-cta {
                     position: relative;
-                    background: linear-gradient(140deg, #0f2460 0%, #1e3a8a 35%, #1d4ed8 65%, #4f46e5 100%);
+                    background: linear-gradient(140deg, #042C53 0%, #0C447C 35%, #185FA5 65%, #378ADD 100%);
                     padding: clamp(4rem,9vw,7rem) 2rem;
                     overflow: hidden;
                     text-align: center;
@@ -706,7 +708,7 @@ const Appointment = () => {
                 }
                 .apg-cta-p {
                     font-size: 1rem;
-                    color: rgba(219,234,254,0.8);
+                    color: rgba(181,212,244,0.8);
                     line-height: 1.75;
                     margin: 0 0 2rem;
                 }
@@ -744,7 +746,7 @@ const Appointment = () => {
                     align-items: center;
                     gap: 0.45rem;
                     background: #fff;
-                    color: var(--apg-blue);
+                    color: var(--apg-blue-mid);
                     padding: 0.76rem 1.8rem;
                     border-radius: 100px;
                     font-size: 0.95rem;
@@ -756,7 +758,7 @@ const Appointment = () => {
                 .apg-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
                 .apg-cta-note {
                     font-size: 0.78rem;
-                    color: rgba(219,234,254,0.48);
+                    color: rgba(181,212,244,0.48);
                     margin: 0;
                 }
 

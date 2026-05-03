@@ -6,7 +6,7 @@ import useSEO from '../hooks/useSEO';
 const HeroBotm    = lazy(() => import('../components/Homepage/HeroBotm'));
 const AbtSec      = lazy(() => import('../components/Homepage/AbtSec'));
 const ServSection = lazy(() => import('../components/Common/ServSection'));
-const Bright      = lazy(() => import('../components/Common/Bright'));
+const Bright      = lazy(() => import('../components/Common/Bright2'));
 const FAQ         = lazy(() => import('../components/Common/FAQ'));
 
 /* ── FAQ Schema Data ─────────────────────────────────── */

@@ -52,10 +52,82 @@ const AboutFounder = () => {
   });
 
   return (
-    <div className="md:mt-10 min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
+    <div className="af-root min-h-screen">
+      <style>{`
+        .af-root {
+          --af-blue-deep:   #042C53;
+          --af-blue-mid:    #185FA5;
+          --af-blue-light:  #378ADD;
+          --af-blue-pale:   #85B7EB;
+          --af-blue-pal2:   #B5D4F4;
+          --af-blue-bg:     #E8F1FB;
+          --af-blue-bg2:    #EAF4FF;
+          --af-orange-500:  #F97316;
+          --af-white:       #ffffff;
+          --af-gray-50:     #F7F9FC;
+          --af-gray-100:    #EEF2F8;
+          --af-gray-200:    #D8E4F0;
+          --af-gray-400:    #8FA7C0;
+          --af-text-main:   #0D1F33;
+          --af-text-body:   #3D5470;
+          --af-text-muted:  #6A85A0;
+          font-family: 'Satoshi', 'Inter', system-ui, sans-serif;
+          background: linear-gradient(to bottom, var(--af-gray-50), var(--af-gray-100));
+          color: var(--af-text-main);
+        }
+        .af-hero {
+          background: var(--af-blue-deep);
+          color: var(--af-white);
+        }
+        .af-hero-text {
+          color: var(--af-blue-pal2);
+        }
+        .af-logo-ring {
+          border-color: var(--af-blue-mid);
+        }
+        .af-profile-card {
+          background: linear-gradient(to bottom right, var(--af-blue-bg), var(--af-gray-100));
+        }
+        .af-profile-img-bg {
+          background: linear-gradient(to bottom right, var(--af-blue-bg2), var(--af-blue-bg));
+        }
+        .af-text-accent {
+          color: var(--af-blue-deep);
+        }
+        .af-text-accent-hover:hover {
+          color: var(--af-blue-deep);
+        }
+        .af-social-hover:hover {
+          background: var(--af-blue-deep);
+          color: var(--af-white);
+        }
+        .af-icon-bg {
+          background: var(--af-blue-deep);
+        }
+        .af-btn-primary {
+          background: var(--af-blue-deep);
+          color: var(--af-white);
+        }
+        .af-btn-primary:hover {
+          background: #0C447C;
+        }
+        .af-date-text {
+          color: var(--af-blue-deep);
+        }
+        .af-divider {
+          background: var(--af-blue-deep);
+        }
+        .af-card-bg {
+          background: var(--af-gray-50);
+          border-color: var(--af-gray-200);
+        }
+        .af-card-bg:hover {
+          box-shadow: 0 4px 12px rgba(24,95,165,0.1);
+        }
+      `}</style>
       
       {/* Hero Section */}
-      <div className="bg-blue-900 text-white">
+      <div className="af-hero">
   <div className="max-w-6xl mx-auto py-16 px-4">
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
       
@@ -63,7 +135,7 @@ const AboutFounder = () => {
       <div>
         <h1 className="text-4xl mt-10 md:text-5xl font-bold mb-4">Leadership</h1>
         <div className="w-24 h-1 bg-white mb-6"></div>
-        <p className="text-lg text-blue-100 mb-8">
+        <p className="text-lg af-hero-text mb-8">
           Meet the visionary behind <span className="text-orange-500 font-bold">ZENITECH TECHNOLOGIES PRIVATE LIMITED</span> and discover the expertise 
           that drives our success in the technology sector.
         </p>
@@ -71,9 +143,9 @@ const AboutFounder = () => {
 
       {/* Right Section - Circular Logo */}
       <div className="hidden lg:flex justify-end">
-        <div className="relative w-48 h-48 rounded-full flex items-center justify-center bg-blue-900">
+        <div className="relative w-48 h-48 rounded-full flex items-center justify-center" style={{background: 'var(--af-blue-deep)'}}>
           {/* Blue ring effect */}
-          <div className="absolute inset-0 rounded-full border-4 border-blue-600"></div>
+          <div className="absolute inset-0 rounded-full border-4 af-logo-ring"></div>
 
           {/* White circle with Zenitech text */}
           <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center z-10">
@@ -92,16 +164,16 @@ const AboutFounder = () => {
         <div className="bg-white rounded-xl shadow-xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
             {/* Profile Card */}
-            <div className="lg:col-span-1 bg-gradient-to-br from-blue-50 to-slate-100 p-8">
+            <div className="lg:col-span-1 af-profile-card p-8">
               <div className="flex flex-col items-center text-center mb-8">
-                <div className="w-40 h-40 bg-blue-100 rounded-full mb-6 overflow-hidden shadow-md">
-                  <div className="w-full h-full bg-gradient-to-br from-blue-200 to-blue-100 flex items-center justify-center">
-                    <span className="text-6xl font-bold text-blue-900"><img src={Founder}/></span>
+                <div className="w-40 h-40 rounded-full mb-6 overflow-hidden shadow-md" style={{background: 'var(--af-blue-bg)'}}>
+                  <div className="w-full h-full af-profile-img-bg flex items-center justify-center">
+                    <span className="text-6xl font-bold" style={{color: 'var(--af-blue-deep)'}}><img src={Founder}/></span>
                   </div>
                 </div>
                 <h2 className="text-2xl font-bold text-slate-900 mb-1">Haider Ali</h2>
-                <p className="text-blue-900 font-medium mb-4">Founder & CEO</p>
-                <div className="w-12 h-1 bg-blue-900 mb-4"></div>
+                <p className="af-text-accent font-medium mb-4">Founder & CEO</p>
+                <div className="w-12 h-1 af-divider mb-4"></div>
                 <p className="text-slate-600 text-sm mb-6">
                   Technology visionary with 25+ years of experience in Enterprise Cybersecurity & Cloud Solutions
                 </p>
@@ -109,19 +181,19 @@ const AboutFounder = () => {
                 {/* Contact Information */}
                 <div className="w-full space-y-3 mb-6">
                   <div className="flex items-center gap-3 text-slate-700">
-                    <Mail className="text-blue-900 shrink-0" size={16} />
-                    <a href="mailto:haider@zenitech.in" className="text-sm hover:text-blue-900 transition-colors">
+                    <Mail className="af-text-accent shrink-0" size={16} />
+                    <a href="mailto:haider@zenitech.in" className="text-sm af-text-accent-hover transition-colors">
                       haider@zenitech.in
                     </a>
                   </div>
                   <div className="flex items-center gap-3 text-slate-700">
-                    <Phone className="text-blue-900 shrink-0" size={16} />
-                    <a href="tel:+918820066999" className="text-sm hover:text-blue-900 transition-colors">
+                    <Phone className="af-text-accent shrink-0" size={16} />
+                    <a href="tel:+918820066999" className="text-sm af-text-accent-hover transition-colors">
                       +91 88200 66999
                     </a>
                   </div>
                   <div className="flex items-center gap-3 text-slate-700">
-                    <MapPin className="text-blue-900 shrink-0" size={16} />
+                    <MapPin className="af-text-accent shrink-0" size={16} />
                     <span className="text-sm">Bengaluru, India</span>
                   </div>
                 </div>
@@ -132,7 +204,7 @@ const AboutFounder = () => {
                     href="https://www.linkedin.com/in/haideraliraja/" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-900 hover:text-white transition-colors"
+                    className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 af-social-hover transition-colors"
                   >
                     <FaLinkedin size={15} />
                   </a>
@@ -140,13 +212,13 @@ const AboutFounder = () => {
                     href="https://wa.me/918820066999" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-900 hover:text-white transition-colors"
+                    className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 af-social-hover transition-colors"
                   >
                     <FaWhatsapp size={15} />
                   </a>
                   <a
                     href="tel:+918820066999"
-                    className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-900 hover:text-white transition-colors"
+                    className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 af-social-hover transition-colors"
                     title="Call +91 88200 66999"
                   >
                     <Phone size={15} />
@@ -159,7 +231,7 @@ const AboutFounder = () => {
             <div className="lg:col-span-2 p-8 md:p-12">
               <div className="mb-8">
                 <div className="flex items-center mb-6">
-                  <div className="w-6 h-6 rounded-full bg-blue-900 flex items-center justify-center mr-3">
+                  <div className="w-6 h-6 rounded-full af-icon-bg flex items-center justify-center mr-3">
                     <Briefcase size={14} className="text-white" />
                   </div>
                   <h3 className="text-xl font-semibold text-slate-900">Professional Overview</h3>
@@ -173,7 +245,7 @@ const AboutFounder = () => {
                 
                 <div className="mt-8">
                   <a href="https://www.haider.zenitech.in/">
-                    <button className="px-6 py-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition-colors inline-flex items-center gap-2 shadow-sm">
+                    <button className="px-6 py-3 af-btn-primary rounded-lg transition-colors inline-flex items-center gap-2 shadow-sm">
                       Connect with Me <ExternalLink size={16} />
                     </button>
                   </a>
@@ -183,18 +255,18 @@ const AboutFounder = () => {
               {/* Education Section */}
               <div className="mt-12">
                 <div className="flex items-center mb-6">
-                  <div className="w-6 h-6 rounded-full bg-blue-900 flex items-center justify-center mr-3">
+                  <div className="w-6 h-6 rounded-full af-icon-bg flex items-center justify-center mr-3">
                     <BookOpen size={14} className="text-white" />
                   </div>
                   <h3 className="text-xl font-semibold text-slate-900">Education & Certifications</h3>
                 </div>
                 
                 <div className="space-y-6">
-                  <div className="bg-slate-50 p-5 rounded-lg border border-slate-100">
+                  <div className="af-card-bg p-5 rounded-lg border">
                     <div className="flex items-start">
                       <img src={IITRLogo} alt="IIT Roorkee Logo" className="w-10 h-10 rounded-full bg-white border mr-4" />
                       <div>
-                        <div className="text-xs font-medium text-blue-900 mb-1">Nov 2023 – Apr 2025</div>
+                        <div className="text-xs font-medium af-date-text mb-1">Nov 2023 – Apr 2025</div>
                         <h4 className="text-base font-semibold text-slate-900 mb-1 flex items-center">
                           <span className="mr-2">Indian Institute of Technology, Roorkee</span>
                         </h4>
@@ -202,11 +274,11 @@ const AboutFounder = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-slate-50 p-5 rounded-lg border border-slate-100">
+                  <div className="af-card-bg p-5 rounded-lg border">
                     <div className="flex items-start">
                       <img src={IIITBLogo} alt="IIIT Bangalore Logo" className="w-10 h-10 rounded-full bg-white border mr-4" />
                       <div>
-                        <div className="text-xs font-medium text-blue-900 mb-1">Apr 2024 – Nov 2024</div>
+                        <div className="text-xs font-medium af-date-text mb-1">Apr 2024 – Nov 2024</div>
                         <h4 className="text-base font-semibold text-slate-900 mb-1 flex items-center">
                           <span className="mr-2">International Institute of Information Technology Bangalore</span>
                         </h4>
@@ -214,11 +286,11 @@ const AboutFounder = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-slate-50 p-5 rounded-lg border border-slate-100">
+                  <div className="af-card-bg p-5 rounded-lg border">
                     <div className="flex items-start">
                       <img src={AIMALogo} alt="AIMA Logo" className="w-10 h-10 rounded-full bg-white border mr-4" />
                       <div>
-                        <div className="text-xs font-medium text-blue-900 mb-1">1996 – 1998</div>
+                        <div className="text-xs font-medium af-date-text mb-1">1996 – 1998</div>
                         <h4 className="text-base font-semibold text-slate-900 mb-1 flex items-center">
                           <span className="mr-2">All India Management Association (AIMA)</span>
                         </h4>
@@ -226,11 +298,11 @@ const AboutFounder = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-slate-50 p-5 rounded-lg border border-slate-100">
+                  <div className="af-card-bg p-5 rounded-lg border">
                     <div className="flex items-start">
                       <img src={VMLogo} alt="Ramakrishna Mission Vidyamandira Logo" className="w-10 h-10 rounded-full bg-white border mr-4" />
                       <div>
-                        <div className="text-xs font-medium text-blue-900 mb-1">1992 – 1995</div>
+                        <div className="text-xs font-medium af-date-text mb-1">1992 – 1995</div>
                         <h4 className="text-base font-semibold text-slate-900 mb-1 flex items-center">
                           <span className="mr-2">Ramakrishna Mission Vidyamandira</span>
                         </h4>
@@ -247,7 +319,7 @@ const AboutFounder = () => {
         {/* Core Competencies Section */}
         <div className="mt-12 bg-white rounded-xl shadow-xl p-8 md:p-12">
           <h3 className="text-2xl font-bold text-slate-900 mb-8 flex items-center">
-            <span className="w-8 h-1 bg-blue-900 mr-3"></span>
+            <span className="w-8 h-1 af-divider mr-3"></span>
             Core Competencies
           </h3>
           
@@ -259,7 +331,7 @@ const AboutFounder = () => {
               { title: "Technology Partnerships", description: "Strategic alliances with leading global technology providers" },
               { title: "Digital Transformation", description: "Guiding enterprises through technological evolution" }
             ].map((item, index) => (
-              <div key={index} className="p-6 border border-slate-100 rounded-lg hover:shadow-md transition-shadow bg-slate-50">
+              <div key={index} className="p-6 border rounded-lg af-card-bg">
                 <h4 className="text-lg font-semibold text-slate-900 mb-2">{item.title}</h4>
                 <p className="text-slate-600 text-sm">{item.description}</p>
               </div>

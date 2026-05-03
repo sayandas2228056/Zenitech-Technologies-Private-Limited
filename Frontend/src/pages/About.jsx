@@ -11,7 +11,7 @@ import Logo from '../assets/Logo.png';
 import Founder from '../assets/Founder.jpg';
 import { FaLinkedin, FaFacebookF, FaWhatsapp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Bright1 from '../components/Common/Bright1.jsx';
+import Bright1 from '../components/Common/Bright2.jsx';
 import OptimizedImage from '../components/Common/OptimizedImage.jsx';
 import useSEO from '../hooks/useSEO';
 
@@ -20,10 +20,10 @@ import useSEO from '../hooks/useSEO';
 ══════════════════════════════════════════════════════════════ */
 
 const stats = [
+  { icon: Lock, count: 'Cyber Security', label: 'Protection' },
   { icon: Shield, count: '99.9%', label: 'System Uptime' },
-  { icon: Activity, count: '24/7', label: 'Monitoring & Support' },
-  { icon: Cloud, count: 'Multi-Cloud', label: 'Deployment Capability' },
-  { icon: Lock, count: 'Zero Trust', label: 'Security Model' },
+  { icon: Cloud, count: 'Cloud Solutions', label: 'Deployment Capability' },
+  
 ];
 
 const values = [
@@ -74,16 +74,15 @@ const services = [
 ];
 
 const founderData = {
-  name: 'Mr. Haider Ali',
+  name: 'Haider Ali',
   title: 'Founder & CEO',
-  summary: 'Technology visionary with 20+ years of experience in Enterprise IT Solutions. Expertise in IT, Cloud, Cybersecurity, Software, and Telecom Services.',
+  summary: 'Technology visionary with 25+ years of experience in Enterprise IT Solutions. Expertise in IT, Cloud, Cybersecurity, Software, and Telecom Services.',
   email: 'haider@zenitech.in',
   phone: '+91 88200 66999',
   location: 'Bangalore / Bengaluru, India',
   highlights: ['24/7 security monitoring', 'Advanced threat protection', 'Incident response services', 'Tailored security consulting'],
   socials: [
     { name: 'LinkedIn', icon: <FaLinkedin size={16} />, url: 'https://linkedin.com' },
-    { name: 'Facebook', icon: <FaFacebookF size={16} />, url: 'https://facebook.com' },
     { name: 'WhatsApp', icon: <FaWhatsapp size={16} />, url: 'https://wa.me/8820066999' },
   ],
 };
@@ -388,7 +387,7 @@ const About = () => {
             <div className="ab-services-mini-grid">
               {services.map((svc, i) => (
                 <div key={i} className="ab-mini-card">
-                  <div className="ab-mini-icon-wrap"><svc.icon size={26} color="#7C3AED" /></div>
+                  <div className="ab-mini-icon-wrap"><svc.icon size={26} color="#185FA5" /></div>
                   <h4 className="ab-mini-title">{svc.title}</h4>
                   <p className="ab-mini-desc">{svc.description}</p>
                 </div>
@@ -408,7 +407,6 @@ const About = () => {
         <RevealCard className="ab-founder-card">
           {/* Photo col */}
           <div className="ab-founder-photo-col">
-            <div className="ab-founder-ring" />
             <OptimizedImage src={Founder} alt={`${founderData.name} – ${founderData.title}`} className="ab-founder-img" loading="lazy" />
             <div className="ab-founder-socials">
               {founderData.socials.map((s, i) => (
@@ -434,7 +432,7 @@ const About = () => {
                 { icon: Network, href: null, text: founderData.location },
               ].map(({ icon: Icon, href, text }, i) => (
                 <div key={i} className="ab-founder-contact-row">
-                  <div className="ab-founder-contact-icon"><Icon size={16} color="#7C3AED" /></div>
+                  <div className="ab-founder-contact-icon"><Icon size={16} color="#185FA5" /></div>
                   {href
                     ? <a href={href} className="ab-founder-contact-text ab-link">{text}</a>
                     : <span className="ab-founder-contact-text">{text}</span>}
@@ -451,20 +449,7 @@ const About = () => {
 
     
 
-      {/* ══ STATISTICS ═════════════════════════════════════════ */}
-      <section className="ab-stats-section">
-        <div className="ab-stats-blob" />
-        <SectionHeader tag="OUR ACHIEVEMENTS" title="Our impact in numbers" subtitle="We take pride in our achievements and the trust our clients place in us." light />
-        <div className="ab-stats-grid">
-          {stats.map((s, i) => (
-            <RevealCard key={i} className="ab-stat-card" delay={i * 80}>
-              <div className="ab-stat-icon-wrap"><s.icon size={28} color="#C4B5FD" /></div>
-              <span className="ab-stat-num">{s.count}</span>
-              <span className="ab-stat-label">{s.label}</span>
-            </RevealCard>
-          ))}
-        </div>
-      </section>
+      
 
       {/* ══ CORE VALUES ════════════════════════════════════════ */}
       <section className="ab-section ab-section-faded">
@@ -513,7 +498,7 @@ const About = () => {
               >
                 <span className={`ab-faq-q${activeFaq === i ? ' ab-faq-q-open' : ''}`}>{faq.question}</span>
                 {activeFaq === i
-                  ? <ChevronUp size={18} color="#7C3AED" style={{ flexShrink: 0 }} />
+                  ? <ChevronUp size={18} color="#185FA5" style={{ flexShrink: 0 }} />
                   : <ChevronDown size={18} color="#9CA3AF" style={{ flexShrink: 0 }} />}
               </button>
               {activeFaq === i && <div className="ab-faq-answer">{faq.answer}</div>}
@@ -526,44 +511,29 @@ const About = () => {
       <style>{`
         /* ── Tokens ──────────────────────────────────────────── */
         .ab-root {
-          --ab-orange-900: #7C2D12;
-          --ab-orange-800: #9A3412;
-          --ab-orange-700: #C2410C;
-          --ab-orange-600: #EA580C;
-          --ab-orange-500: #F97316;
-          --ab-orange-400: #FB923C;
-          --ab-orange-300: #FDBA74;
-          --ab-orange-100: #FFEDD5;
-          --ab-orange-50:  #FFF7ED;
-          --ab-purple-900: #4C1D95;
-          --ab-purple-800: #5B21B6;
-          --ab-purple-700: #7C3AED;
-          --ab-purple-600: #8B5CF6;
-          --ab-purple-500: #A78BFA;
-          --ab-purple-400: #C4B5FD;
-          --ab-purple-300: #DDD6FE;
-          --ab-purple-200: #E9D5FF;
-          --ab-purple-100: #F3E8FF;
-          --ab-purple-50:  #F5F3FF;
-          --ab-accent:     #185FA5;
-          --ab-accent-lt:  #378ADD;
-          --ab-white:      #ffffff;
-          --ab-gray-50:    #FAFAFA;
-          --ab-gray-100:   #F3F4F6;
-          --ab-gray-200:   #E5E7EB;
-          --ab-gray-500:   #6B7280;
-          --ab-gray-700:   #374151;
-          --ab-gray-900:   #111827;
-          --ab-text-main:  #331A05;
-          --ab-text-body:  #60350D;
-          --ab-text-muted: #9A7C5A;
-          --ab-faded:      #FFFBF7;
-          --ab-radius-sm:  8px;
-          --ab-radius-md:  12px;
-          --ab-radius-lg:  16px;
-          --ab-radius-xl:  20px;
-          --ab-shadow-card: 0 2px 12px rgba(234,88,12,0.07), 0 1px 3px rgba(0,0,0,0.05);
-          --ab-shadow-hov:  0 10px 36px rgba(234,88,12,0.14), 0 2px 8px rgba(0,0,0,0.06);
+          --ab-blue-deep:   #042C53;
+          --ab-blue-mid:    #185FA5;
+          --ab-blue-light:  #378ADD;
+          --ab-blue-pale:   #85B7EB;
+          --ab-blue-pal2:   #B5D4F4;
+          --ab-blue-bg:     #E8F1FB;
+          --ab-blue-bg2:    #EAF4FF;
+          --ab-orange-500:  #F97316;
+          --ab-white:       #ffffff;
+          --ab-gray-50:     #F7F9FC;
+          --ab-gray-100:    #EEF2F8;
+          --ab-gray-200:    #D8E4F0;
+          --ab-gray-400:    #8FA7C0;
+          --ab-text-main:   #0D1F33;
+          --ab-text-body:   #3D5470;
+          --ab-text-muted:  #6A85A0;
+          --ab-faded:       #F7F9FC;
+          --ab-radius-sm:   8px;
+          --ab-radius-md:   12px;
+          --ab-radius-lg:   16px;
+          --ab-radius-xl:   20px;
+          --ab-shadow-card: 0 2px 12px rgba(24,95,165,0.07), 0 1px 3px rgba(0,0,0,0.05);
+          --ab-shadow-hov:  0 8px 32px rgba(24,95,165,0.14), 0 2px 8px rgba(0,0,0,0.06);
           font-family: 'Satoshi', 'Inter', system-ui, sans-serif;
           background: var(--ab-white);
           color: var(--ab-text-main);
@@ -609,9 +579,9 @@ const About = () => {
           inset: 0;
           background: linear-gradient(
             135deg,
-            rgba(46,6,100,0.88) 0%,
-            rgba(91,33,182,0.82) 50%,
-            rgba(124,58,237,0.86) 100%
+            rgba(4,44,83,0.88) 0%,
+            rgba(24,95,165,0.82) 50%,
+            rgba(12,68,124,0.86) 100%
           );
         }
         .ab-hero-blob {
@@ -623,12 +593,12 @@ const About = () => {
         .ab-blob-1 {
           width: 480px; height: 480px;
           top: -140px; right: -120px;
-          background: radial-gradient(circle, rgba(167,139,250,0.18) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(55,138,221,0.18) 0%, transparent 70%);
         }
         .ab-blob-2 {
           width: 300px; height: 300px;
           bottom: -80px; left: -60px;
-          background: radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(24,95,165,0.12) 0%, transparent 70%);
         }
         .ab-hero-layout {
           position: relative;
@@ -647,20 +617,20 @@ const About = () => {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          background: rgba(167,139,250,0.18);
-          border: 0.5px solid rgba(167,139,250,0.38);
+          background: rgba(55,138,221,0.18);
+          border: 0.5px solid rgba(55,138,221,0.38);
           border-radius: 100px;
           padding: 6px 14px;
           margin-bottom: 22px;
           font-size: 12px;
           font-weight: 600;
           letter-spacing: 0.06em;
-          color: #E9D5FF;
+          color: var(--ab-blue-pal2);
         }
         .ab-badge-dot {
           width: 7px; height: 7px;
           border-radius: 50%;
-          background: var(--ab-purple-300);
+          background: var(--ab-blue-pale);
           flex-shrink: 0;
         }
         .ab-badge-animate { animation: ab-fade-up 0.6s ease forwards; opacity: 0; }
@@ -685,7 +655,7 @@ const About = () => {
         }
         .ab-hero-em {
           font-style: normal;
-          color: var(--ab-purple-300);
+          color: var(--ab-blue-pale);
           position: relative;
         }
         .ab-hero-em::after {
@@ -693,12 +663,12 @@ const About = () => {
           position: absolute;
           bottom: -3px; left: 0; right: 0;
           height: 2px;
-          background: linear-gradient(90deg, var(--ab-purple-300), transparent);
+          background: linear-gradient(90deg, var(--ab-blue-pale), transparent);
           border-radius: 2px;
         }
         .ab-hero-sub {
           font-size: 1.05rem;
-          color: #E9D5FF;
+          color: var(--ab-blue-pal2);
           line-height: 1.75;
           max-width: 480px;
           margin-bottom: 32px;
@@ -721,7 +691,7 @@ const About = () => {
           background: #fff;
           border-radius: 50%;
           padding: 2.5rem;
-          box-shadow: 0 24px 60px rgba(46,6,100,0.35);
+          box-shadow: 0 24px 60px rgba(4,44,83,0.35);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -740,7 +710,7 @@ const About = () => {
         .ab-btn-primary {
           display: inline-flex; align-items: center; gap: 8px;
           background: var(--ab-white);
-          color: var(--ab-purple-700);
+          color: var(--ab-blue-mid);
           padding: 12px 24px;
           border-radius: var(--ab-radius-md);
           font-size: 0.9rem; font-weight: 700;
@@ -750,27 +720,27 @@ const About = () => {
           cursor: pointer;
         }
         .ab-btn-primary:hover {
-          background: var(--ab-purple-50);
+          background: var(--ab-blue-bg);
           transform: translateY(-2px);
           box-shadow: 0 8px 24px rgba(0,0,0,0.2);
         }
         .ab-btn-ghost {
           display: inline-flex; align-items: center; gap: 8px;
           background: transparent;
-          color: #E9D5FF;
+          color: var(--ab-blue-pal2);
           padding: 12px 24px;
           border-radius: var(--ab-radius-md);
           font-size: 0.9rem; font-weight: 600;
-          border: 2px solid rgba(196,181,253,0.4);
+          border: 2px solid rgba(55,138,221,0.4);
           text-decoration: none;
           transition: background 0.2s, border-color 0.2s;
           cursor: pointer;
         }
         .ab-btn-ghost:hover {
           background: rgba(255,255,255,0.1);
-          border-color: rgba(196,181,253,0.8);
+          border-color: rgba(55,138,221,0.8);
         }
-        .ab-btn-inline { margin-top: 28px; color: var(--ab-purple-700); background: var(--ab-white); }
+        .ab-btn-inline { margin-top: 28px; color: var(--ab-blue-mid); background: var(--ab-white); }
 
         /* ── Sections & layout ───────────────────────────────── */
         .ab-section-header {
@@ -781,9 +751,9 @@ const About = () => {
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          background: var(--ab-purple-100);
-          border: 1px solid #DDD6FE;
-          color: var(--ab-purple-600);
+          background: var(--ab-blue-bg);
+          border: 1px solid var(--ab-blue-bg2);
+          color: var(--ab-blue-mid);
           font-size: 0.71rem; font-weight: 700;
           letter-spacing: 0.12em; text-transform: uppercase;
           padding: 0.3rem 0.9rem;
@@ -799,9 +769,9 @@ const About = () => {
           display: inline-block;
           width: 6px; height: 6px;
           border-radius: 50%;
-          background: var(--ab-orange);
+          background: var(--ab-orange-500);
         }
-        .ab-eyebrow-dot-light { background: var(--ab-purple-300); }
+        .ab-eyebrow-dot-light { background: var(--ab-blue-pale); }
         .ab-section-title {
           font-size: clamp(1.8rem, 3.5vw, 2.5rem);
           font-weight: 800;
@@ -812,12 +782,12 @@ const About = () => {
         .ab-section-title-light { color: #fff; }
         .ab-title-bar {
           width: 52px; height: 3px;
-          background: linear-gradient(90deg, var(--ab-purple-600), var(--ab-purple-400));
+          background: linear-gradient(90deg, var(--ab-blue-mid), var(--ab-blue-light));
           border-radius: 2px;
           margin: 0 auto 1rem;
         }
         .ab-title-bar-light {
-          background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(196,181,253,0.5));
+          background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(55,138,221,0.5));
         }
         .ab-section-sub {
           font-size: 0.97rem;
@@ -826,7 +796,7 @@ const About = () => {
           margin: 0 auto;
           line-height: 1.75;
         }
-        .ab-section-sub-light { color: rgba(233,213,255,0.75); }
+        .ab-section-sub-light { color: rgba(181,212,244,0.75); }
 
         /* ── Two column layout ───────────────────────────────── */
         .ab-two-col {
@@ -848,27 +818,27 @@ const About = () => {
           border-radius: 50%;
           opacity: 0.45;
         }
-        .ab-img-blob-tl { top: -20px;    left: -20px;   background: var(--ab-purple-100); }
-        .ab-img-blob-br { bottom: -20px; right: -20px;  background: #DDD6FE; }
-        .ab-img-blob-tr { top: -20px;    right: -20px;  background: var(--ab-purple-100); }
-        .ab-img-blob-bl { bottom: -20px; left: -20px;   background: #DDD6FE; }
+        .ab-img-blob-tl { top: -20px;    left: -20px;   background: var(--ab-blue-bg); }
+        .ab-img-blob-br { bottom: -20px; right: -20px;  background: var(--ab-blue-bg2); }
+        .ab-img-blob-tr { top: -20px;    right: -20px;  background: var(--ab-blue-bg); }
+        .ab-img-blob-bl { bottom: -20px; left: -20px;   background: var(--ab-blue-bg2); }
         .ab-section-img {
           position: relative;
           z-index: 1;
           width: 100%;
           border-radius: var(--ab-radius-lg);
-          box-shadow: 0 16px 48px rgba(124,58,237,0.14), 0 2px 8px rgba(0,0,0,0.06);
+          box-shadow: 0 16px 48px rgba(24,95,165,0.14), 0 2px 8px rgba(0,0,0,0.06);
           display: block;
         }
         .ab-img-chip {
           position: absolute;
           z-index: 2;
-          background: var(--ab-purple-600);
+          background: var(--ab-blue-mid);
           color: #fff;
           font-size: 12px; font-weight: 600;
           padding: 8px 16px;
           border-radius: var(--ab-radius-sm);
-          box-shadow: 0 4px 12px rgba(124,58,237,0.35);
+          box-shadow: 0 4px 12px rgba(24,95,165,0.35);
         }
         .ab-img-chip-tl { top: 16px; left: 16px; }
         .ab-img-chip-br { bottom: 16px; right: 16px; }
@@ -878,14 +848,14 @@ const About = () => {
           display: inline-flex;
           align-items: center;
           gap: 0;
-          background: var(--ab-purple-50);
-          border: 1px solid #DDD6FE;
+          background: var(--ab-blue-bg);
+          border: 1px solid var(--ab-blue-bg2);
           border-radius: 100px;
           padding: 2px 4px 2px 4px;
           margin-bottom: 20px;
         }
         .ab-badge-pill-inner {
-          background: var(--ab-purple-600);
+          background: var(--ab-blue-mid);
           color: #fff;
           font-size: 11px; font-weight: 700;
           padding: 4px 14px;
@@ -893,7 +863,7 @@ const About = () => {
           letter-spacing: 0.08em;
         }
         .ab-badge-pill-sub {
-          color: var(--ab-purple-700);
+          color: var(--ab-blue-mid);
           font-size: 11px; font-weight: 600;
           padding: 0 12px;
         }
@@ -903,19 +873,19 @@ const About = () => {
         }
         .ab-text-stack p {
           font-size: 0.97rem;
-          color: var(--ab-gray-700);
+          color: var(--ab-text-body);
           line-height: 1.75;
         }
         .ab-link-arrow {
           display: inline-flex; align-items: center; gap: 4px;
-          color: var(--ab-purple-600);
+          color: var(--ab-blue-mid);
           font-size: 0.9rem; font-weight: 600;
           text-decoration: none;
           transition: color 0.2s, gap 0.2s;
         }
-        .ab-link-arrow:hover { color: var(--ab-purple-500); gap: 8px; }
-        .ab-link { color: var(--ab-purple-600); text-decoration: none; } 
-        .ab-link:hover { color: var(--ab-purple-500); }
+        .ab-link-arrow:hover { color: var(--ab-blue-light); gap: 8px; }
+        .ab-link { color: var(--ab-blue-mid); text-decoration: none; } 
+        .ab-link:hover { color: var(--ab-blue-light); }
         .ab-link-chevron { transition: margin-left 0.2s; }
 
         /* ── Mission & Vision ────────────────────────────────── */
@@ -928,8 +898,8 @@ const About = () => {
         }
         .ab-mission-card {
           background: var(--ab-white);
-          border: 1.5px solid #DDD6FE;
-          border-top: 4px solid var(--ab-purple-600);
+          border: 1.5px solid var(--ab-blue-bg2);
+          border-top: 4px solid var(--ab-blue-mid);
           border-radius: var(--ab-radius-lg);
           padding: 36px 28px;
           box-shadow: var(--ab-shadow-card);
@@ -942,20 +912,20 @@ const About = () => {
         }
         .ab-mission-icon-wrap {
           width: 56px; height: 56px;
-          background: var(--ab-purple-600);
+          background: var(--ab-blue-mid);
           border-radius: 50%;
           display: flex; align-items: center; justify-content: center;
           margin-bottom: 18px;
-          box-shadow: 0 4px 14px rgba(124,58,237,0.35);
+          box-shadow: 0 4px 14px rgba(24,95,165,0.35);
         }
         .ab-mission-title {
           font-size: 1.25rem; font-weight: 700;
-          color: var(--ab-purple-600);
+          color: var(--ab-blue-mid);
           margin-bottom: 12px;
         }
         .ab-mission-body {
           font-size: 0.92rem;
-          color: var(--ab-gray-500);
+          color: var(--ab-gray-400);
           line-height: 1.75;
         }
 
@@ -967,7 +937,7 @@ const About = () => {
         }
         .ab-sub-body {
           font-size: 0.97rem;
-          color: var(--ab-gray-500);
+          color: var(--ab-gray-400);
           line-height: 1.75;
           margin-bottom: 24px;
         }
@@ -986,20 +956,20 @@ const About = () => {
           cursor: default;
         }
         .ab-mini-card:hover {
-          border-color: var(--ab-purple-600);
-          background: var(--ab-purple-50);
+          border-color: var(--ab-blue-mid);
+          background: var(--ab-blue-bg);
           box-shadow: var(--ab-shadow-hov);
           transform: translateY(-3px);
         }
         .ab-mini-icon-wrap {
           width: 52px; height: 52px;
           border-radius: 50%;
-          background: var(--ab-purple-100);
+          background: var(--ab-blue-bg);
           display: flex; align-items: center; justify-content: center;
           margin-bottom: 12px;
           transition: background 0.2s;
         }
-        .ab-mini-card:hover .ab-mini-icon-wrap { background: var(--ab-purple-200, #DDD6FE); }
+        .ab-mini-card:hover .ab-mini-icon-wrap { background: var(--ab-blue-bg2); }
         .ab-mini-title {
           font-size: 1rem; font-weight: 700;
           color: var(--ab-text-main);
@@ -1007,7 +977,7 @@ const About = () => {
         }
         .ab-mini-desc {
           font-size: 0.84rem;
-          color: var(--ab-gray-500);
+          color: var(--ab-gray-400);
           line-height: 1.65;
         }
 
@@ -1016,8 +986,8 @@ const About = () => {
           display: flex;
           align-items: flex-start;
           gap: 4rem;
-          background: linear-gradient(135deg, var(--ab-purple-50), #F0EBFF);
-          border: 1.5px solid #DDD6FE;
+          background: linear-gradient(135deg, var(--ab-blue-bg), var(--ab-blue-bg2));
+          border: 1.5px solid var(--ab-blue-bg2);
           border-radius: var(--ab-radius-xl);
           padding: clamp(2rem, 4vw, 3.5rem);
           box-shadow: var(--ab-shadow-card);
@@ -1033,7 +1003,7 @@ const About = () => {
         .ab-founder-ring {
           position: absolute;
           width: 170px; height: 170px;
-          border: 4px solid var(--ab-purple-600);
+          border: 4px solid var(--ab-blue-mid);
           border-radius: 50%;
           transform: rotate(-6deg);
         }
@@ -1044,7 +1014,7 @@ const About = () => {
           position: relative;
           z-index: 1;
           border: 3px solid #fff;
-          box-shadow: 0 8px 28px rgba(124,58,237,0.25);
+          box-shadow: 0 8px 28px rgba(24,95,165,0.25);
           margin-bottom: 20px;
         }
         .ab-founder-socials {
@@ -1055,17 +1025,17 @@ const About = () => {
           width: 38px; height: 38px;
           border-radius: 50%;
           background: #fff;
-          border: 1px solid #DDD6FE;
+          border: 1px solid var(--ab-blue-bg2);
           display: flex; align-items: center; justify-content: center;
-          color: var(--ab-purple-600);
+          color: var(--ab-blue-mid);
           text-decoration: none;
           transition: background 0.2s, color 0.2s, border-color 0.2s;
-          box-shadow: 0 2px 8px rgba(124,58,237,0.1);
+          box-shadow: 0 2px 8px rgba(24,95,165,0.1);
         }
         .ab-social-btn:hover {
-          background: var(--ab-purple-600);
+          background: var(--ab-blue-mid);
           color: #fff;
-          border-color: var(--ab-purple-600);
+          border-color: var(--ab-blue-mid);
         }
         .ab-founder-info { flex: 1; min-width: 0; }
         .ab-founder-name {
@@ -1075,18 +1045,18 @@ const About = () => {
         }
         .ab-founder-role {
           font-size: 1rem; font-weight: 600;
-          color: var(--ab-purple-600);
+          color: var(--ab-blue-mid);
           margin-bottom: 16px;
         }
         .ab-founder-bar {
           width: 48px; height: 3px;
-          background: linear-gradient(90deg, var(--ab-purple-600), var(--ab-purple-400));
+          background: linear-gradient(90deg, var(--ab-blue-mid), var(--ab-blue-light));
           border-radius: 2px;
           margin-bottom: 18px;
         }
         .ab-founder-summary {
           font-size: 0.97rem;
-          color: var(--ab-gray-700);
+          color: var(--ab-text-body);
           line-height: 1.75;
           margin-bottom: 20px;
         }
@@ -1099,14 +1069,14 @@ const About = () => {
         }
         .ab-founder-contact-icon {
           width: 34px; height: 34px;
-          background: var(--ab-purple-100);
+          background: var(--ab-blue-bg);
           border-radius: 50%;
           display: flex; align-items: center; justify-content: center;
           flex-shrink: 0;
         }
         .ab-founder-contact-text {
           font-size: 0.9rem;
-          color: var(--ab-gray-700);
+          color: var(--ab-text-body);
         }
 
         /* ── FAQ ─────────────────────────────────────────────── */
@@ -1114,12 +1084,12 @@ const About = () => {
           max-width: 760px;
           margin: 0 auto;
           background: var(--ab-white);
-          border: 1.5px solid #DDD6FE;
+          border: 1.5px solid var(--ab-blue-bg2);
           border-radius: var(--ab-radius-lg);
           overflow: hidden;
           box-shadow: var(--ab-shadow-card);
         }
-        .ab-faq-divider { border-bottom: 1px solid var(--ab-purple-100); }
+        .ab-faq-divider { border-bottom: 1px solid var(--ab-blue-bg); }
         .ab-faq-btn {
           width: 100%;
           display: flex; justify-content: space-between; align-items: center;
@@ -1129,24 +1099,24 @@ const About = () => {
           gap: 14px; text-align: left;
           transition: background 0.2s;
         }
-        .ab-faq-btn.ab-faq-btn-open { background: var(--ab-purple-50); }
+        .ab-faq-btn.ab-faq-btn-open { background: var(--ab-blue-bg); }
         .ab-faq-q {
           font-size: 0.95rem; font-weight: 600; line-height: 1.5;
           color: var(--ab-text-main);
           transition: color 0.2s;
         }
-        .ab-faq-q.ab-faq-q-open { color: var(--ab-purple-600); }
+        .ab-faq-q.ab-faq-q-open { color: var(--ab-blue-mid); }
         .ab-faq-answer {
           padding: 0 24px 18px;
           font-size: 0.9rem;
-          color: var(--ab-gray-500);
+          color: var(--ab-gray-400);
           line-height: 1.75;
         }
 
         /* ── Statistics ──────────────────────────────────────── */
         .ab-stats-section {
           position: relative;
-          background: linear-gradient(135deg, #2E0664 0%, #5B21B6 55%, #7C3AED 100%);
+          background: linear-gradient(135deg, #042C53 0%, #185FA5 55%, #0C447C 100%);
           padding: clamp(4rem, 8vw, 6rem) clamp(1.25rem, 5vw, 3rem);
           overflow: hidden;
         }
@@ -1154,7 +1124,7 @@ const About = () => {
           position: absolute;
           width: 500px; height: 500px;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(167,139,250,0.13) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(55,138,221,0.13) 0%, transparent 70%);
           top: -150px; right: -100px;
           pointer-events: none;
           filter: blur(50px);
@@ -1169,7 +1139,7 @@ const About = () => {
         }
         .ab-stat-card {
           background: rgba(255,255,255,0.09);
-          border: 1px solid rgba(196,181,253,0.22);
+          border: 1px solid rgba(55,138,221,0.22);
           border-radius: var(--ab-radius-lg);
           padding: 2rem 1.5rem;
           text-align: center;
@@ -1195,7 +1165,7 @@ const About = () => {
         .ab-stat-label {
           display: block;
           font-size: 0.82rem;
-          color: var(--ab-purple-300);
+          color: var(--ab-blue-pale);
           letter-spacing: 0.04em;
         }
 
@@ -1212,7 +1182,7 @@ const About = () => {
           width: 52px;
           height: 52px;
           border-radius: 50%;
-          background: linear-gradient(135deg, var(--ab-purple-600), var(--ab-purple-700));
+          background: linear-gradient(135deg, var(--ab-blue-mid), var(--ab-blue-deep));
           border: none;
           display: flex;
           align-items: center;
@@ -1221,12 +1191,12 @@ const About = () => {
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           flex-shrink: 0;
           color: #fff;
-          box-shadow: 0 4px 14px rgba(124,58,237,0.3);
+          box-shadow: 0 4px 14px rgba(24,95,165,0.3);
         }
         .ab-carousel-btn:hover {
-          background: linear-gradient(135deg, var(--ab-purple-700), var(--ab-purple-800));
+          background: linear-gradient(135deg, var(--ab-blue-deep), #0C447C);
           transform: scale(1.1);
-          box-shadow: 0 8px 24px rgba(124,58,237,0.4);
+          box-shadow: 0 8px 24px rgba(24,95,165,0.4);
         }
         .ab-carousel-btn:active {
           transform: scale(0.95);
@@ -1251,14 +1221,14 @@ const About = () => {
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .ab-carousel-dot:hover {
-          background: var(--ab-purple-400);
+          background: var(--ab-blue-light);
           transform: scale(1.2);
         }
         .ab-carousel-dot.ab-carousel-dot-active {
-          background: linear-gradient(135deg, var(--ab-purple-600), var(--ab-purple-700));
+          background: linear-gradient(135deg, var(--ab-blue-mid), var(--ab-blue-deep));
           width: 32px;
           border-radius: 5px;
-          box-shadow: 0 2px 8px rgba(124,58,237,0.3);
+          box-shadow: 0 2px 8px rgba(24,95,165,0.3);
         }
 
         /* ── Core Values ─────────────────────────────────────── */
@@ -1272,7 +1242,7 @@ const About = () => {
         .ab-value-card {
           background: var(--ab-white);
           border: 1.5px solid var(--ab-gray-200);
-          border-left: 4px solid var(--ab-purple-600);
+          border-left: 4px solid var(--ab-blue-mid);
           border-radius: var(--ab-radius-lg);
           padding: 28px 24px;
           box-shadow: var(--ab-shadow-card);
@@ -1286,23 +1256,23 @@ const About = () => {
           position: absolute;
           top: 0; left: 0; bottom: 0;
           width: 4px;
-          background: linear-gradient(180deg, var(--ab-purple-600), var(--ab-purple-400));
+          background: linear-gradient(180deg, var(--ab-blue-mid), var(--ab-blue-light));
         }
         .ab-value-card:hover {
-          background: var(--ab-purple-50);
-          border-color: var(--ab-purple-400);
+          background: var(--ab-blue-bg);
+          border-color: var(--ab-blue-light);
           box-shadow: var(--ab-shadow-hov);
           transform: translateY(-4px);
         }
         .ab-value-accent { display: none; }
         .ab-value-title {
           font-size: 1.1rem; font-weight: 700;
-          color: var(--ab-purple-600);
+          color: var(--ab-blue-mid);
           margin-bottom: 10px;
         }
         .ab-value-desc {
           font-size: 0.9rem;
-          color: var(--ab-gray-500);
+          color: var(--ab-gray-400);
           line-height: 1.75;
         }
 

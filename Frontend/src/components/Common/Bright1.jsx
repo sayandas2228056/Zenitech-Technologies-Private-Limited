@@ -30,7 +30,7 @@ const Bright1 = () => {
         src={CntPic}
         alt="Contact background"
         className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none select-none"
-        style={{ zIndex: 0, filter: 'blur(6px) brightness(0.5)' }}
+        style={{ zIndex: 0, filter: 'blur(8px) brightness(0.8)' }}
       />
       <div
         className="absolute inset-0 opacity-[0.04]"
@@ -46,14 +46,19 @@ const Bright1 = () => {
         onMouseMove={handleMouseMove}
         style={{
           background:
-            'linear-gradient(135deg, rgba(76,29,149,0.97) 0%, rgba(54,16,88,0.99) 100%)', // darker purple to violet
-          backdropFilter: 'blur(36px) saturate(160%)',
-          WebkitBackdropFilter: 'blur(36px) saturate(160%)',
-          border: '1.5px solid rgba(168,85,247,0.22)', // soft violet border
+            'linear-gradient(135deg, rgba(76,29,149,0.25) 0%, rgba(54,16,88,0.35) 100%)',
+          backdropFilter: 'blur(40px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(40px) saturate(180%)',
+          border: '1px solid rgba(255,255,255,0.15)',
           boxShadow:
-            '0 25px 50px -12px rgba(76,29,149,0.32), 0 0 0 1px rgba(168,85,247,0.08), inset 0 1px 0 rgba(139,92,246,0.10)',
+            '0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.2)',
         }}
       >
+        <div className="absolute inset-0 rounded-[2.5rem] pointer-events-none"
+          style={{
+            background: 'linear-gradient(120deg, rgba(255,255,255,0.15), transparent 40%)'
+          }}
+        />
         {/* Subtle inner glow following mouse */}
         <div
           className="absolute inset-0 rounded-[2.5rem] opacity-40 pointer-events-none"

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Cloud, Shield, Check, ArrowRight, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Phone, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Bright1 from '../components/Common/Bright1';
+import Bright1 from '../components/Common/Bright2';
 import ServiceHeader from '../components/Service/ServiceHeader';
 import useSEO from '../hooks/useSEO';
 
@@ -232,7 +232,7 @@ const SectionSub = ({ children }) => (
 /** Check bullet */
 const CheckBullet = ({ text }) => (
   <div className="sv-check-row">
-    <span className="sv-check-icon"><Check size={9} strokeWidth={3} color="#7c3aed" /></span>
+    <span className="sv-check-icon"><Check size={9} strokeWidth={3} color="#185FA5" /></span>
     <span>{text}</span>
   </div>
 );
@@ -257,7 +257,7 @@ const ServiceCard = ({ service }) => {
       {/* Header */}
       <div className="sv-card-header">
         <div className={`sv-card-icon${hovered ? ' sv-card-icon-hov' : ''}`}>
-          <Icon size={22} color={hovered ? '#fff' : '#7c3aed'} />
+          <Icon size={22} color={hovered ? '#fff' : '#185FA5'} />
         </div>
         <div>
           <span className="sv-category-chip">{service.category}</span>
@@ -431,7 +431,7 @@ const Services = () => {
       </section>
 
       {/* ══ CASE STUDIES ═══════════════════════════════════════ */}
-      <section className="sv-section sv-section-purple-faded">
+      <section className="sv-section sv-section-blue-faded">
         <div className="sv-container">
           <div className="sv-section-header">
             <SectionLabel text="Success Stories" />
@@ -526,7 +526,7 @@ const Services = () => {
       </section>
 
       {/* ══ FAQ ════════════════════════════════════════════════ */}
-      <section className="sv-section sv-section-purple-faded sv-border-top">
+      <section className="sv-section sv-section-blue-faded sv-border-top">
         <div className="sv-container sv-container-narrow">
           <div className="sv-section-header">
             <SectionLabel text="FAQ" />
@@ -545,7 +545,7 @@ const Services = () => {
                     {faq.question}
                   </span>
                   {activeFaq === i
-                    ? <ChevronUp size={18} color="#7c3aed" className="sv-faq-icon" />
+                    ? <ChevronUp size={18} color="#185FA5" className="sv-faq-icon" />
                     : <ChevronDown size={18} color="#9ca3af" className="sv-faq-icon" />}
                 </button>
                 {activeFaq === i && (
@@ -592,28 +592,31 @@ const Services = () => {
       <style>{`
         /* ── Design tokens ─────────────────────────────────── */
         .sv-root {
-          --sv-purple-900: #4c1d95;
-          --sv-purple-700: #6d28d9;
-          --sv-purple-600: #7c3aed;
-          --sv-purple-500: #a855f7;
-          --sv-purple-100: #f3f0ff;
-          --sv-purple-50:  #faf5ff;
-          --sv-orange:     #f97316;
-          --sv-orange-lt:  #fb923c;
-          --sv-orange-dk:  #ea580c;
-          --sv-gray-900:   #1e1b4b;
-          --sv-gray-700:   #374151;
-          --sv-gray-500:   #6b7280;
-          --sv-gray-200:   #e5e7eb;
-          --sv-gray-100:   #f3f4f6;
-          --sv-white:      #ffffff;
-          --sv-faded:      #fafafa;
-          --sv-radius-sm:  8px;
-          --sv-radius-md:  10px;
-          --sv-radius-lg:  14px;
-          --sv-radius-xl:  16px;
-          --sv-shadow-card: 0 2px 12px rgba(0,0,0,0.04);
-          --sv-shadow-hov:  0 12px 40px rgba(124,58,237,0.12);
+          --sv-blue-deep:   #042C53;
+          --sv-blue-mid:    #185FA5;
+          --sv-blue-light:  #378ADD;
+          --sv-blue-pale:   #85B7EB;
+          --sv-blue-pal2:   #B5D4F4;
+          --sv-blue-bg:     #E8F1FB;
+          --sv-blue-bg2:    #EAF4FF;
+          --sv-orange:      #F97316;
+          --sv-orange-lt:   #FB923C;
+          --sv-orange-dk:   #EA580C;
+          --sv-white:       #ffffff;
+          --sv-gray-50:     #F7F9FC;
+          --sv-gray-100:    #EEF2F8;
+          --sv-gray-200:    #D8E4F0;
+          --sv-gray-400:    #8FA7C0;
+          --sv-gray-500:    #6A85A0;
+          --sv-gray-700:    #3D5470;
+          --sv-gray-900:    #0D1F33;
+          --sv-faded:       #F7F9FC;
+          --sv-radius-sm:   8px;
+          --sv-radius-md:   10px;
+          --sv-radius-lg:   14px;
+          --sv-radius-xl:   16px;
+          --sv-shadow-card: 0 2px 12px rgba(24,95,165,0.07), 0 1px 3px rgba(0,0,0,0.05);
+          --sv-shadow-hov:   0 8px 32px rgba(24,95,165,0.14), 0 2px 8px rgba(0,0,0,0.06);
           font-family: 'Satoshi', system-ui, sans-serif;
           background: var(--sv-faded);
         }
@@ -627,9 +630,9 @@ const Services = () => {
         }
         .sv-section-white         { background: var(--sv-white); }
         .sv-section-faded         { background: var(--sv-faded); }
-        .sv-section-purple-faded  { background: var(--sv-purple-50); }
-        .sv-border-y   { border-top: 1px solid var(--sv-gray-100); border-bottom: 1px solid var(--sv-gray-100); }
-        .sv-border-top { border-top: 1px solid #ede9fe; }
+        .sv-section-blue-faded   { background: var(--sv-blue-bg); }
+        .sv-border-y   { border-top: 1px solid var(--sv-gray-200); border-bottom: 1px solid var(--sv-gray-200); }
+        .sv-border-top { border-top: 1px solid var(--sv-gray-200); }
 
         .sv-section-header { margin-bottom: 3rem; }
 
@@ -643,9 +646,9 @@ const Services = () => {
           display: inline-flex;
           align-items: center;
           gap: 0.4rem;
-          background: #fdf4ff;
-          border: 1px solid #e9d5ff;
-          color: var(--sv-purple-600);
+          background: var(--sv-blue-bg);
+          border: 1px solid var(--sv-blue-bg2);
+          color: var(--sv-blue-mid);
           font-size: 0.72rem;
           font-weight: 700;
           letter-spacing: 0.12em;
@@ -700,12 +703,12 @@ const Services = () => {
           cursor: pointer;
           transition: all 0.2s;
           flex-shrink: 0;
-          color: var(--sv-purple-600);
+          color: var(--sv-blue-mid);
         }
         .sv-carousel-btn:hover {
-          background: var(--sv-purple-600);
+          background: var(--sv-blue-mid);
           color: #fff;
-          border-color: var(--sv-purple-600);
+          border-color: var(--sv-blue-mid);
           transform: scale(1.05);
         }
         .sv-carousel-grid {
@@ -728,10 +731,10 @@ const Services = () => {
           transition: all 0.2s;
         }
         .sv-carousel-dot:hover {
-          background: var(--sv-purple-400);
+          background: var(--sv-blue-light);
         }
         .sv-carousel-dot.sv-carousel-dot-active {
-          background: var(--sv-purple-600);
+          background: var(--sv-blue-mid);
           width: 24px;
           border-radius: 4px;
         }
@@ -757,7 +760,7 @@ const Services = () => {
           cursor: default;
         }
         .sv-service-card.sv-service-card-hov {
-          border-color: var(--sv-purple-600);
+          border-color: var(--sv-blue-mid);
           box-shadow: var(--sv-shadow-hov);
           transform: translateY(-5px);
         }
@@ -765,12 +768,12 @@ const Services = () => {
           position: absolute;
           top: 0; left: 0; right: 0;
           height: 4px;
-          background: linear-gradient(90deg, var(--sv-purple-600), var(--sv-purple-500));
+          background: linear-gradient(90deg, var(--sv-blue-mid), var(--sv-blue-light));
           border-radius: var(--sv-radius-xl) var(--sv-radius-xl) 0 0;
           transition: background 0.3s;
         }
         .sv-card-bar.sv-card-bar-hov {
-          background: linear-gradient(90deg, var(--sv-purple-600), var(--sv-orange));
+          background: linear-gradient(90deg, var(--sv-blue-mid), var(--sv-orange));
         }
         .sv-card-header {
           display: flex;
@@ -781,18 +784,18 @@ const Services = () => {
         .sv-card-icon {
           width: 50px; height: 50px;
           border-radius: var(--sv-radius-sm);
-          background: var(--sv-purple-100);
+          background: var(--sv-blue-bg);
           display: flex; align-items: center; justify-content: center;
           flex-shrink: 0;
           transition: background 0.3s;
         }
         .sv-card-icon.sv-card-icon-hov {
-          background: linear-gradient(135deg, var(--sv-purple-600), var(--sv-purple-500));
+          background: linear-gradient(135deg, var(--sv-blue-mid), var(--sv-blue-light));
         }
         .sv-category-chip {
           display: inline-block;
-          background: var(--sv-purple-100);
-          color: var(--sv-purple-600);
+          background: var(--sv-blue-bg);
+          color: var(--sv-blue-mid);
           font-size: 0.7rem;
           font-weight: 700;
           letter-spacing: 0.07em;
@@ -816,7 +819,7 @@ const Services = () => {
 
         /* ── Feature list & tech chips ─────────────────────── */
         .sv-label-tiny {
-          color: #4c1d95;
+          color: var(--sv-blue-deep);
           font-size: 0.71rem;
           font-weight: 700;
           letter-spacing: 0.09em;
@@ -838,16 +841,16 @@ const Services = () => {
         .sv-check-icon {
           width: 16px; height: 16px;
           border-radius: 50%;
-          background: var(--sv-purple-100);
+          background: var(--sv-blue-bg);
           display: flex; align-items: center; justify-content: center;
           flex-shrink: 0;
         }
 
         .sv-tech-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
         .sv-tech-chip {
-          background: var(--sv-purple-100);
-          border: 1px solid #ddd6fe;
-          color: #5b21b6;
+          background: var(--sv-blue-bg);
+          border: 1px solid var(--sv-blue-bg2);
+          color: var(--sv-blue-mid);
           font-size: 0.71rem;
           font-weight: 500;
           padding: 0.18rem 0.55rem;
@@ -860,9 +863,9 @@ const Services = () => {
           display: inline-flex;
           align-items: center;
           gap: 0.45rem;
-          background: var(--sv-purple-100);
-          color: var(--sv-purple-600);
-          border: 1.5px solid #ddd6fe;
+          background: var(--sv-blue-bg);
+          color: var(--sv-blue-mid);
+          border: 1.5px solid var(--sv-blue-bg2);
           padding: 0.65rem 1.2rem;
           border-radius: var(--sv-radius-md);
           font-size: 0.875rem;
@@ -872,7 +875,7 @@ const Services = () => {
           align-self: flex-start;
         }
         .sv-card-cta.sv-card-cta-hov {
-          background: linear-gradient(135deg, var(--sv-purple-600), var(--sv-purple-500));
+          background: linear-gradient(135deg, var(--sv-blue-mid), var(--sv-blue-light));
           color: #fff;
           border-color: transparent;
         }
@@ -892,15 +895,15 @@ const Services = () => {
           cursor: default;
         }
         .sv-process-card:hover {
-          border-color: var(--sv-purple-600);
-          box-shadow: 0 8px 28px rgba(124,58,237,0.1);
+          border-color: var(--sv-blue-mid);
+          box-shadow: 0 8px 28px rgba(24,95,165,0.1);
           transform: translateY(-4px);
           background: var(--sv-white);
         }
         .sv-step-num {
           width: 42px; height: 42px;
           border-radius: var(--sv-radius-sm);
-          background: linear-gradient(135deg, var(--sv-purple-600), var(--sv-purple-500));
+          background: linear-gradient(135deg, var(--sv-blue-mid), var(--sv-blue-light));
           display: flex; align-items: center; justify-content: center;
           margin-bottom: 1rem;
         }
@@ -964,7 +967,7 @@ const Services = () => {
           flex-shrink: 0;
         }
         .sv-case-client {
-          color: var(--sv-purple-600);
+          color: var(--sv-blue-mid);
           font-size: 0.84rem;
           font-weight: 600;
           margin-bottom: 1.1rem;
@@ -984,18 +987,18 @@ const Services = () => {
           gap: 1.5rem;
         }
         .sv-why-card {
-          background: var(--sv-purple-50);
-          border: 1.5px solid #ede9fe;
+          background: var(--sv-blue-bg);
+          border: 1.5px solid var(--sv-blue-bg2);
           border-radius: var(--sv-radius-lg);
           padding: 1.5rem;
           transition: border-color 0.3s, background 0.3s, transform 0.3s, box-shadow 0.3s;
           cursor: default;
         }
         .sv-why-card:hover {
-          border-color: var(--sv-purple-600);
-          background: #f5f0ff;
+          border-color: var(--sv-blue-mid);
+          background: var(--sv-blue-bg2);
           transform: translateY(-4px);
-          box-shadow: 0 8px 28px rgba(124,58,237,0.1);
+          box-shadow: 0 8px 28px rgba(24,95,165,0.1);
         }
         .sv-why-dot {
           width: 8px; height: 8px;
@@ -1020,10 +1023,10 @@ const Services = () => {
         .sv-faq-box {
           background: var(--sv-white);
           border-radius: var(--sv-radius-xl);
-          border: 1.5px solid #ede9fe;
+          border: 1.5px solid var(--sv-blue-bg2);
           overflow: hidden;
         }
-        .sv-faq-divider { border-bottom: 1px solid var(--sv-gray-100); }
+        .sv-faq-divider { border-bottom: 1px solid var(--sv-gray-200); }
         .sv-faq-btn {
           width: 100%;
           display: flex;
@@ -1037,7 +1040,7 @@ const Services = () => {
           text-align: left;
           transition: background 0.2s;
         }
-        .sv-faq-btn.sv-faq-btn-open { background: var(--sv-purple-50); }
+        .sv-faq-btn.sv-faq-btn-open { background: var(--sv-blue-bg); }
         .sv-faq-q {
           color: var(--sv-gray-900);
           font-weight: 600;
@@ -1045,7 +1048,7 @@ const Services = () => {
           line-height: 1.5;
           transition: color 0.2s;
         }
-        .sv-faq-q.sv-faq-q-open { color: var(--sv-purple-600); }
+        .sv-faq-q.sv-faq-q-open { color: var(--sv-blue-mid); }
         .sv-faq-icon { flex-shrink: 0; }
         .sv-faq-answer {
           padding: 0 1.5rem 1.25rem;
@@ -1057,7 +1060,7 @@ const Services = () => {
         /* ── CTA section ───────────────────────────────────── */
         .sv-cta-section {
           padding: clamp(4rem, 8vw, 6rem) 2rem;
-          background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 50%, #7c3aed 100%);
+          background: linear-gradient(135deg, #042C53 0%, #185FA5 50%, #0C447C 100%);
           position: relative;
           overflow: hidden;
         }
@@ -1096,7 +1099,7 @@ const Services = () => {
           line-height: 1.2;
         }
         .sv-cta-sub {
-          color: rgba(233,213,255,0.8);
+          color: rgba(181,212,244,0.8);
           font-size: 1rem;
           line-height: 1.75;
           margin-bottom: 2rem;
@@ -1110,7 +1113,7 @@ const Services = () => {
         }
         .sv-btn-cta-solid {
           background: var(--sv-white);
-          color: var(--sv-purple-600);
+          color: var(--sv-blue-mid);
           padding: 0.85rem 2rem;
           border-radius: var(--sv-radius-md);
           font-weight: 700;
@@ -1148,10 +1151,10 @@ const Services = () => {
           display: flex;
           align-items: center;
           gap: 0.4rem;
-          color: rgba(233,213,255,0.7);
+          color: rgba(181,212,244,0.7);
           font-size: 0.875rem;
         }
-        .sv-cta-contact-icon { color: rgba(233,213,255,0.7); }
+        .sv-cta-contact-icon { color: rgba(181,212,244,0.7); }
 
         /* ── Responsive ────────────────────────────────────── */
         @media (max-width: 768px) {
