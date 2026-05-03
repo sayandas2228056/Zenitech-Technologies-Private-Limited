@@ -49,8 +49,8 @@ const HeroBotm = memo(() => {
           ))}
         </div>
         <div className="hero-botm-buttons">
-          <a href='/services' className="hero-botm-btn">
-            Our Services
+          <a href='/solutions' className="hero-botm-btn">
+            Our Solutions
           </a>
           <a href='/contact' className="hero-botm-btn">
             Contact Us
