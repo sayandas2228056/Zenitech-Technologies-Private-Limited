@@ -257,7 +257,7 @@ const About = () => {
             </p>
 
             <div className="ab-hero-btns ab-text-animate" style={{ animationDelay: '0.3s' }}>
-              <Link to="/solutions" className="ab-btn-primary">Our Services <ArrowRight size={16} /></Link>
+              <Link to="/solutions" className="ab-btn-primary">Our Solutions<ArrowRight size={16} /></Link>
               <Link to="/contact" className="ab-btn-ghost">Contact Us</Link>
             </div>
           </div>
