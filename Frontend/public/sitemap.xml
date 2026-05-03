@@ -26,9 +26,9 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- Services -->
+  <!-- Solutions -->
   <url>
-    <loc>https://www.zenitech.in/services</loc>
+    <loc>https://www.zenitech.in/solutions</loc>
     <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -36,15 +36,15 @@
 
   <!-- Cybersecurity -->
   <url>
-    <loc>https://www.zenitech.in/services/cybersecurity</loc>
+    <loc>https://www.zenitech.in/solutions/cybersecurity</loc>
     <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
-  <!-- Cloud Computing -->
+  <!-- Cloud Solutions -->
   <url>
-    <loc>https://www.zenitech.in/services/cloud-solutions</loc>
+    <loc>https://www.zenitech.in/solutions/cloud-solutions</loc>
     <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
