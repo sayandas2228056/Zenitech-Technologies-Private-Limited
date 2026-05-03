@@ -59,7 +59,7 @@ const ServiceHeader = () => {
                         <Link to="/solutions/cybersecurity" className="sh-btn-solid">
                             Cybersecurity
                         </Link>
-                        <Link to="/solutions/cloud-computing" className="sh-btn-outline">
+                        <Link to="/solutions/cloud-solutions" className="sh-btn-outline">
                             Cloud Solutions
                         </Link>
                     </div>
