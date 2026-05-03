@@ -30,7 +30,7 @@ const services = [
   ],
   highlight: 'Protect. Detect. Respond. Secure your business with confidence.',
   icon: Shield,
-  route: '/services/cybersecurity',
+  route: '/solutions/cybersecurity',
 },
   {
   title: 'Cloud Solutions',
@@ -46,7 +46,7 @@ const services = [
   ],
   highlight: 'Build. Scale. Optimize. Power your growth with the cloud.',
   icon: Cloud,
-  route: '/services/cloud-solutions',
+  route: '/solutions/cloud-solutions',
 }
 ];
 

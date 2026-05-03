@@ -82,7 +82,7 @@ const founderData = {
   location: 'Bangalore / Bengaluru, India',
   highlights: ['24/7 security monitoring', 'Advanced threat protection', 'Incident response services', 'Tailored security consulting'],
   socials: [
-    { name: 'LinkedIn', icon: <FaLinkedin size={16} />, url: 'https://linkedin.com' },
+    { name: 'LinkedIn', icon: <FaLinkedin size={16} />, url: 'https://www.linkedin.com/in/haideraliraja/' },
     { name: 'WhatsApp', icon: <FaWhatsapp size={16} />, url: 'https://wa.me/8820066999' },
   ],
 };
@@ -257,7 +257,7 @@ const About = () => {
             </p>
 
             <div className="ab-hero-btns ab-text-animate" style={{ animationDelay: '0.3s' }}>
-              <Link to="/services" className="ab-btn-primary">Our Services <ArrowRight size={16} /></Link>
+              <Link to="/solutions" className="ab-btn-primary">Our Services <ArrowRight size={16} /></Link>
               <Link to="/contact" className="ab-btn-ghost">Contact Us</Link>
             </div>
           </div>

@@ -56,10 +56,10 @@ const ServiceHeader = () => {
                     </p>
 
                     <div className="sh-btns sh-anim" style={{ animationDelay: '0.28s' }}>
-                        <Link to="/services/cybersecurity" className="sh-btn-solid">
+                        <Link to="/solutions/cybersecurity" className="sh-btn-solid">
                             Cybersecurity
                         </Link>
-                        <Link to="/services/cloud-computing" className="sh-btn-outline">
+                        <Link to="/solutions/cloud-computing" className="sh-btn-outline">
                             Cloud Solutions
                         </Link>
                     </div>
